@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>加密货币列表 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 标题栏 -->
+        <div class="header">
+            <div style="cursor: pointer;" onclick="window.location.href='crypto.html'">
+                <img src="images/back-icon.svg" alt="返回" width="24" height="24">
+            </div>
+            <div class="header-title">加密货币列表</div>
+            <div class="header-actions">
+                <div onclick="window.location.href='wallet.html'">
+                    <img src="images/wallet-icon.svg" alt="钱包" width="24" height="24">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 搜索栏 -->
+        <div class="search-container">
+            <input type="text" class="input-search" placeholder="搜索加密货币...">
+        </div>
+        
+        <!-- 可滚动内容区域 -->
+        <div class="scrollable-content" style="top: 153px;">
+            <!-- 热门加密货币列表 -->
+            <div class="section-title">热门加密货币</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=btc'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₿</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">比特币 (BTC)</div>
+                    <div class="crypto-change-positive">+2.34%</div>
+                </div>
+                <div class="crypto-list-price">¥246,872.53</div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=eth'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">Ξ</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">以太坊 (ETH)</div>
+                    <div class="crypto-change-positive">+1.87%</div>
+                </div>
+                <div class="crypto-list-price">¥12,543.67</div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=usdt'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₮</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">泰达币 (USDT)</div>
+                    <div class="crypto-change-negative">-0.13%</div>
+                </div>
+                <div class="crypto-list-price">¥7.21</div>
+            </div>
+            
+            <div class="section-title">A</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=ada'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">A</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">艾达币 (ADA)</div>
+                    <div class="crypto-change-positive">+3.45%</div>
+                </div>
+                <div class="crypto-list-price">¥2.87</div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=atom'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">⚛</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">原子币 (ATOM)</div>
+                    <div class="crypto-change-positive">+1.23%</div>
+                </div>
+                <div class="crypto-list-price">¥76.54</div>
+            </div>
+            
+            <div class="section-title">B</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=bnb'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">B</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">币安币 (BNB)</div>
+                    <div class="crypto-change-positive">+0.75%</div>
+                </div>
+                <div class="crypto-list-price">¥2,187.45</div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=btc'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₿</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">比特币 (BTC)</div>
+                    <div class="crypto-change-positive">+2.34%</div>
+                </div>
+                <div class="crypto-list-price">¥246,872.53</div>
+            </div>
+            
+            <div class="section-title">D</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=doge'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">Ð</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">狗狗币 (DOGE)</div>
+                    <div class="crypto-change-negative">-2.76%</div>
+                </div>
+                <div class="crypto-list-price">¥0.54</div>
+            </div>
+            
+            <div class="section-title">E</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=eth'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">Ξ</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">以太坊 (ETH)</div>
+                    <div class="crypto-change-positive">+1.87%</div>
+                </div>
+                <div class="crypto-list-price">¥12,543.67</div>
+            </div>
+            
+            <div class="section-title">L</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=ltc'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">Ł</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">莱特币 (LTC)</div>
+                    <div class="crypto-change-negative">-0.89%</div>
+                </div>
+                <div class="crypto-list-price">¥543.21</div>
+            </div>
+            
+            <div class="section-title">S</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=sol'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">S</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">索拉纳 (SOL)</div>
+                    <div class="crypto-change-positive">+5.67%</div>
+                </div>
+                <div class="crypto-list-price">¥656.78</div>
+            </div>
+            
+            <div class="section-title">U</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=usdt'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₮</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">泰达币 (USDT)</div>
+                    <div class="crypto-change-negative">-0.13%</div>
+                </div>
+                <div class="crypto-list-price">¥7.21</div>
+            </div>
+            
+            <div class="section-title">X</div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=xrp'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">X</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">瑞波币 (XRP)</div>
+                    <div class="crypto-change-negative">-1.24%</div>
+                </div>
+                <div class="crypto-list-price">¥4.32</div>
+            </div>
+            
+            <!-- 底部间隔 -->
+            <div style="height: 20px;"></div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

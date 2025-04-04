@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的钱包 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 标题栏 -->
+        <div class="header">
+            <div style="cursor: pointer;" onclick="window.location.href='crypto.html'">
+                <img src="images/back-icon.svg" alt="返回" width="24" height="24">
+            </div>
+            <div class="header-title">我的钱包</div>
+            <div class="header-actions">
+                <div onclick="window.location.href='wallet-settings.html'">
+                    <img src="images/settings-icon.svg" alt="设置" width="24" height="24">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 可滚动内容区域 -->
+        <div class="scrollable-content">
+            <!-- 钱包余额 -->
+            <div class="wallet-card">
+                <div class="wallet-label">总资产 (CNY)</div>
+                <div class="wallet-balance">¥ 12,345.67</div>
+                <div class="wallet-id">钱包ID: 0x8f7e...9d2c</div>
+                
+                <!-- 充值提现按钮 -->
+                <div style="display: flex; margin-top: var(--spacing-lg);">
+                    <button class="btn btn-secondary" style="flex: 1; margin-right: var(--spacing-sm);" onclick="document.getElementById('deposit-modal').style.display='block'">充值</button>
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="document.getElementById('withdraw-modal').style.display='block'">提现</button>
+                </div>
+            </div>
+            
+            <!-- 钱包资产列表标题 -->
+            <div style="padding: var(--spacing-md); display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold);">我的资产</div>
+                <div style="color: var(--accent-color); font-size: var(--font-size-sm);" onclick="window.location.href='crypto-list.html'">交易 ></div>
+            </div>
+            
+            <!-- 钱包资产列表 -->
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=btc'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₿</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">比特币 (BTC)</div>
+                    <div style="color: var(--text-secondary);">0.0384 BTC</div>
+                </div>
+                <div>
+                    <div class="crypto-list-price">¥9,479.90</div>
+                    <div class="crypto-change-positive">+2.34%</div>
+                </div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=eth'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">Ξ</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">以太坊 (ETH)</div>
+                    <div style="color: var(--text-secondary);">0.2156 ETH</div>
+                </div>
+                <div>
+                    <div class="crypto-list-price">¥2,704.43</div>
+                    <div class="crypto-change-positive">+1.87%</div>
+                </div>
+            </div>
+            
+            <div class="crypto-list-item" onclick="window.location.href='crypto-detail.html?id=usdt'">
+                <div class="crypto-list-icon">
+                    <span style="font-size: 20px;">₮</span>
+                </div>
+                <div class="crypto-list-content">
+                    <div class="crypto-list-title">泰达币 (USDT)</div>
+                    <div style="color: var(--text-secondary);">20.0000 USDT</div>
+                </div>
+                <div>
+                    <div class="crypto-list-price">¥144.20</div>
+                    <div class="crypto-change-negative">-0.13%</div>
+                </div>
+            </div>
+            
+            <!-- 最近交易记录 -->
+            <div style="padding: var(--spacing-md); margin-top: var(--spacing-md);">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold);">最近交易</div>
+            </div>
+            
+            <div style="background-color: var(--secondary-color); padding: var(--spacing-md); border-bottom: 1px solid var(--divider-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-xs);">
+                    <div style="font-weight: var(--font-weight-medium);">购买比特币</div>
+                    <div style="color: var(--profit-color);">+0.0025 BTC</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">2023-07-15 15:32</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">-¥617.18</div>
+                </div>
+            </div>
+            
+            <div style="background-color: var(--secondary-color); padding: var(--spacing-md); border-bottom: 1px solid var(--divider-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-xs);">
+                    <div style="font-weight: var(--font-weight-medium);">出售以太坊</div>
+                    <div style="color: var(--loss-color);">-0.0150 ETH</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">2023-07-12 09:18</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">+¥188.16</div>
+                </div>
+            </div>
+            
+            <div style="background-color: var(--secondary-color); padding: var(--spacing-md); border-bottom: 1px solid var(--divider-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-xs);">
+                    <div style="font-weight: var(--font-weight-medium);">充值</div>
+                    <div style="color: var(--profit-color);">+¥2,000.00</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">2023-07-10 14:25</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">银行卡</div>
+                </div>
+            </div>
+            
+            <div style="background-color: var(--secondary-color); padding: var(--spacing-md); border-bottom: 1px solid var(--divider-color);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-xs);">
+                    <div style="font-weight: var(--font-weight-medium);">购买泰达币</div>
+                    <div style="color: var(--profit-color);">+20.0000 USDT</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">2023-07-08 11:45</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">-¥144.60</div>
+                </div>
+            </div>
+            
+            <div style="background-color: var(--secondary-color); padding: var(--spacing-md);">
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-xs);">
+                    <div style="font-weight: var(--font-weight-medium);">提现</div>
+                    <div style="color: var(--loss-color);">-¥500.00</div>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">2023-07-05 17:12</div>
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-sm);">银行卡</div>
+                </div>
+            </div>
+            
+            <!-- 底部间隔 -->
+            <div style="height: 20px;"></div>
+        </div>
+        
+        <!-- 充值弹窗 -->
+        <div id="deposit-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 100;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: var(--secondary-color); border-top-left-radius: var(--border-radius-large); border-top-right-radius: var(--border-radius-large); padding: var(--spacing-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <div style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);">充值</div>
+                    <div style="cursor: pointer;" onclick="document.getElementById('deposit-modal').style.display='none'">✕</div>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">充值金额 (CNY)</div>
+                    <input type="number" class="input" placeholder="0.00" min="1">
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">支付方式</div>
+                    <select class="input" style="background-color: var(--secondary-color);">
+                        <option>银行卡 (尾号: 6789)</option>
+                        <option>支付宝</option>
+                        <option>微信支付</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="alert('充值成功！'); document.getElementById('deposit-modal').style.display='none'">确认充值</button>
+            </div>
+        </div>
+        
+        <!-- 提现弹窗 -->
+        <div id="withdraw-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 100;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: var(--secondary-color); border-top-left-radius: var(--border-radius-large); border-top-right-radius: var(--border-radius-large); padding: var(--spacing-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <div style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);">提现</div>
+                    <div style="cursor: pointer;" onclick="document.getElementById('withdraw-modal').style.display='none'">✕</div>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">提现金额 (CNY)</div>
+                    <input type="number" class="input" placeholder="0.00" min="1" max="12345.67">
+                    <div style="color: var(--text-secondary); font-size: var(--font-size-xs); margin-top: var(--spacing-xs);">可用余额: ¥12,345.67</div>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">提现方式</div>
+                    <select class="input" style="background-color: var(--secondary-color);">
+                        <option>银行卡 (尾号: 6789)</option>
+                        <option>支付宝</option>
+                        <option>微信支付</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="alert('提现申请已提交，资金将在1-2个工作日内到账！'); document.getElementById('withdraw-modal').style.display='none'">确认提现</button>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

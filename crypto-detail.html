@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>比特币详情 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 标题栏 -->
+        <div class="header">
+            <div style="cursor: pointer;" onclick="window.location.href='crypto-list.html'">
+                <img src="images/back-icon.svg" alt="返回" width="24" height="24">
+            </div>
+            <div class="header-title">比特币 (BTC)</div>
+            <div class="header-actions">
+                <div onclick="window.location.href='wallet.html'">
+                    <img src="images/wallet-icon.svg" alt="钱包" width="24" height="24">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 可滚动内容区域 -->
+        <div class="scrollable-content">
+            <!-- 价格信息 -->
+            <div style="padding: var(--spacing-md); background-color: var(--secondary-color); text-align: center;">
+                <div class="crypto-price" style="font-size: 32px;">¥246,872.53</div>
+                <div class="crypto-change-positive">+2.34% (过去24小时)</div>
+            </div>
+            
+            <!-- 价格图表 -->
+            <div class="chart-container" style="height: 250px;">
+                <div style="text-align: center; color: var(--text-secondary); line-height: 250px;">
+                    价格走势图（此处仅为示意）
+                </div>
+            </div>
+            
+            <!-- 时间选择 -->
+            <div style="display: flex; justify-content: space-between; padding: var(--spacing-md); background-color: var(--secondary-color);">
+                <div style="padding: var(--spacing-xs) var(--spacing-md); background-color: var(--accent-light); color: var(--accent-color); border-radius: var(--border-radius-medium); font-weight: var(--font-weight-medium);">24H</div>
+                <div style="padding: var(--spacing-xs) var(--spacing-md); color: var(--text-secondary);">1周</div>
+                <div style="padding: var(--spacing-xs) var(--spacing-md); color: var(--text-secondary);">1月</div>
+                <div style="padding: var(--spacing-xs) var(--spacing-md); color: var(--text-secondary);">3月</div>
+                <div style="padding: var(--spacing-xs) var(--spacing-md); color: var(--text-secondary);">1年</div>
+                <div style="padding: var(--spacing-xs) var(--spacing-md); color: var(--text-secondary);">全部</div>
+            </div>
+            
+            <!-- 买卖按钮 -->
+            <div class="trade-button-group">
+                <button class="trade-button buy-button" onclick="document.getElementById('buy-modal').style.display='block'">购买</button>
+                <button class="trade-button sell-button" onclick="document.getElementById('sell-modal').style.display='block'">出售</button>
+            </div>
+            
+            <!-- 币种信息 -->
+            <div style="padding: var(--spacing-md); background-color: var(--secondary-color); margin: var(--spacing-md) 0;">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md);">比特币信息</div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary);">市值</div>
+                    <div>¥4.76万亿</div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary);">24h交易量</div>
+                    <div>¥1,894,239,573</div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary);">流通数量</div>
+                    <div>19,283,425 BTC</div>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="color: var(--text-secondary);">总供应量</div>
+                    <div>21,000,000 BTC</div>
+                </div>
+            </div>
+            
+            <!-- 币种介绍 -->
+            <div style="padding: var(--spacing-md); background-color: var(--secondary-color); margin-bottom: var(--spacing-md);">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold); margin-bottom: var(--spacing-md);">关于比特币</div>
+                
+                <div style="color: var(--text-secondary); line-height: 1.6;">
+                    比特币（Bitcoin）是一种基于去中心化，采用点对点网络与共识主动性，开放源代码，以区块链作为底层技术的加密货币，比特币由中本聪（网名）（Satoshi Nakamoto）于2008年10月31日提出，并于2009年1月3日正式诞生。
+                    <br><br>
+                    比特币是历史上第一个真正的加密数字货币，也是目前市值最大、最具代表性的加密数字货币。在整个加密数字货币市场中，比特币占据着主导地位，其市值通常占加密数字货币总市值的40%-70%。
+                </div>
+            </div>
+            
+            <!-- 底部间隔 -->
+            <div style="height: 20px;"></div>
+        </div>
+        
+        <!-- 购买弹窗 -->
+        <div id="buy-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 100;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: var(--secondary-color); border-top-left-radius: var(--border-radius-large); border-top-right-radius: var(--border-radius-large); padding: var(--spacing-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <div style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);">购买比特币</div>
+                    <div style="cursor: pointer;" onclick="document.getElementById('buy-modal').style.display='none'">✕</div>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">购买数量 (BTC)</div>
+                    <input type="number" class="input" placeholder="0.0" step="0.0001" min="0.0001">
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">支付金额 (CNY)</div>
+                    <input type="number" class="input" placeholder="0.00" min="1">
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">支付方式</div>
+                    <select class="input" style="background-color: var(--secondary-color);">
+                        <option>我的钱包 (余额: ¥12,345.67)</option>
+                        <option>银行卡 (尾号: 6789)</option>
+                        <option>支付宝</option>
+                        <option>微信支付</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="alert('购买成功！'); document.getElementById('buy-modal').style.display='none'">确认购买</button>
+            </div>
+        </div>
+        
+        <!-- 出售弹窗 -->
+        <div id="sell-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 100;">
+            <div style="position: absolute; bottom: 0; left: 0; right: 0; background-color: var(--secondary-color); border-top-left-radius: var(--border-radius-large); border-top-right-radius: var(--border-radius-large); padding: var(--spacing-lg);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-lg);">
+                    <div style="font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold);">出售比特币</div>
+                    <div style="cursor: pointer;" onclick="document.getElementById('sell-modal').style.display='none'">✕</div>
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">出售数量 (BTC)</div>
+                    <input type="number" class="input" placeholder="0.0" step="0.0001" min="0.0001">
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-md);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">获得金额 (CNY)</div>
+                    <input type="number" class="input" placeholder="0.00" min="1">
+                </div>
+                
+                <div style="margin-bottom: var(--spacing-lg);">
+                    <div style="color: var(--text-secondary); margin-bottom: var(--spacing-xs);">接收方式</div>
+                    <select class="input" style="background-color: var(--secondary-color);">
+                        <option>我的钱包 (余额: ¥12,345.67)</option>
+                        <option>银行卡 (尾号: 6789)</option>
+                        <option>支付宝</option>
+                        <option>微信支付</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-danger" style="width: 100%;" onclick="alert('出售成功！'); document.getElementById('sell-modal').style.display='none'">确认出售</button>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

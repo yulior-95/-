@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>加密货币交易 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 标题栏 -->
+        <div class="header">
+            <div class="header-title">加密货币</div>
+            <div class="header-actions">
+                <div onclick="window.location.href='crypto-list.html'">
+                    <img src="images/search-icon.svg" alt="搜索" width="24" height="24">
+                </div>
+                <div onclick="window.location.href='wallet.html'">
+                    <img src="images/wallet-icon.svg" alt="钱包" width="24" height="24">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 可滚动内容区域 -->
+        <div class="scrollable-content">
+            <!-- 我的钱包卡片 -->
+            <div class="wallet-card" onclick="window.location.href='wallet.html'">
+                <div class="wallet-label">我的钱包余额</div>
+                <div class="wallet-balance">¥ 12,345.67</div>
+                <div class="wallet-id">钱包ID: 0x8f7e...9d2c</div>
+            </div>
+            
+            <!-- 价格走势标题 -->
+            <div style="padding: var(--spacing-md); display: flex; justify-content: space-between; align-items: center;">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold);">实时价格</div>
+                <div style="color: var(--accent-color); font-size: var(--font-size-sm);" onclick="window.location.href='crypto-list.html'">查看全部 ></div>
+            </div>
+            
+            <!-- 热门加密货币价格 -->
+            <div class="crypto-card" onclick="window.location.href='crypto-detail.html?id=btc'">
+                <div class="crypto-card-header">
+                    <div class="crypto-card-icon">
+                        <span style="font-size: 20px;">₿</span>
+                    </div>
+                    <div>
+                        <div class="crypto-card-title">比特币 (BTC)</div>
+                        <div class="crypto-card-subtitle">24h交易量: ¥1,894,239,573</div>
+                    </div>
+                </div>
+                <div class="crypto-price">¥246,872.53</div>
+                <div class="crypto-change-positive">+2.34% 🔼</div>
+            </div>
+            
+            <div class="crypto-card" onclick="window.location.href='crypto-detail.html?id=eth'">
+                <div class="crypto-card-header">
+                    <div class="crypto-card-icon">
+                        <span style="font-size: 20px;">Ξ</span>
+                    </div>
+                    <div>
+                        <div class="crypto-card-title">以太坊 (ETH)</div>
+                        <div class="crypto-card-subtitle">24h交易量: ¥936,453,782</div>
+                    </div>
+                </div>
+                <div class="crypto-price">¥12,543.67</div>
+                <div class="crypto-change-positive">+1.87% 🔼</div>
+            </div>
+            
+            <div class="crypto-card" onclick="window.location.href='crypto-detail.html?id=usdt'">
+                <div class="crypto-card-header">
+                    <div class="crypto-card-icon">
+                        <span style="font-size: 20px;">₮</span>
+                    </div>
+                    <div>
+                        <div class="crypto-card-title">泰达币 (USDT)</div>
+                        <div class="crypto-card-subtitle">24h交易量: ¥2,453,126,987</div>
+                    </div>
+                </div>
+                <div class="crypto-price">¥7.21</div>
+                <div class="crypto-change-negative">-0.13% 🔽</div>
+            </div>
+            
+            <div class="crypto-card" onclick="window.location.href='crypto-detail.html?id=bnb'">
+                <div class="crypto-card-header">
+                    <div class="crypto-card-icon">
+                        <span style="font-size: 20px;">B</span>
+                    </div>
+                    <div>
+                        <div class="crypto-card-title">币安币 (BNB)</div>
+                        <div class="crypto-card-subtitle">24h交易量: ¥578,345,129</div>
+                    </div>
+                </div>
+                <div class="crypto-price">¥2,187.45</div>
+                <div class="crypto-change-positive">+0.75% 🔼</div>
+            </div>
+            
+            <div class="crypto-card" onclick="window.location.href='crypto-detail.html?id=xrp'">
+                <div class="crypto-card-header">
+                    <div class="crypto-card-icon">
+                        <span style="font-size: 20px;">X</span>
+                    </div>
+                    <div>
+                        <div class="crypto-card-title">瑞波币 (XRP)</div>
+                        <div class="crypto-card-subtitle">24h交易量: ¥321,764,982</div>
+                    </div>
+                </div>
+                <div class="crypto-price">¥4.32</div>
+                <div class="crypto-change-negative">-1.24% 🔽</div>
+            </div>
+            
+            <!-- 市场趋势标题 -->
+            <div style="padding: var(--spacing-md); margin-top: var(--spacing-md);">
+                <div style="font-size: var(--font-size-md); font-weight: var(--font-weight-semibold);">市场趋势</div>
+            </div>
+            
+            <!-- 市场趋势图表 -->
+            <div class="chart-container">
+                <div style="text-align: center; color: var(--text-secondary); line-height: 200px;">
+                    图表区域（此处仅为示意）
+                </div>
+            </div>
+            
+            <!-- 底部间隔 -->
+            <div style="height: 20px;"></div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>通讯录 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 标题栏 -->
+        <div class="header">
+            <div class="header-title">通讯录</div>
+            <div class="header-actions">
+                <div><img src="images/search-icon.svg" alt="搜索" width="24" height="24"></div>
+                <div><img src="images/add-icon.svg" alt="添加联系人" width="24" height="24"></div>
+            </div>
+        </div>
+        
+        <!-- 搜索栏 -->
+        <div style="padding: var(--spacing-md); background-color: var(--primary-color);">
+            <input type="text" class="input" placeholder="搜索联系人...">
+        </div>
+        
+        <!-- 可滚动内容区域 -->
+        <div class="scrollable-content">
+            <!-- 最近联系人 -->
+            <div style="padding: var(--spacing-md) var(--spacing-md) var(--spacing-xs);">
+                <div style="font-size: var(--font-size-sm); color: var(--text-secondary); margin-bottom: var(--spacing-md);">最近联系</div>
+                <div style="display: flex; overflow-x: auto; gap: var(--spacing-md); padding-bottom: var(--spacing-md);">
+                    <div style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                        <div class="list-item-avatar" style="width: 60px; height: 60px; margin-bottom: var(--spacing-xs);">
+                            <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                        </div>
+                        <div style="font-size: var(--font-size-xs); color: var(--text-primary); text-align: center;">张三</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                        <div class="list-item-avatar" style="width: 60px; height: 60px; margin-bottom: var(--spacing-xs);">
+                            <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                        </div>
+                        <div style="font-size: var(--font-size-xs); color: var(--text-primary); text-align: center;">李四</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                        <div class="list-item-avatar" style="width: 60px; height: 60px; margin-bottom: var(--spacing-xs);">
+                            <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                        </div>
+                        <div style="font-size: var(--font-size-xs); color: var(--text-primary); text-align: center;">王五</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center; min-width: 60px;">
+                        <div class="list-item-avatar" style="width: 60px; height: 60px; margin-bottom: var(--spacing-xs);">
+                            <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                        </div>
+                        <div style="font-size: var(--font-size-xs); color: var(--text-primary); text-align: center;">赵六</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 联系人列表 -->
+            <div>
+                <!-- 分类标题 -->
+                <div class="section-title">A</div>
+                
+                <!-- 联系人项 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/group-avatar.svg" alt="群组头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">阿东</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">阿强</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分类标题 -->
+                <div class="section-title">L</div>
+                
+                <!-- 联系人项 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">李四</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分类标题 -->
+                <div class="section-title">W</div>
+                
+                <!-- 联系人项 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">王五</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 分类标题 -->
+                <div class="section-title">Z</div>
+                
+                <!-- 联系人项 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">张三</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">赵六</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 添加更多联系人以测试滚动 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">周八</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">郑九</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">朱十</div>
+                        <div class="encryption-status">
+                            <span class="encryption-status-icon">
+                                <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                            </span>
+                            <span>加密通道已建立</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 

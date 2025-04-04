@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>聊天 - SecureChat</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* 覆盖默认的聊天页面样式 */
+        .message-container {
+            height: calc(100% - 180px);
+            overflow-y: auto;
+            padding-bottom: 70px;
+        }
+        
+        .chat-input-container {
+            position: absolute;
+            bottom: 50px; /* 为底部导航留出空间 */
+            left: 0;
+            right: 0;
+            z-index: 9;
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background-color: var(--secondary-color);
+            border-top: 1px solid var(--divider-color);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
+        }
+        
+        .message-time-header {
+            text-align: center;
+            margin: var(--spacing-md) 0;
+            color: var(--text-muted);
+            font-size: var(--font-size-xs);
+        }
+    </style>
+</head>
+<body>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
+            </div>
+        </div>
+        
+        <!-- 聊天头部 -->
+        <div class="header">
+            <div style="cursor: pointer;" onclick="window.location.href='index.html'">
+                <img src="images/back-icon.svg" alt="返回" width="24" height="24">
+            </div>
+            <div class="header-title" style="display: flex; align-items: center;">
+                <div class="list-item-avatar" style="width: 32px; height: 32px; margin-right: var(--spacing-sm);">
+                    <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                </div>
+                张三
+            </div>
+            <div class="header-actions">
+                <div class="encryption-status">
+                    <span class="encryption-status-icon">
+                        <img src="images/lock-icon.svg" alt="已加密" width="16" height="16">
+                    </span>
+                    <span>已加密</span>
+                </div>
+                <div>
+                    <img src="images/more-icon.svg" alt="更多选项" width="24" height="24">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 加密提示 -->
+        <div style="background-color: var(--accent-light); padding: var(--spacing-xs) var(--spacing-md); text-align: center; font-size: var(--font-size-xs); color: var(--accent-color);">
+            <span style="margin-right: var(--spacing-xs);">
+                <img src="images/lock-icon.svg" alt="已加密" width="14" height="14">
+            </span>端对端加密对话，仅对话双方可见
+        </div>
+        
+        <!-- 聊天消息区域 -->
+        <div class="message-container">
+            <!-- 时间分隔 -->
+            <div class="message-time-header">
+                今天 10:30
+            </div>
+            
+            <!-- 接收的消息 -->
+            <div class="message message-received">
+                <div>嗨，最近怎么样？</div>
+                <div class="message-time">10:31</div>
+            </div>
+            
+            <!-- 发送的消息 -->
+            <div class="message message-sent">
+                <div>挺好的，昨天我刚完成了那个加密模块的开发</div>
+                <div class="message-time">10:32</div>
+            </div>
+            
+            <!-- 接收的消息 -->
+            <div class="message message-received">
+                <div>太棒了！能分享一下具体实现吗？</div>
+                <div class="message-time">10:33</div>
+            </div>
+            
+            <!-- 发送的消息 -->
+            <div class="message message-sent">
+                <div>我使用了XChaCha20-Poly1305算法，它比AES-GCM更安全，而且性能也很好</div>
+                <div class="message-time">10:34</div>
+            </div>
+            
+            <!-- 接收的消息 -->
+            <div class="message message-received">
+                <div>嘿，我已经收到你发的加密文件了，解密后一切正常</div>
+                <div class="message-time">10:35</div>
+            </div>
+            
+            <!-- 发送的消息 -->
+            <div class="message message-sent">
+                <div>太好了！这个加密方案应该能满足我们的安全需求</div>
+                <div class="message-time">10:36</div>
+            </div>
+            
+            <!-- 接收的消息 -->
+            <div class="message message-received">
+                <div>对了，你能把密钥管理的那部分实现也发给我看看吗？</div>
+                <div class="message-time">10:37</div>
+            </div>
+            
+            <!-- 添加更多消息以测试滚动 -->
+            <div class="message message-sent">
+                <div>好的，我会把代码发给你。主要是使用了Diffie-Hellman密钥交换和双棘轮协议</div>
+                <div class="message-time">10:38</div>
+            </div>
+            
+            <div class="message message-received">
+                <div>太感谢了，这正是我们需要的安全级别</div>
+                <div class="message-time">10:39</div>
+            </div>
+            
+            <div class="message message-sent">
+                <div>不客气，这个方案已经经过了严格的安全审核，可以放心使用</div>
+                <div class="message-time">10:40</div>
+            </div>
+            
+            <div class="message message-received">
+                <div>我们下周的安全会议上可以讨论一下具体实施方案</div>
+                <div class="message-time">10:41</div>
+            </div>
+        </div>
+        
+        <!-- 聊天输入区域 -->
+        <div class="chat-input-container">
+            <button class="chat-input-button" style="background: none; color: var(--text-secondary); font-size: 24px;">
+                <img src="images/plus-icon.svg" alt="添加" width="24" height="24">
+            </button>
+            <input type="text" class="chat-input" placeholder="输入加密消息...">
+            <button class="chat-input-button">
+                <img src="images/send-icon.svg" alt="发送" width="24" height="24">
+            </button>
+        </div>
+        
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
