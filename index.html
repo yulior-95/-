@@ -3,539 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>加密货币IM应用</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f5f7;
-            color: #333;
-            line-height: 1.4;
-            -webkit-font-smoothing: antialiased;
-        }
-        
-        /* 状态栏 */
-        .status-bar {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 15px;
-            font-weight: bold;
-            font-size: 14px;
-        }
-        
-        .status-bar-right {
-            display: flex;
-            gap: 5px;
-        }
-        
-        /* 用户信息 */
-        .user-profile {
-            display: flex;
-            padding: 15px;
-            align-items: center;
-            position: relative;
-        }
-        
-        .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background-color: #a8c0d6;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .qr-code {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            background-color: white;
-            border-radius: 4px;
-            padding: 2px;
-            font-size: 12px;
-        }
-        
-        .user-info {
-            margin-left: 15px;
-            flex: 1;
-        }
-        
-        .username {
-            font-size: 22px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-        }
-        
-        .username::after {
-            content: ">";
-            margin-left: 5px;
-            color: #ccc;
-        }
-        
-        .user-id {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .copy-icon {
-            margin-left: 5px;
-            color: #4080ff;
-            border: 1px solid #4080ff;
-            border-radius: 4px;
-            padding: 2px;
-            font-size: 12px;
-        }
-        
-        .verification {
-            position: absolute;
-            right: 15px;
-            top: 30px;
-            background-color: #4cd964;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 14px;
-        }
-        
-        /* 功能按钮 */
-        .function-buttons {
-            display: flex;
-            justify-content: space-around;
-            padding: 15px 10px 25px;
-        }
-        
-        .function-button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 25%;
-        }
-        
-        .function-icon {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 8px;
-            position: relative;
-        }
-        
-        .function-label {
-            font-size: 14px;
-        }
-        
-        .tag {
-            position: absolute;
-            top: -5px;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            color: white;
-        }
-        
-        .tag-green {
-            background-color: #4cd964;
-        }
-        
-        .tag-blue {
-            background-color: #4080ff;
-        }
-        
-        /* 资产信息 */
-        .assets {
-            padding: 15px;
-        }
-        
-        .total-assets {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .assets-label {
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        
-        .eye-icon {
-            margin-left: 5px;
-        }
-        
-        .assets-amount {
-            display: flex;
-            align-items: center;
-            font-size: 28px;
-            font-weight: bold;
-            color: #4080ff;
-        }
-        
-        .refresh-icon {
-            margin-left: 10px;
-            color: #666;
-        }
-        
-        /* 币种卡片 */
-        .currency-card {
-            background-color: white;
-            border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .currency-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #26de81;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-weight: bold;
-            font-size: 20px;
-            margin-right: 15px;
-        }
-        
-        .currency-info {
-            flex: 1;
-        }
-        
-        .currency-name {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
-        .currency-rate {
-            display: flex;
-            align-items: center;
-            color: #999;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        .down-arrow {
-            color: #ff3b30;
-            margin-left: 5px;
-        }
-        
-        .currency-amount {
-            text-align: right;
-        }
-        
-        .amount-value {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4080ff;
-        }
-        
-        .amount-converted {
-            color: #999;
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        
-        /* 收起按钮 */
-        .collapse-button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px 0;
-            color: #4080ff;
-            font-size: 14px;
-        }
-        
-        .up-arrow {
-            margin-right: 5px;
-        }
-        
-        /* 设置菜单 */
-        .settings-menu {
-            margin-top: 15px;
-        }
-        
-        .menu-item {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background-color: white;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .menu-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 18px;
-        }
-        
-        .icon-payment {
-            background-color: #ff6b6b;
-        }
-        
-        .icon-notification {
-            background-color: #4080ff;
-        }
-        
-        .icon-chat {
-            background-color: #ff6b6b;
-        }
-        
-        .icon-privacy {
-            background-color: #ffa502;
-        }
-        
-        .icon-security {
-            background-color: #2ecc71;
-        }
-        
-        .icon-general {
-            background-color: #3498db;
-        }
-        
-        .menu-label {
-            flex: 1;
-            font-size: 16px;
-        }
-        
-        .menu-arrow {
-            color: #ccc;
-        }
-        
-        /* 底部导航 */
-        .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            display: flex;
-            background-color: white;
-            padding: 10px 0 25px;
-            border-top: 1px solid #f0f0f0;
-        }
-        
-        .nav-item {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            font-size: 12px;
-            color: #999;
-            position: relative;
-        }
-        
-        .nav-icon {
-            margin-bottom: 5px;
-            position: relative;
-        }
-        
-        .nav-active {
-            color: #4080ff;
-        }
-        
-        .badge {
-            position: absolute;
-            top: -5px;
-            right: -10px;
-            background-color: #ff3b30;
-            color: white;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 10px;
-        }
-        
-        /* 底部安全区域 */
-        .bottom-safe-area {
-            height: 20px;
-            background-color: white;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            border-top: 1px solid #f0f0f0;
-        }
-    </style>
+    <title>SecureChat - 端对端加密聊天</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- 状态栏 -->
-    <div class="status-bar">
-        <div>9:41</div>
-        <div class="status-bar-right">
-            <div>●●●</div>
-            <div>📶</div>
-            <div>🔋</div>
-        </div>
-    </div>
-    
-    <!-- 用户信息 -->
-    <div class="user-profile">
-        <div class="avatar">
-            <img src="/placeholder.svg?height=80&width=80" alt="用户头像">
-            <div class="qr-code">🔍</div>
-        </div>
-        <div class="user-info">
-            <div class="username">UsernameL...</div>
-            <div class="user-id">ID：hui0548712 <span class="copy-icon">📋</span></div>
-        </div>
-        <div class="verification">
-            <span>✓</span> 初级认证
-        </div>
-    </div>
-    
-    <!-- 功能按钮 -->
-    <div class="function-buttons">
-        <div class="function-button">
-            <div class="function-icon">
-                <span>💰</span>
-            </div>
-            <div class="function-label">买卖币</div>
-        </div>
-        <div class="function-button">
-            <div class="function-icon">
-                <span class="tag tag-green">充币</span>
-                <span>📱</span>
-            </div>
-            <div class="function-label">收款</div>
-        </div>
-        <div class="function-button">
-            <div class="function-icon">
-                <span class="tag tag-blue">提币</span>
-                <span>💳</span>
-            </div>
-            <div class="function-label">转账</div>
-        </div>
-        <div class="function-button">
-            <div class="function-icon">
-                <span>📃</span>
-            </div>
-            <div class="function-label">账单</div>
-        </div>
-    </div>
-    
-    <!-- 资产信息 -->
-    <div class="assets">
-        <div class="total-assets">
-            <div class="assets-label">
-                总资产 <span class="eye-icon">👁️</span>
-            </div>
-            <div class="assets-amount">
-                ¥10000.00 <span class="refresh-icon">🔄</span>
+    <!-- 安卓APP标准尺寸预览容器 -->
+    <div class="app-container">
+        <!-- 状态栏 -->
+        <div class="status-bar">
+            <div>9:41</div>
+            <div class="status-bar-right">
+                <div>●●●</div>
+                <div>📶</div>
+                <div>🔋</div>
             </div>
         </div>
         
-        <!-- USDT卡片 -->
-        <div class="currency-card">
-            <div class="currency-icon">₮</div>
-            <div class="currency-info">
-                <div class="currency-name">USDT</div>
-                <div class="currency-rate">
-                    0.449RMB <span class="down-arrow">▼</span>
+        <!-- 标题栏 -->
+        <div class="header">
+            <div class="header-title">消息</div>
+            <div class="header-actions">
+                <div><img src="images/search-icon.svg" alt="搜索" width="24" height="24"></div>
+                <div><img src="images/settings-icon.svg" alt="设置" width="24" height="24"></div>
+            </div>
+        </div>
+        
+        <!-- 消息列表 -->
+        <div class="scrollable-content">
+            <div class="list">
+                <!-- 消息项 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">张三</div>
+                        <div class="list-item-subtitle">嘿，我已经收到你发的加密文件了...</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">10:30</div>
+                        <div class="badge">2</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">李四</div>
+                        <div class="list-item-subtitle">我们明天会面再详细讨论这个方案</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">昨天</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">王五</div>
+                        <div class="list-item-subtitle">加密密钥已经生成，稍后我会发给你</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">昨天</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/group-avatar.svg" alt="群组头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">安全群组</div>
+                        <div class="list-item-subtitle">王五: 大家记得更新最新的安全补丁</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">周一</div>
+                        <div class="badge">5</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">赵六</div>
+                        <div class="list-item-subtitle">我已经确认了传输的数据是安全的</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">周日</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">钱七</div>
+                        <div class="list-item-subtitle">这个文件是端对端加密的，只有你能看到</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">上周</div>
+                    </div>
+                </div>
+                
+                <!-- 添加更多消息项测试滚动 -->
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">周八</div>
+                        <div class="list-item-subtitle">密钥交换过程已完成，我们可以安全通信了</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">上周</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">郑九</div>
+                        <div class="list-item-subtitle">请检查一下你的安全设置，我们需要更新密钥</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">上周</div>
+                    </div>
+                </div>
+                
+                <div class="list-item" onclick="window.location.href='chat.html'">
+                    <div class="list-item-avatar">
+                        <img src="images/avatar.svg" alt="用户头像" class="default-avatar">
+                    </div>
+                    <div class="list-item-content">
+                        <div class="list-item-title">朱十</div>
+                        <div class="list-item-subtitle">这是一个高优先级加密消息，请尽快查看</div>
+                    </div>
+                    <div>
+                        <div class="list-item-time">上周</div>
+                    </div>
                 </div>
             </div>
-            <div class="currency-amount">
-                <div class="amount-value">100</div>
-                <div class="amount-converted">≈ ¥725.00</div>
-            </div>
         </div>
         
-        <!-- 收起按钮 -->
-        <div class="collapse-button">
-            <span class="up-arrow">▲</span> 全部收起
+        <!-- 底部导航 -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item nav-active">
+                <div class="nav-icon">
+                    <img src="images/message-icon.svg" alt="消息" width="24" height="24">
+                    <span class="badge">7</span>
+                </div>
+                <div>消息</div>
+            </a>
+            <a href="contacts.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/contacts-icon.svg" alt="通讯录" width="24" height="24">
+                </div>
+                <div>通讯录</div>
+            </a>
+            <a href="crypto.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/trade-icon.svg" alt="交易" width="24" height="24">
+                </div>
+                <div>交易</div>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <div class="nav-icon">
+                    <img src="images/profile-icon.svg" alt="我的" width="24" height="24">
+                </div>
+                <div>我的</div>
+            </a>
         </div>
-    </div>
-    
-    <!-- 设置菜单 -->
-    <div class="settings-menu">
-        <div class="menu-item">
-            <div class="menu-icon icon-payment">💳</div>
-            <div class="menu-label">支付方式</div>
-            <div class="menu-arrow">›</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-icon icon-notification">🔔</div>
-            <div class="menu-label">通知设置</div>
-            <div class="menu-arrow">›</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-icon icon-chat">💬</div>
-            <div class="menu-label">聊天设置</div>
-            <div class="menu-arrow">›</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-icon icon-privacy">🔒</div>
-            <div class="menu-label">隐私</div>
-            <div class="menu-arrow">›</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-icon icon-security">🛡️</div>
-            <div class="menu-label">安全</div>
-            <div class="menu-arrow">›</div>
-        </div>
-        <div class="menu-item">
-            <div class="menu-icon icon-general">⚙️</div>
-            <div class="menu-label">通用</div>
-            <div class="menu-arrow">›</div>
-        </div>
-    </div>
-    
-    <!-- 底部导航 -->
-    <div class="bottom-nav">
-        <div class="nav-item">
-            <div class="nav-icon">
-                💬
-                <span class="badge">40</span>
-            </div>
-            <div>消息</div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-icon">👥</div>
-            <div>通讯录</div>
-        </div>
-        <div class="nav-item">
-            <div class="nav-icon">📞</div>
-            <div>通话</div>
-        </div>
-        <div class="nav-item nav-active">
-            <div class="nav-icon">
-                👤
-                <span class="badge" style="background-color: #ff3b30; width: 8px; height: 8px;"></span>
-            </div>
-            <div>我</div>
-        </div>
-    </div>
-    
-    <!-- 底部安全区域 -->
-    <div class="bottom-safe-area">
-        <div style="width: 30%; height: 5px; background-color: #000; border-radius: 3px; margin: 8px auto;"></div>
     </div>
 </body>
 </html>
