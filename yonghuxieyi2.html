@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger 用戶協議 (明亮科技版)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#008BFF",
+                        "accent": "#00E5FF",
+                        "background-light": "#F8FAFC",
+                        "card-light": "rgba(255, 255, 255, 0.7)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans TC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+                @apply bg-[#F8FAFC] text-slate-900;
+            }
+        }
+        .aurora-bg {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 139, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 229, 255, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .legal-section {
+            @apply mb-12 relative;
+        }
+        .beam-border {
+            position: relative;
+        }
+        .beam-border::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00E5FF, transparent);
+            opacity: 0.6;
+        }
+        .flashlight-trigger {
+            position: relative;
+        }
+        .flashlight {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        .flashlight-trigger:hover .flashlight {
+            opacity: 1;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 font-medium hover:text-primary transition-all duration-300 relative;
+        }
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            @apply w-1/2;
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.2);
+        }
+    </style>
+</head>
+<body class="aurora-bg min-h-screen selection:bg-primary/20 selection:text-primary">
+<div class="relative flex flex-col overflow-x-hidden">
+<header id="main-header" class="fixed top-0 w-full z-50 border-b border-transparent bg-transparent transition-all duration-300 px-6 md:px-20 py-4">
+<div class="max-w-[1400px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-9 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined font-bold text-xl">bubble_chart</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-800">68Messenger</h1>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link" href="index2.html">首頁</a>
+<a class="nav-link" href="gongnengtexing2.html">功能特性</a>
+<a class="nav-link" href="anquanjishu2.html">安全技術</a>
+<a class="nav-link" href="xiazaizhongxin2.html">下載</a>
+<div class="ml-4 relative group">
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 bg-white/50 text-sm font-semibold text-slate-600 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-lg">language</span>
+<span id="current-lang">中文繁體</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="absolute right-0 top-full mt-2 w-40 bg-white border border-slate-100 rounded-2xl shadow-xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all p-2 z-50">
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors" href="#">中文繁體</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors" href="#">Português</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors" href="#">Tiếng Việt</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary rounded-xl transition-colors" href="#">English</a>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<script>
+// 導航欄滾動效果
+const header = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('bg-white/80', 'backdrop-blur-xl', 'border-slate-200/40');
+        header.classList.remove('bg-transparent', 'border-transparent');
+    } else {
+        header.classList.remove('bg-white/80', 'backdrop-blur-xl', 'border-slate-200/40');
+        header.classList.add('bg-transparent', 'border-transparent');
+    }
+});
+</script>
+<main class="flex-1 pt-40 pb-20 px-6">
+<div class="max-w-[1000px] mx-auto">
+<div class="mb-16 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                    Legal Documentation
+                </div>
+<h2 class="text-4xl md:text-5xl font-black tracking-tight text-slate-900 mb-4">用戶協議</h2>
+<p class="text-slate-500 font-medium">最後更新日期：2024年5月20日</p>
+</div>
+<div class="space-y-8">
+<section class="glass-card p-8 md:p-12 rounded-[2.5rem] flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 beam-border pb-4">
+<span class="size-8 rounded-lg bg-accent/10 flex items-center justify-center text-primary font-bold">01</span>
+<h3 class="text-xl font-bold text-slate-900">服務條款之確認與接受</h3>
+</div>
+<div class="space-y-4 text-slate-600 leading-relaxed">
+<p>歡迎您使用 68Messenger。本用戶協議（以下簡稱「本協議」）是您與 68Messenger 運營團隊之間關於您下載、安裝、使用 68Messenger 軟件及相關服務所訂立的法律合約。</p>
+<p>在您註冊帳號或開始使用本服務前，請務必審慎閱讀、充分理解各條款內容。如果您不同意本協議的任何內容，或者無法準確理解相關條款的解釋，請不要進行後續操作並立即停止使用本服務。</p>
+</div>
+</div>
+</section>
+<section class="glass-card p-8 md:p-12 rounded-[2.5rem] flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 beam-border pb-4">
+<span class="size-8 rounded-lg bg-accent/10 flex items-center justify-center text-primary font-bold">02</span>
+<h3 class="text-xl font-bold text-slate-900">帳號註冊與安全</h3>
+</div>
+<div class="space-y-4 text-slate-600 leading-relaxed">
+<p>1. 您在註冊 68Messenger 帳號時，應提供真實、準確、完整的個人資料，並在資料發生變動時及時更新。</p>
+<p>2. 68Messenger 帳號的所有權歸本公司所有，用戶完成申請註冊手續後，獲得該帳號的使用權。您應妥善保管您的帳號密碼及安全密鑰。因您個人原因導致帳號密碼洩露或丟失所造成的損失，由您自行承擔。</p>
+<p>3. 為了保障您的通訊安全，我們採用了端到端加密技術。請注意，如果您丟失了本機的加密私鑰或備份恢復碼，我們將無法協助您找回加密的聊天內容。</p>
+</div>
+</div>
+</section>
+<section class="glass-card p-8 md:p-12 rounded-[2.5rem] flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 beam-border pb-4">
+<span class="size-8 rounded-lg bg-accent/10 flex items-center justify-center text-primary font-bold">03</span>
+<h3 class="text-xl font-bold text-slate-900">用戶行為準則</h3>
+</div>
+<div class="space-y-4 text-slate-600 leading-relaxed">
+<p>您在使用 68Messenger 服務過程中，必須遵循以下規則：</p>
+<ul class="list-disc pl-5 space-y-2">
+<li>不得利用本服務發送、傳輸非法、騷擾、誹謗、辱罵、威脅、有害、庸俗、淫穢或其他令人反感的內容。</li>
+<li>不得利用本服務進行任何可能對互聯網或移動網正常運轉造成不利影響的行為。</li>
+<li>不得非法獲取他人帳號、侵入他人計算機系統或非法存取通訊數據。</li>
+<li>尊重知識產權，不得散佈侵犯他人版權、商標權或其他權利的內容。</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="glass-card p-8 md:p-12 rounded-[2.5rem] flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 beam-border pb-4">
+<span class="size-8 rounded-lg bg-accent/10 flex items-center justify-center text-primary font-bold">04</span>
+<h3 class="text-xl font-bold text-slate-900">隱私保護政策</h3>
+</div>
+<div class="space-y-4 text-slate-600 leading-relaxed">
+<p>隱私是我們的核心價值。我們致力於保護您的個人信息安全。請查閱我們的《隱私政策》以了解我們如何收集、處理和保護您的數據。在端到端加密模式下，連 68Messenger 服務器也無法讀取您的私聊與群聊內容。</p>
+<p>我們僅會收集為維持服務運行所必需的最少化元數據，並採取嚴格的技術手段確保數據安全。</p>
+</div>
+</div>
+</section>
+<section class="glass-card p-8 md:p-12 rounded-[2.5rem] flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-6 beam-border pb-4">
+<span class="size-8 rounded-lg bg-accent/10 flex items-center justify-center text-primary font-bold">05</span>
+<h3 class="text-xl font-bold text-slate-900">服務變更、中斷或終止</h3>
+</div>
+<div class="space-y-4 text-slate-600 leading-relaxed">
+<p>1. 68Messenger 有權根據業務發展需要，隨時變更本服務的部分或全部內容。我們將盡可能通過系統公告等方式通知用戶。</p>
+<p>2. 如發生用戶違反本協議之行為，68Messenger 有權不經通知即採取暫停或終止提供服務的措施。</p>
+</div>
+</div>
+</section>
+</div>
+<div class="mt-20 glass-card rounded-[3rem] p-12 text-center border-none shadow-2xl shadow-slate-200/40">
+<h3 class="text-2xl font-bold text-slate-900 mb-6">如有任何疑問？</h3>
+<p class="text-slate-500 mb-8 max-w-xl mx-auto">如果您對本協議有任何疑問，或需要進一步的法律諮詢，請通過官方渠道與我們的法律合規團隊聯繫。</p>
+<div class="flex flex-wrap justify-center gap-4">
+<a class="px-8 py-4 bg-primary text-white font-bold rounded-2xl shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all flex items-center gap-2" href="mailto:support@68messenger.com">
+<span class="material-symbols-outlined">mail</span>
+                        發送電子郵件
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 py-16 px-6 md:px-20 bg-white">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined text-2xl font-bold">bubble_chart</span>
+</div>
+<h4 class="text-xl font-bold text-slate-900 tracking-tight">68Messenger</h4>
+</div>
+<div class="flex flex-col md:items-end gap-4">
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<span class="material-symbols-outlined text-base">mail</span>
+<a class="hover:text-primary transition-colors" href="mailto:support@68messenger.com">support@68messenger.com</a>
+</div>
+<a class="text-sm text-primary font-semibold" href="yonghuxieyi2.html">用戶協議</a>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-slate-400 tracking-wide">產品備案號：ICP 備 2024068688-1</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">© 2024 68Messenger. Pure Privacy Infrastructure.</p>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.querySelectorAll('.flashlight-trigger').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const flashlight = card.querySelector('.flashlight');
+            if (flashlight) {
+                flashlight.style.left = `${x}px`;
+                flashlight.style.top = `${y}px`;
+            }
+        });
+    });
+</script>
+
+</body></html>

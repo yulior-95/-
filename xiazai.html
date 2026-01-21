@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger | 下載中心</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#008BFF",
+                        "background-dark": "#070708",
+                        "charcoal": "#0a0a0c",
+                    },
+                    fontFamily: {
+                        "sans": ["Noto Sans TC", "Space Grotesk", "sans-serif"],
+                        "display": ["Noto Sans TC", "Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .glass-panel {
+                background: rgba(10, 10, 12, 0.7);
+                backdrop-filter: blur(40px) saturate(180%);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            }
+            .aurora-orb {
+                filter: blur(140px);
+                z-index: -1;
+                opacity: 0.3;
+            }
+            .flashlight-card {
+                position: relative;
+                overflow: hidden;
+                transition: transform 0.3s ease, border-color 0.3s ease;
+            }
+            .flashlight-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 139, 255, 0.15) 0%, transparent 80%);
+                opacity: 0;
+                transition: opacity 0.4s;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .flashlight-card:hover::before {
+                opacity: 1;
+            }
+            .flashlight-card:hover {
+                border-color: rgba(0, 139, 255, 0.3);
+            }
+            .border-beam-btn {
+                position: relative;
+                background: rgba(0, 139, 255, 0.05);
+                overflow: hidden;
+                z-index: 1;
+                border: 1px solid rgba(0, 139, 255, 0.2);
+            }
+            .border-beam-btn::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                padding: 1.5px;
+                background: linear-gradient(90deg, transparent, #008BFF, transparent);
+                background-size: 200% 100%;
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask-composite: xor;
+                -webkit-mask-composite: destination-out;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            .border-beam-btn:hover::after {
+                opacity: 1;
+                animation: border-beam-anim 2.5s linear infinite;
+            }
+            @keyframes border-beam-anim {
+                from { background-position: 200% 0; }
+                to { background-position: -200% 0; }
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30 antialiased overflow-x-hidden" onmousemove="updateMousePosition(event)">
+<script>
+    function updateMousePosition(e) {
+        const cards = document.querySelectorAll('.flashlight-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    }
+</script>
+<div class="relative min-h-screen flex flex-col">
+<div class="fixed top-[-10%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full aurora-orb"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-blue-600/5 rounded-full aurora-orb"></div>
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<div class="flex items-center justify-between px-8 py-5 lg:px-20 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="size-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-xl font-bold">shield_lock</span>
+</div>
+<span class="text-xl font-bold tracking-tight">68Messenger</span>
+</div>
+<nav class="hidden md:flex items-center gap-10 text-[13px] font-medium tracking-wide text-white/60">
+<a class="hover:text-primary transition-colors" href="index.html">首頁</a>
+<a class="hover:text-primary transition-colors" href="gongnengxiangqing.html">功能特性</a>
+<a class="hover:text-primary transition-colors" href="anquanjishu.html">安全技術</a>
+<a class="text-white border-b border-primary pb-1" href="xiazai.html">下載</a>
+</nav>
+<div class="relative">
+<button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] font-medium hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-sm">language</span>
+<span id="current-lang">中文繁體</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div id="lang-dropdown" class="hidden absolute top-full right-0 mt-2 py-2 w-40 rounded-xl glass-panel border border-white/10 shadow-2xl">
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">中文繁體</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">Português</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">Tiếng Việt</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">English</a>
+</div>
+</div>
+</div>
+</header>
+<script>
+// 導航欄滾動效果
+const header = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('bg-charcoal/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    } else {
+        header.classList.remove('bg-charcoal/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    }
+});
+// 多語言下拉菜單
+const langToggle = document.getElementById('lang-toggle');
+const langDropdown = document.getElementById('lang-dropdown');
+langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', () => {
+    langDropdown.classList.add('hidden');
+});
+langDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('current-lang').textContent = e.target.textContent;
+        langDropdown.classList.add('hidden');
+    });
+});
+</script>
+<main class="relative z-10 flex-1 pt-28 pb-12 px-6 max-w-[1440px] mx-auto w-full">
+<div class="text-center mb-16">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+                Cross-Platform Availability
+            </div>
+<h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
+                隨時隨地，安全連接
+            </h1>
+<p class="text-lg text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                68Messenger 支援所有主流作業系統。您的對話在所有裝置上即時同步，並始終受到最高等級的加密保護。
+            </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-24">
+<div class="flashlight-card glass-panel rounded-[32px] p-8 flex flex-col items-center text-center transition-all duration-500">
+<div class="size-20 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-white">ios</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">iOS</h3>
+<p class="text-slate-500 text-sm mb-8 leading-relaxed">
+                    專為 iPhone 優化的隱私體驗<br/>
+                    支援 iOS 14.0 或更高版本
+                </p>
+<div class="mt-auto w-full space-y-4">
+<button class="border-beam-btn w-full py-4 rounded-2xl flex items-center justify-center gap-2 text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        App Store 下載
+                    </button>
+<div class="p-4 bg-white/5 rounded-2xl border border-white/5 inline-block mx-auto">
+<img alt="iOS QR Code" class="size-24 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7_D_xxBexLljRvMvcxP1ifGMMiEFlJqdJoCdQL3oMxpgvQmsgq5bCb-7O6FTFZ6n8G__agtrsD5LLcAXD_ObjvUfA-JVEnd17PO8IGIWqK5dOjcW62lbxPT8OfkCjC5p3p7gZ7uHz9vQNKuND23FdnLglgW4bjGUwq6K6dkKJ99h3fxxOrkeqwncuT2J6gqqdYWzsKqyoXSll_s5qzMdMjcz1Kc0ZhAMTSVZlDhum4hn6LampVG729ZaQJBWEn7P0dEfCts5iYoI"/>
+<p class="text-[9px] mt-2 text-white/30 uppercase tracking-widest font-bold">手機掃描下載</p>
+</div>
+</div>
+</div>
+<div class="flashlight-card glass-panel rounded-[32px] p-8 flex flex-col items-center text-center transition-all duration-500">
+<div class="size-20 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-white">android</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Android</h3>
+<p class="text-slate-500 text-sm mb-8 leading-relaxed">
+                    原生流暢的安全傳輸<br/>
+                    支援 Android 8.0 或更高版本
+                </p>
+<div class="mt-auto w-full space-y-4">
+<button class="border-beam-btn w-full py-4 rounded-2xl flex items-center justify-center gap-2 text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        Google Play 下載
+                    </button>
+<div class="p-4 bg-white/5 rounded-2xl border border-white/5 inline-block mx-auto">
+<img alt="Android QR Code" class="size-24 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGFWFmOqupxhi6-zpZeOogTeRwiTVCaAOzmmD-GJVhDrvcATH6xcN9GIJL0Srlhq6V_1E7ijvwpzfLbgcUm12dhyBu7E4uIh7ZCrOjkBD1y639ToQTaLfmuU-lZ6kUO6UoMS6zgjMF3OCWDusj1rc--BhR-L1aKc6gnWAQPnPlk8LgXs3s2jcXnj7lWKfLrq-MHpoIAVMRknB7BpgdSZlTQuF25qblrutXaOs_KJsjLj39i-4pz_CaevpU7VVEv4ZAfqZTp1Y48Vw"/>
+<p class="text-[9px] mt-2 text-white/30 uppercase tracking-widest font-bold">手機掃描下載</p>
+</div>
+</div>
+</div>
+<div class="flashlight-card glass-panel rounded-[32px] p-8 flex flex-col items-center text-center transition-all duration-500">
+<div class="size-20 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-white">window</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">Windows</h3>
+<p class="text-slate-500 text-sm mb-8 leading-relaxed">
+                    桌面端強大的訊息中心<br/>
+                    支援 Windows 10/11 (64-bit)
+                </p>
+<div class="mt-auto w-full space-y-4">
+<button class="border-beam-btn w-full py-4 rounded-2xl flex items-center justify-center gap-2 text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        下載 Windows 版 (.exe)
+                    </button>
+<div class="grid grid-cols-2 gap-2 text-left bg-white/5 p-4 rounded-2xl border border-white/5">
+<div>
+<p class="text-[9px] text-white/40 uppercase font-bold">版本</p>
+<p class="text-xs font-medium">v2.4.1</p>
+</div>
+<div>
+<p class="text-[9px] text-white/40 uppercase font-bold">大小</p>
+<p class="text-xs font-medium">124 MB</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flashlight-card glass-panel rounded-[32px] p-8 flex flex-col items-center text-center transition-all duration-500">
+<div class="size-20 rounded-2xl bg-white/5 flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-4xl text-white">laptop_mac</span>
+</div>
+<h3 class="text-2xl font-bold mb-2">macOS</h3>
+<p class="text-slate-500 text-sm mb-8 leading-relaxed">
+                    與 macOS 深度集成的體驗<br/>
+                    支援 macOS 11.0+ (Intel/M1/M2)
+                </p>
+<div class="mt-auto w-full space-y-4">
+<button class="border-beam-btn w-full py-4 rounded-2xl flex items-center justify-center gap-2 text-sm font-bold transition-all">
+<span class="material-symbols-outlined text-lg">download</span>
+                        下載 macOS 版 (.dmg)
+                    </button>
+<div class="grid grid-cols-2 gap-2 text-left bg-white/5 p-4 rounded-2xl border border-white/5">
+<div>
+<p class="text-[9px] text-white/40 uppercase font-bold">架構</p>
+<p class="text-xs font-medium">Universal</p>
+</div>
+<div>
+<p class="text-[9px] text-white/40 uppercase font-bold">大小</p>
+<p class="text-xs font-medium">98 MB</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 py-20 border-t border-white/5">
+<div>
+<h4 class="text-2xl font-bold mb-6">系統要求</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">memory</span>
+</div>
+<div>
+<p class="text-sm font-bold mb-1">最低配置</p>
+<p class="text-xs text-slate-500 leading-relaxed">2GB RAM, 500MB 可用磁碟空間。支援 AES-NI 指令集的處理器將獲得更佳的加密效能。</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">security</span>
+</div>
+<div>
+<p class="text-sm font-bold mb-1">隱私聲明</p>
+<p class="text-xs text-slate-500 leading-relaxed">下載行為不會關聯您的身份。我們不會在下載伺服器記錄您的 IP 地址或其他可辨識資訊。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-3xl p-8 flex items-center gap-8 border border-white/10">
+<div class="bg-white p-2 rounded-xl">
+<img alt="Universal Download" class="size-32" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-VCz6zgwGxk_fHhH-0grUXkPmz1G2eK2_Irp9stqo68URaaU4t4uKILQ-W1atbPakATL1MgR6n11crlzHqB--QpmAoqJmcUEi6CgHHZpljWcHvTVUao0QB83-uy7o9cI0RGZqYEW4e4gO1E0I25jfMZAmnjclDWtPc4v4N8gbCGcomTp1TgGiz940i1ZcJI2KEQM7Wj50ezj2NeXVz-4yQeNjKP22Y055hdbo2gvnIpW1YDNVrpcLTMDYhJ4sKIsh0ztI6-tJ9cE"/>
+</div>
+<div>
+<h5 class="text-lg font-bold mb-2">全平台統一入口</h5>
+<p class="text-sm text-slate-400 mb-4 leading-relaxed">掃描此 QR Code，系統將自動根據您的裝置導向正確的下載鏈結。</p>
+<div class="flex gap-3">
+<span class="px-3 py-1 bg-white/5 rounded-full text-[10px] text-white/60 font-bold uppercase tracking-widest border border-white/10">Auto-Detect</span>
+<span class="px-3 py-1 bg-white/5 rounded-full text-[10px] text-white/60 font-bold uppercase tracking-widest border border-white/10">Secure Link</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="relative z-10 py-16 px-8 border-t border-white/5 bg-charcoal/40 backdrop-blur-md mt-auto">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-2xl font-bold">shield_lock</span>
+</div>
+<span class="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">68Messenger</span>
+</div>
+<div class="flex flex-col md:items-end gap-4">
+<div class="flex items-center gap-2 text-sm text-white/40">
+<span class="material-symbols-outlined text-sm">mail</span>
+<a class="hover:text-primary transition-colors" href="mailto:support@68messenger.com">support@68messenger.com</a>
+</div>
+<a class="text-sm text-white/40 hover:text-primary transition-colors" href="yonghuxieyi.html">用戶協議</a>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-white/30 tracking-wide">產品備案號：ICP 備 2024068688-1</p>
+<p class="text-[10px] text-white/20 uppercase tracking-[0.2em]">© 2024 68Messenger. Pure Privacy Infrastructure.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

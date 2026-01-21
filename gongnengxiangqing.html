@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html class="dark" lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger | 功能詳情 - 全方位安全通訊</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#008BFF",
+                        "background-dark": "#070708",
+                        "charcoal": "#0a0a0c",
+                    },
+                    fontFamily: {
+                        "sans": ["Noto Sans TC", "Space Grotesk", "sans-serif"],
+                        "display": ["Noto Sans TC", "Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer components {
+            .glass-panel {
+                background: rgba(10, 10, 12, 0.7);
+                backdrop-filter: blur(40px) saturate(180%);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .feature-card-glow {
+                background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 139, 255, 0.1) 0%, transparent 70%);
+            }
+            .aurora-orb {
+                filter: blur(140px);
+                z-index: -1;
+                opacity: 0.3;
+            }
+            .border-beam-btn {
+                position: relative;
+                background: rgba(255, 255, 255, 0.03);
+                overflow: hidden;
+                z-index: 1;
+            }
+            .border-beam-btn::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                padding: 1px;
+                background: linear-gradient(90deg, transparent, #008BFF, transparent);
+                background-size: 200% 100%;
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                mask-composite: xor;
+                -webkit-mask-composite: destination-out;
+                opacity: 0;
+                transition: opacity 0.3s;
+            }
+            .border-beam-btn:hover::after {
+                opacity: 1;
+                animation: border-beam-anim 2.5s linear infinite;
+            }
+            @keyframes border-beam-anim {
+                from { background-position: 200% 0; }
+                to { background-position: -200% 0; }
+            }
+            .flashlight-card {
+                position: relative;
+                overflow: hidden;
+            }
+            .flashlight-card::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 139, 255, 0.15) 0%, transparent 80%);
+                opacity: 0;
+                transition: opacity 0.4s;
+                pointer-events: none;
+                z-index: 1;
+            }
+            .flashlight-card:hover::before {
+                opacity: 1;
+            }
+            .ui-mock-window {
+                background: rgba(0, 0, 0, 0.3);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30 antialiased overflow-x-hidden" onmousemove="updateMousePosition(event)">
+<script>
+    function updateMousePosition(e) {
+        const cards = document.querySelectorAll('.flashlight-card');
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    }
+</script>
+<div class="relative min-h-screen">
+<div class="fixed top-[-10%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full aurora-orb"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-blue-600/5 rounded-full aurora-orb"></div>
+<div class="fixed top-[40%] left-[50%] -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full aurora-orb"></div>
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+<div class="flex items-center justify-between px-8 py-5 lg:px-20 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-3">
+<div class="size-9 bg-primary rounded-lg flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-xl font-bold">shield_lock</span>
+</div>
+<span class="text-xl font-bold tracking-tight">68Messenger</span>
+</div>
+<nav class="hidden md:flex items-center gap-10 text-[13px] font-medium tracking-wide text-white/60">
+<a class="hover:text-primary transition-colors" href="index.html">首頁</a>
+<a class="text-white border-b border-primary pb-1" href="gongnengxiangqing.html">功能特性</a>
+<a class="hover:text-primary transition-colors" href="anquanjishu.html">安全技術</a>
+<a class="hover:text-primary transition-colors" href="xiazai.html">下載</a>
+</nav>
+<div class="relative">
+<button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] font-medium hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined text-sm">language</span>
+<span id="current-lang">中文繁體</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div id="lang-dropdown" class="hidden absolute top-full right-0 mt-2 py-2 w-40 rounded-xl glass-panel border border-white/10 shadow-2xl">
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">中文繁體</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">Português</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">Tiếng Việt</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">English</a>
+</div>
+</div>
+</div>
+</header>
+<script>
+// 導航欄滾動效果
+const header = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('bg-charcoal/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    } else {
+        header.classList.remove('bg-charcoal/80', 'backdrop-blur-xl', 'border-b', 'border-white/5');
+    }
+});
+// 多語言下拉菜單
+const langToggle = document.getElementById('lang-toggle');
+const langDropdown = document.getElementById('lang-dropdown');
+langToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langDropdown.classList.toggle('hidden');
+});
+document.addEventListener('click', () => {
+    langDropdown.classList.add('hidden');
+});
+langDropdown.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('current-lang').textContent = e.target.textContent;
+        langDropdown.classList.add('hidden');
+    });
+});
+</script>
+<main class="relative z-10 pt-28 pb-32 px-6 max-w-[1200px] mx-auto">
+<div class="text-center mb-32">
+<h1 class="text-5xl md:text-7xl font-black tracking-tight mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">功能詳情</h1>
+<p class="text-slate-400 text-lg md:text-xl font-light max-w-2xl mx-auto">
+                深入了解 68Messenger 如何重新定義隱私通訊，每一項功能都為您的數據主權量身打造。
+            </p>
+</div>
+<div class="space-y-40">
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="order-2 lg:order-1">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold mb-6 tracking-widest uppercase border border-primary/20">
+                        Privacy Core
+                    </div>
+<h2 class="text-4xl font-bold mb-6">私人單聊</h2>
+<p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        最純粹的 1v1 對話空間。採用 Diffie-Hellman 密鑰交換協議，確保除了對話雙方，沒有任何人（包括我們）能解密內容。
+                    </p>
+<ul class="space-y-4 text-slate-300">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>閱後即焚計時器</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>防截圖提醒機制</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">check_circle</span>
+<span>消息雙向永久刪除</span>
+</li>
+</ul>
+</div>
+<div class="order-1 lg:order-2 flashlight-card glass-panel rounded-3xl p-1 shadow-2xl">
+<div class="ui-mock-window h-[400px] flex flex-col p-6 bg-charcoal/40">
+<div class="flex items-center gap-4 mb-8">
+<div class="size-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">JD</div>
+<div>
+<div class="text-sm font-bold">John Doe</div>
+<div class="text-[10px] text-emerald-500 flex items-center gap-1">
+<span class="size-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    End-to-end Encrypted
+                                </div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="max-w-[80%] bg-white/5 p-4 rounded-2xl rounded-tl-none text-sm border border-white/5">
+                                這份文件已經加密處理，請確認。
+                            </div>
+<div class="max-w-[80%] self-end bg-primary/20 p-4 rounded-2xl rounded-tr-none text-sm border border-primary/20">
+                                已收到，密鑰已自動銷毀。
+                            </div>
+<div class="max-w-[80%] bg-white/5 p-4 rounded-2xl rounded-tl-none text-sm border border-white/5 italic text-white/40">
+<span class="material-symbols-outlined text-xs align-middle mr-1">timer</span>
+                                該消息將在 5 秒後銷毀...
+                            </div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="flashlight-card glass-panel rounded-3xl p-1 shadow-2xl">
+<div class="ui-mock-window h-[400px] bg-charcoal/40 flex">
+<div class="w-1/3 border-r border-white/5 p-4 flex flex-col gap-3">
+<div class="h-8 w-full bg-white/5 rounded-lg"></div>
+<div class="h-12 w-full bg-primary/10 rounded-xl border border-primary/20"></div>
+<div class="h-12 w-full bg-white/5 rounded-xl"></div>
+<div class="h-12 w-full bg-white/5 rounded-xl"></div>
+</div>
+<div class="flex-1 p-6">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">groups</span>
+<span class="font-bold text-sm">技術開發群組 (2,048 位成員)</span>
+</div>
+<div class="space-y-4">
+<div class="h-16 w-3/4 bg-white/5 rounded-2xl"></div>
+<div class="h-16 w-full bg-white/5 rounded-2xl"></div>
+<div class="h-10 w-1/2 bg-primary/10 rounded-2xl"></div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold mb-6 tracking-widest uppercase border border-blue-500/20">
+                        Mass Communication
+                    </div>
+<h2 class="text-4xl font-bold mb-6">安全群聊與頻道</h2>
+<p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        支援高達 20 萬人的超大型群組，以及訂閱人數不設限的資訊頻道。群組通訊同樣享有完善的加密機制，確保團隊協作的安全性。
+                    </p>
+<div class="grid grid-cols-2 gap-6">
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+<span class="text-primary font-bold text-xl mb-2 block">200K+</span>
+<span class="text-slate-400 text-xs">群組成員上限</span>
+</div>
+<div class="p-4 rounded-2xl bg-white/5 border border-white/10">
+<span class="text-primary font-bold text-xl mb-2 block">Unlimited</span>
+<span class="text-slate-400 text-xs">頻道訂閱人數</span>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-bold mb-6 tracking-widest uppercase border border-cyan-500/20">
+                        Ultra Clear
+                    </div>
+<h2 class="text-4xl font-bold mb-6">HD 加密語音與視訊</h2>
+<p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        基於 P2P 技術的語音與視訊通話，讓通訊不經過伺服器直接在終端間建立，延遲更低且安全性更高。
+                    </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 p-4 rounded-2xl glass-panel border border-white/10">
+<div class="size-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400">
+<span class="material-symbols-outlined">video_stable</span>
+</div>
+<div>
+<div class="text-sm font-bold">4K 視訊傳輸</div>
+<div class="text-xs text-slate-500">流暢且細膩的畫面表現</div>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 rounded-2xl glass-panel border border-white/10">
+<div class="size-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">
+<span class="material-symbols-outlined">high_quality</span>
+</div>
+<div>
+<div class="text-sm font-bold">降噪語音技術</div>
+<div class="text-xs text-slate-500">在低帶寬環境下依然清晰</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flashlight-card glass-panel rounded-3xl p-1 shadow-2xl relative overflow-hidden group">
+<img alt="HD Call UI" class="rounded-2xl opacity-40 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBZMzQ9bnUA5jkjefQBz0tIN4HOn5Qt4-yMaQj9cbXeXdPrCgXsOc5PxhSoPH5sWu6bzTKonqC5VLMjp6DfXx_7t08taBmuNzU087n5JnCS0t2vkmaVQJguRHDDDuVavXtwnT4SB7PZr1pDX05yd-IyqMXUDOf7-kO45h87iEBr-veriAgoUphsCExv-p0_dY9QqyFrLV1XZrJFd26X7MbTvTIqiNdsADYTr9uRNf8s1NSbyrqA-4NUbNWyCUZn1-n2hraH1IRK7o"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<div class="size-24 rounded-full border-4 border-cyan-500/50 flex items-center justify-center mb-4 relative">
+<div class="absolute inset-0 rounded-full border border-cyan-500 animate-ping opacity-20"></div>
+<span class="material-symbols-outlined text-4xl text-cyan-400">mic</span>
+</div>
+<div class="text-center">
+<div class="font-bold text-xl">正在加密通話中...</div>
+<div class="text-xs text-cyan-500 tracking-widest font-bold">AES-256 ENCRYPTED</div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10">
+<div class="size-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-8 border border-amber-500/20">
+<span class="material-symbols-outlined text-amber-500 text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-bold mb-4">毫秒級傳輸</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        全球分佈式伺服器架構，確保您的每一條消息、每一份文件都能以最快的路徑抵達目標，即使在弱網環境下也依然可靠。
+                    </p>
+</div>
+<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10">
+<div class="size-14 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-8 border border-purple-500/20">
+<span class="material-symbols-outlined text-purple-500 text-3xl">folder_zip</span>
+</div>
+<h3 class="text-xl font-bold mb-4">大文件共享</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        不再受限於附件大小。支援單個高達 2GB 的文件傳輸，且所有文件在雲端伺服器均以加密碎片形式存儲。
+                    </p>
+</div>
+<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10">
+<div class="size-14 rounded-2xl bg-rose-500/10 flex items-center justify-center mb-8 border border-rose-500/20">
+<span class="material-symbols-outlined text-rose-500 text-3xl">person_pin</span>
+</div>
+<h3 class="text-xl font-bold mb-4">自主權管理</h3>
+<p class="text-slate-400 text-sm leading-relaxed">
+                        您可以隨時銷毀自己的所有通訊痕跡。這不僅僅是刪除，而是從物理磁盤上徹底抹除相關的加密密鑰。
+                    </p>
+</div>
+</section>
+</div>
+<div class="mt-40 text-center relative flashlight-card glass-panel py-20 px-10 rounded-[40px] border border-white/10 overflow-hidden">
+<div class="relative z-10">
+<h2 class="text-4xl md:text-5xl font-black mb-6">準備好奪回隱私權了嗎？</h2>
+<p class="text-slate-400 max-w-xl mx-auto mb-10">
+                    加入全球數百萬重視安全的用戶行列，開啟端對端加密的新紀元。
+                </p>
+<div class="flex flex-col sm:flex-row gap-5 justify-center">
+<button class="bg-white text-black text-sm font-bold px-12 py-4 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                        立即免費下載
+                    </button>
+<button class="border-beam-btn px-12 py-4 rounded-full border border-white/10 text-sm font-bold">
+                        查看技術規格
+                    </button>
+</div>
+</div>
+<div class="absolute -bottom-20 -right-20 size-80 bg-primary/20 blur-[100px] rounded-full"></div>
+</div>
+</main>
+<footer class="relative z-10 py-16 px-8 border-t border-white/5 bg-charcoal/40 backdrop-blur-md">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+<div class="flex items-center gap-3">
+<div class="size-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-white text-2xl font-bold">shield_lock</span>
+</div>
+<span class="text-2xl font-black tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">68Messenger</span>
+</div>
+<div class="flex flex-col md:items-end gap-4">
+<div class="flex items-center gap-2 text-sm text-white/40">
+<span class="material-symbols-outlined text-sm">mail</span>
+<a class="hover:text-primary transition-colors" href="mailto:support@68messenger.com">support@68messenger.com</a>
+</div>
+<a class="text-sm text-white/40 hover:text-primary transition-colors" href="yonghuxieyi.html">用戶協議</a>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-white/30 tracking-wide">產品備案號：ICP 備 2024068688-1</p>
+<p class="text-[10px] text-white/20 uppercase tracking-[0.2em]">© 2024 68Messenger. Pure Privacy Infrastructure.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

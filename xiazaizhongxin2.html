@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-TW"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger 下載中心 (明亮科技版)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00E5FF",
+                        "brand-blue": "#008BFF",
+                        "background-light": "#F8FAFC",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "Noto Sans TC", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer base {
+            body {
+                font-family: 'Space Grotesk', 'Noto Sans TC', sans-serif;
+                @apply bg-[#F8FAFC] text-slate-900;
+            }
+        }
+        .aurora-bg {
+            background: 
+                radial-gradient(circle at 20% 10%, rgba(0, 229, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 90%, rgba(0, 139, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 40px 80px rgba(0, 229, 255, 0.12);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+        .border-beam {
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: conic-gradient(from 0deg, transparent 80%, #00E5FF 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .download-btn:hover .border-beam {
+            opacity: 1;
+            animation: rotate-beam 3s linear infinite;
+        }
+        @keyframes rotate-beam {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .flashlight {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+        .glass-card:hover .flashlight {
+            opacity: 1;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 font-medium hover:text-brand-blue transition-all duration-300 relative;
+        }
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-brand-blue transition-all duration-300;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            @apply w-1/2;
+        }
+    </style>
+</head>
+<body class="aurora-bg min-h-screen selection:bg-primary/20 selection:text-brand-blue">
+<div class="relative flex flex-col overflow-x-hidden">
+<header class="fixed top-0 w-full z-50 border-b border-slate-200/40 bg-white/75 backdrop-blur-xl px-6 md:px-20 py-4">
+<div class="max-w-[1400px] mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-9 bg-brand-blue rounded-xl flex items-center justify-center text-white shadow-lg shadow-brand-blue/25">
+<span class="material-symbols-outlined font-bold text-xl">bubble_chart</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-800">68Messenger</h1>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link" href="#">首頁</a>
+<a class="nav-link" href="#">功能特性</a>
+<a class="nav-link" href="#">安全技術</a>
+<a class="nav-link text-brand-blue" href="#">下載</a>
+<div class="ml-4 relative group">
+<button class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 bg-white/50 text-sm font-semibold text-slate-600 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-lg">language</span>
+                        中文繁體
+                        <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="absolute right-0 top-full mt-2 w-44 bg-white border border-slate-100 rounded-2xl shadow-xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all p-2 z-50">
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors" href="#">中文繁體</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors" href="#">Português</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors" href="#">Tiếng Việt</a>
+<a class="block px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-brand-blue rounded-xl transition-colors" href="#">English</a>
+</div>
+</div>
+</nav>
+</div>
+</header>
+<main class="flex-1 pt-40 pb-32 px-6">
+<div class="max-w-[1200px] mx-auto">
+<div class="flex flex-col items-center text-center gap-6 mb-24">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-brand-blue text-xs font-bold uppercase tracking-widest">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+</span>
+                    跨平台全面支援
+                </div>
+<h2 class="text-5xl md:text-7xl font-black tracking-tight leading-tight text-slate-900">
+                    68Messenger <span class="text-brand-blue">下載中心</span>
+</h2>
+<p class="text-slate-500 text-lg max-w-2xl leading-relaxed">
+                    無論您身在何處，使用何種設備。即刻下載，體驗全球最高標準的加密通訊服務。
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="glass-card group p-8 rounded-[2.5rem] flex flex-col items-center text-center flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10 w-full">
+<div class="size-16 mx-auto mb-6 bg-slate-900 text-white rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-4xl">ios</span>
+</div>
+<h3 class="text-2xl font-black mb-2 text-slate-900">iOS 版</h3>
+<p class="text-slate-400 text-sm mb-8">支援 iPhone 與 iPad</p>
+<button class="download-btn relative w-full py-4 bg-slate-900 text-white font-bold rounded-2xl overflow-hidden group/btn transition-transform active:scale-95">
+<div class="border-beam"></div>
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span> App Store 下載
+                            </span>
+</button>
+</div>
+</div>
+<div class="glass-card group p-8 rounded-[2.5rem] flex flex-col items-center text-center flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10 w-full">
+<div class="size-16 mx-auto mb-6 bg-emerald-500 text-white rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-4xl">android</span>
+</div>
+<h3 class="text-2xl font-black mb-2 text-slate-900">Android 版</h3>
+<p class="text-slate-400 text-sm mb-8">適用於各型 Android 手機</p>
+<button class="download-btn relative w-full py-4 bg-slate-900 text-white font-bold rounded-2xl overflow-hidden group/btn transition-transform active:scale-95">
+<div class="border-beam"></div>
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span> Google Play 下載
+                            </span>
+</button>
+<a class="block mt-4 text-xs font-bold text-brand-blue hover:underline" href="#">下載 APK 安裝包</a>
+</div>
+</div>
+<div class="glass-card group p-8 rounded-[2.5rem] flex flex-col items-center text-center flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10 w-full">
+<div class="size-16 mx-auto mb-6 bg-brand-blue text-white rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-4xl">desktop_windows</span>
+</div>
+<h3 class="text-2xl font-black mb-2 text-slate-900">Windows 版</h3>
+<p class="text-slate-400 text-sm mb-8">專為桌面端辦公優化</p>
+<button class="download-btn relative w-full py-4 bg-slate-900 text-white font-bold rounded-2xl overflow-hidden group/btn transition-transform active:scale-95">
+<div class="border-beam"></div>
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span> 獲取 .exe 安裝程式
+                            </span>
+</button>
+</div>
+</div>
+<div class="glass-card group p-8 rounded-[2.5rem] flex flex-col items-center text-center flashlight-trigger">
+<div class="flashlight"></div>
+<div class="relative z-10 w-full">
+<div class="size-16 mx-auto mb-6 bg-slate-100 text-slate-900 border border-slate-200 rounded-2xl flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-4xl">laptop_mac</span>
+</div>
+<h3 class="text-2xl font-black mb-2 text-slate-900">macOS 版</h3>
+<p class="text-slate-400 text-sm mb-8">支援 Intel 與 M 系列晶片</p>
+<button class="download-btn relative w-full py-4 bg-slate-900 text-white font-bold rounded-2xl overflow-hidden group/btn transition-transform active:scale-95">
+<div class="border-beam"></div>
+<span class="relative z-10 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">download</span> 下載 DMG 安裝檔
+                            </span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-20 text-center">
+<p class="text-slate-400 text-sm">
+                    當前版本: v4.8.2 | 發佈日期: 2024年10月24日 | <a class="text-brand-blue font-bold hover:underline" href="#">查看更新日誌</a>
+</p>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 py-16 px-6 md:px-20 bg-white">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 bg-slate-900 rounded-xl flex items-center justify-center text-white shadow-lg overflow-hidden">
+<span class="material-symbols-outlined text-2xl">bubble_chart</span>
+</div>
+<h4 class="text-xl font-bold text-slate-900 tracking-tight">68Messenger</h4>
+</div>
+<p class="text-slate-500 text-sm max-w-sm mb-6 leading-relaxed">
+                    提供極致隱私的安全通訊方案。基於軍工級加密架構，重新定義數碼時代的溝通標準。
+                </p>
+<div class="space-y-2 text-sm font-medium text-slate-400">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">verified</span>
+                        產品註冊號：REG-2024-8868-MSGR
+                    </div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-base">mail</span>
+                        聯繫我們：support@68messenger.com
+                    </div>
+</div>
+</div>
+<div>
+<h5 class="text-slate-900 font-bold mb-6">快速連結</h5>
+<ul class="space-y-4 text-sm text-slate-500 font-semibold">
+<li><a class="hover:text-brand-blue transition-colors" href="#">首頁</a></li>
+<li><a class="hover:text-brand-blue transition-colors" href="#">功能特性</a></li>
+<li><a class="hover:text-brand-blue transition-colors" href="#">安全技術</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-slate-900 font-bold mb-6">法律政策</h5>
+<ul class="space-y-4 text-sm text-slate-500 font-semibold">
+<li><a class="hover:text-brand-blue transition-colors" href="#">用戶協議</a></li>
+<li><a class="hover:text-brand-blue transition-colors" href="#">隱私政策</a></li>
+<li><a class="hover:text-brand-blue transition-colors" href="#">安全白皮書</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-16 pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+<p>© 2024 68Messenger Global. 版權所有。</p>
+<div class="flex gap-8">
+<a class="hover:text-slate-600 transition-colors" href="#">系統狀態</a>
+<a class="hover:text-slate-600 transition-colors" href="#">安全認證</a>
+<a class="hover:text-slate-600 transition-colors" href="#">用戶協議</a>
+</div>
+</div>
+</footer>
+</div>
+<script>
+    document.querySelectorAll('.flashlight-trigger').forEach(card => {
+        card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const flashlight = card.querySelector('.flashlight');
+            if (flashlight) {
+                flashlight.style.left = `${x}px`;
+                flashlight.style.top = `${y}px`;
+            }
+        });
+    });
+</script>
+
+</body></html>
