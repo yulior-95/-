@@ -322,12 +322,55 @@ window.addEventListener('scroll', () => {
     const container = document.querySelector('.horizontal-scroll-container');
     const dots = document.querySelectorAll('.dot-indicator');
     const cards = document.querySelectorAll('.feature-card');
-    // Horizontal scroll logic based on vertical scroll
-    window.addEventListener('wheel', (e) => {
-        if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-            container.scrollLeft += e.deltaY;
-        }
+    
+    let isHoveringCard = false;
+    let currentCardIndex = 0;
+    let isCardScrolling = false;
+
+    // 监听鼠标进入和离开每个卡片（不是整个容器）
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            isHoveringCard = true;
+        });
+        card.addEventListener('mouseleave', () => {
+            isHoveringCard = false;
+        });
     });
+
+    // 滚轮事件处理 - 只在悬停卡片本身时切换卡片
+    window.addEventListener('wheel', (e) => {
+        if (isHoveringCard && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+            e.preventDefault(); // 阻止默认的页面滚动
+            
+            if (isCardScrolling) return; // 防止滚动过快
+            isCardScrolling = true;
+            
+            if (e.deltaY > 0 && currentCardIndex < cards.length - 1) {
+                // 向下滚动，切换到下一张
+                currentCardIndex++;
+            } else if (e.deltaY < 0 && currentCardIndex > 0) {
+                // 向上滚动，切换到上一张
+                currentCardIndex--;
+            }
+            
+            // 滚动到目标卡片
+            container.scrollTo({
+                left: cards[currentCardIndex].offsetLeft - (window.innerWidth * 0.1),
+                behavior: 'smooth'
+            });
+            
+            // 更新指示器
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === currentCardIndex);
+            });
+            
+            // 延迟恢复滚动状态，防止连续触发
+            setTimeout(() => {
+                isCardScrolling = false;
+            }, 600);
+        }
+    }, { passive: false });
+
     // Intersection Observer for Indicators and Opacity Effects
     const observerOptions = {
         root: container,
@@ -337,6 +380,7 @@ window.addEventListener('scroll', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const index = Array.from(cards).indexOf(entry.target);
+                currentCardIndex = index; // 同步当前索引
                 dots.forEach((dot, i) => {
                     dot.classList.toggle('active', i === index);
                 });
@@ -349,9 +393,11 @@ window.addEventListener('scroll', () => {
         });
     }, observerOptions);
     cards.forEach(card => observer.observe(card));
-    // Smooth scroll for indicators
+
+    // 点击指示器切换卡片
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
+            currentCardIndex = index;
             container.scrollTo({
                 left: cards[index].offsetLeft - (window.innerWidth * 0.1),
                 behavior: 'smooth'
