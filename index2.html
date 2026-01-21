@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-TW"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="theme-color" content="#F8FAFC"/>
 <title>68Messenger 功能特性 (明亮科技標準版)</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
@@ -134,17 +137,27 @@
         .nav-link:hover::after {
             @apply w-1/2;
         }
+        /* 移动端适配 */
+        :root {
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        @media (max-width: 768px) {
+            body { padding-top: var(--safe-area-top); -webkit-overflow-scrolling: touch; }
+            .mobile-card { -webkit-tap-highlight-color: transparent; }
+            .mobile-card:active { transform: scale(0.98) !important; }
+        }
     </style>
 </head>
 <body class="aurora-bg min-h-screen selection:bg-primary/20 selection:text-primary">
 <div class="relative flex flex-col overflow-x-hidden">
-<header id="main-header" class="fixed top-0 w-full z-50 border-b border-transparent bg-transparent transition-all duration-300 px-6 md:px-20 py-4">
+<header id="main-header" class="fixed top-0 w-full z-50 border-b border-transparent bg-transparent transition-all duration-300 px-4 md:px-6 lg:px-20 py-3 md:py-4" style="padding-top: max(0.75rem, var(--safe-area-top));">
 <div class="max-w-[1400px] mx-auto flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="size-9 rounded-xl flex items-center justify-center overflow-hidden">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="size-8 md:size-9 rounded-xl flex items-center justify-center overflow-hidden">
 <img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
 </div>
-<h1 class="text-xl font-bold tracking-tight text-slate-800">68Messenger</h1>
+<h1 class="text-lg md:text-xl font-bold tracking-tight text-slate-800">68Messenger</h1>
 </div>
 <nav class="hidden md:flex items-center gap-2">
 <a class="nav-link text-primary" href="index2.html">首頁</a>
@@ -165,9 +178,31 @@
 </div>
 </div>
 </nav>
+<button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-slate-100 border border-slate-200">
+<span class="material-symbols-outlined text-xl text-slate-600">menu</span>
+</button>
+</div>
+<!-- 移动端菜单 -->
+<div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200">
+<nav class="flex flex-col p-4 gap-2">
+<a class="px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium" href="index2.html">首頁</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="gongnengtexing2.html">功能特性</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="anquanjishu2.html">安全技術</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="xiazaizhongxin2.html">下載</a>
+</nav>
 </div>
 </header>
 <script>
+// 移动端菜单切换
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+}
 // 導航欄滾動效果
 const header = document.getElementById('main-header');
 window.addEventListener('scroll', () => {

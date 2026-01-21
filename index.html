@@ -2,7 +2,11 @@
 <html class="dark" lang="zh-Hant">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+    <meta name="theme-color" content="#070708"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
     <title>68Messenger | 選擇方案入口</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -25,6 +29,46 @@
         }
     </script>
     <style>
+        /* iOS 安全区域适配 */
+        :root {
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-area-left: env(safe-area-inset-left, 0px);
+            --safe-area-right: env(safe-area-inset-right, 0px);
+        }
+        
+        /* 移动端基础样式 */
+        @media (max-width: 768px) {
+            body {
+                padding-top: var(--safe-area-top);
+                padding-bottom: var(--safe-area-bottom);
+                padding-left: var(--safe-area-left);
+                padding-right: var(--safe-area-right);
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* 移动端卡片优化 */
+            .mobile-card {
+                -webkit-tap-highlight-color: transparent;
+                touch-action: manipulation;
+            }
+            
+            .mobile-card:active {
+                transform: scale(0.98) !important;
+                transition: transform 0.1s ease !important;
+            }
+        }
+        
+        /* 移动端滚动条隐藏 */
+        @media (max-width: 768px) {
+            ::-webkit-scrollbar {
+                display: none;
+            }
+            body {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
         .aurora-orb {
             filter: blur(140px);
             z-index: 0;
@@ -69,180 +113,195 @@
         }
     </style>
 </head>
-<body class="bg-background-dark font-sans text-slate-100 min-h-screen flex flex-col items-center justify-center overflow-hidden">
+<body class="bg-background-dark font-sans text-slate-100 min-h-screen flex flex-col items-center justify-center md:overflow-hidden overflow-y-auto">
     
-    <!-- 背景光效 -->
-    <div class="fixed top-[-20%] left-[-10%] w-[600px] h-[600px] bg-primary/20 rounded-full aurora-orb"></div>
-    <div class="fixed bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-600/10 rounded-full aurora-orb"></div>
-    <div class="fixed top-[30%] right-[20%] w-[400px] h-[400px] bg-primary/10 rounded-full aurora-orb"></div>
+    <!-- 背景光效 - 移动端缩小 -->
+    <div class="fixed top-[-20%] left-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-primary/20 rounded-full aurora-orb"></div>
+    <div class="fixed bottom-[-20%] right-[-10%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-blue-600/10 rounded-full aurora-orb"></div>
+    <div class="fixed top-[30%] right-[20%] w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-primary/10 rounded-full aurora-orb"></div>
 
-    <main class="relative z-10 px-6 py-12 w-full max-w-5xl mx-auto">
+    <main class="relative z-10 px-4 md:px-6 py-8 md:py-12 w-full max-w-5xl mx-auto">
         
-        <!-- Logo 和標題 -->
-        <div class="text-center mb-16">
-            <div class="flex items-center justify-center gap-3 mb-8">
-                <div class="size-12 rounded-xl flex items-center justify-center overflow-hidden">
+        <!-- Logo 和標題 - 移动端优化 -->
+        <div class="text-center mb-8 md:mb-16">
+            <div class="flex items-center justify-center gap-2 md:gap-3 mb-6 md:mb-8">
+                <div class="size-10 md:size-12 rounded-xl flex items-center justify-center overflow-hidden">
                     <img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
                 </div>
-                <span class="text-3xl font-black tracking-tight">68Messenger</span>
+                <span class="text-2xl md:text-3xl font-black tracking-tight">68Messenger</span>
             </div>
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[11px] font-bold mb-6 tracking-[0.2em] uppercase">
+            <div class="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] md:text-[11px] font-bold mb-4 md:mb-6 tracking-[0.15em] md:tracking-[0.2em] uppercase">
                 <span class="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
                 Development Preview
             </div>
-            <h1 class="text-4xl md:text-5xl font-black tracking-tight mb-4 bg-gradient-to-b from-white via-white to-white/50 bg-clip-text text-transparent">
+            <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-3 md:mb-4 bg-gradient-to-b from-white via-white to-white/50 bg-clip-text text-transparent">
                 選擇官網方案
             </h1>
-            <p class="text-slate-400 text-lg font-light max-w-md mx-auto">
+            <p class="text-slate-400 text-base md:text-lg font-light max-w-md mx-auto px-4 md:px-0">
                 請選擇您想要預覽的官網設計方案
             </p>
         </div>
 
-        <!-- 方案卡片 -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <!-- 方案卡片 - 移动端垂直滑动布局 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
             
             <!-- 方案一 -->
-            <a href="plan1.html" class="card-hover glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden group cursor-pointer block">
+            <a href="plan1.html" class="mobile-card card-hover glass-panel rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/10 relative overflow-hidden group cursor-pointer block active:scale-[0.98] transition-transform">
                 <!-- 背景光效 -->
-                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 md:group-active:opacity-100 transition-opacity duration-500"></div>
                 <div class="absolute top-0 left-0 right-0 h-px shimmer"></div>
                 
                 <div class="relative z-10">
-                    <!-- 圖標 -->
-                    <div class="card-icon size-16 rounded-2xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center mb-6 shadow-lg shadow-primary/20 transition-all duration-400">
-                        <span class="material-symbols-outlined text-white text-3xl">looks_one</span>
+                    <!-- 移动端横向布局 / 桌面端纵向布局 -->
+                    <div class="flex md:block items-start gap-4">
+                        <!-- 圖標 -->
+                        <div class="card-icon size-14 md:size-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-primary to-blue-600 flex items-center justify-center md:mb-6 shadow-lg shadow-primary/20 transition-all duration-400 flex-shrink-0">
+                            <span class="material-symbols-outlined text-white text-2xl md:text-3xl">looks_one</span>
+                        </div>
+                        
+                        <div class="flex-1 md:flex-none">
+                            <!-- 標籤 -->
+                            <div class="inline-block px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[9px] md:text-[10px] font-bold uppercase tracking-wider md:tracking-widest mb-2 md:mb-4">
+                                Current Version
+                            </div>
+                            
+                            <!-- 標題和描述 -->
+                            <h2 class="text-xl md:text-2xl font-bold mb-1 md:mb-3">官網方案一</h2>
+                            <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-3 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                現有設計方案，包含完整的功能展示、3D 效果界面預覽與動態交互元素。
+                            </p>
+                        </div>
                     </div>
                     
-                    <!-- 標籤 -->
-                    <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                        Current Version
-                    </div>
-                    
-                    <!-- 標題和描述 -->
-                    <h2 class="text-2xl font-bold mb-3">官網方案一</h2>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        現有設計方案，包含完整的功能展示、3D 效果界面預覽與動態交互元素。
-                    </p>
-                    
-                    <!-- 特性標籤 -->
-                    <div class="flex flex-wrap gap-2 mb-6">
+                    <!-- 特性標籤 - 移动端隐藏部分 -->
+                    <div class="hidden md:flex flex-wrap gap-2 mb-6">
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">3D 界面</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">動態效果</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">玻璃質感</span>
                     </div>
                     
                     <!-- 進入按鈕 -->
-                    <div class="flex items-center gap-2 text-primary font-bold text-sm">
-                        <span>進入方案一</span>
-                        <span class="arrow-icon material-symbols-outlined text-lg opacity-60 transition-all duration-300">arrow_forward</span>
+                    <div class="flex items-center justify-between md:justify-start gap-2 text-primary font-bold text-sm mt-2 md:mt-0">
+                        <span class="text-xs md:text-sm">進入方案一</span>
+                        <span class="arrow-icon material-symbols-outlined text-base md:text-lg opacity-60 transition-all duration-300">arrow_forward</span>
                     </div>
                 </div>
                 
-                <!-- 裝飾圓環 -->
-                <div class="absolute -bottom-20 -right-20 size-40 border border-primary/10 rounded-full"></div>
-                <div class="absolute -bottom-16 -right-16 size-32 border border-primary/5 rounded-full"></div>
+                <!-- 裝飾圓環 - 移动端缩小 -->
+                <div class="absolute -bottom-16 md:-bottom-20 -right-16 md:-right-20 size-32 md:size-40 border border-primary/10 rounded-full"></div>
+                <div class="absolute -bottom-12 md:-bottom-16 -right-12 md:-right-16 size-24 md:size-32 border border-primary/5 rounded-full"></div>
             </a>
 
             <!-- 方案二 -->
-            <a href="index2.html" class="card-hover glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden group cursor-pointer block">
+            <a href="index2.html" class="mobile-card card-hover glass-panel rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/10 relative overflow-hidden group cursor-pointer block active:scale-[0.98] transition-transform">
                 <!-- 背景光效 -->
-                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 md:group-active:opacity-100 transition-opacity duration-500"></div>
                 <div class="absolute top-0 left-0 right-0 h-px shimmer"></div>
                 
                 <div class="relative z-10">
-                    <!-- 圖標 -->
-                    <div class="card-icon size-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 transition-all duration-400">
-                        <span class="material-symbols-outlined text-white text-3xl">looks_two</span>
+                    <!-- 移动端横向布局 / 桌面端纵向布局 -->
+                    <div class="flex md:block items-start gap-4">
+                        <!-- 圖標 -->
+                        <div class="card-icon size-14 md:size-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center md:mb-6 shadow-lg shadow-purple-500/20 transition-all duration-400 flex-shrink-0">
+                            <span class="material-symbols-outlined text-white text-2xl md:text-3xl">looks_two</span>
+                        </div>
+                        
+                        <div class="flex-1 md:flex-none">
+                            <!-- 標籤 -->
+                            <div class="inline-block px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[9px] md:text-[10px] font-bold uppercase tracking-wider md:tracking-widest mb-2 md:mb-4">
+                                Alternative Design
+                            </div>
+                            
+                            <!-- 標題和描述 -->
+                            <h2 class="text-xl md:text-2xl font-bold mb-1 md:mb-3">官網方案二</h2>
+                            <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-3 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                備選設計方案，探索不同的視覺風格與佈局結構，提供多樣化的選擇。
+                            </p>
+                        </div>
                     </div>
                     
-                    <!-- 標籤 -->
-                    <div class="inline-block px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                        Alternative Design
-                    </div>
-                    
-                    <!-- 標題和描述 -->
-                    <h2 class="text-2xl font-bold mb-3">官網方案二</h2>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        備選設計方案，探索不同的視覺風格與佈局結構，提供多樣化的選擇。
-                    </p>
-                    
-                    <!-- 特性標籤 -->
-                    <div class="flex flex-wrap gap-2 mb-6">
+                    <!-- 特性標籤 - 移动端隐藏部分 -->
+                    <div class="hidden md:flex flex-wrap gap-2 mb-6">
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">新佈局</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">替代風格</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">測試版</span>
                     </div>
                     
                     <!-- 進入按鈕 -->
-                    <div class="flex items-center gap-2 text-purple-400 font-bold text-sm">
-                        <span>進入方案二</span>
-                        <span class="arrow-icon material-symbols-outlined text-lg opacity-60 transition-all duration-300">arrow_forward</span>
+                    <div class="flex items-center justify-between md:justify-start gap-2 text-purple-400 font-bold text-sm mt-2 md:mt-0">
+                        <span class="text-xs md:text-sm">進入方案二</span>
+                        <span class="arrow-icon material-symbols-outlined text-base md:text-lg opacity-60 transition-all duration-300">arrow_forward</span>
                     </div>
                 </div>
                 
-                <!-- 裝飾圓環 -->
-                <div class="absolute -bottom-20 -right-20 size-40 border border-purple-500/10 rounded-full"></div>
-                <div class="absolute -bottom-16 -right-16 size-32 border border-purple-500/5 rounded-full"></div>
+                <!-- 裝飾圓環 - 移动端缩小 -->
+                <div class="absolute -bottom-16 md:-bottom-20 -right-16 md:-right-20 size-32 md:size-40 border border-purple-500/10 rounded-full"></div>
+                <div class="absolute -bottom-12 md:-bottom-16 -right-12 md:-right-16 size-24 md:size-32 border border-purple-500/5 rounded-full"></div>
             </a>
 
             <!-- 方案三 -->
-            <a href="index3.html" class="card-hover glass-panel rounded-3xl p-8 border border-white/10 relative overflow-hidden group cursor-pointer block">
+            <a href="index3.html" class="mobile-card card-hover glass-panel rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/10 relative overflow-hidden group cursor-pointer block active:scale-[0.98] transition-transform">
                 <!-- 背景光效 -->
-                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-transparent opacity-0 group-hover:opacity-100 md:group-active:opacity-100 transition-opacity duration-500"></div>
                 <div class="absolute top-0 left-0 right-0 h-px shimmer"></div>
                 
                 <div class="relative z-10">
-                    <!-- 圖標 -->
-                    <div class="card-icon size-16 rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center mb-6 shadow-lg shadow-cyan-500/20 transition-all duration-400">
-                        <span class="material-symbols-outlined text-white text-3xl">looks_3</span>
+                    <!-- 移动端横向布局 / 桌面端纵向布局 -->
+                    <div class="flex md:block items-start gap-4">
+                        <!-- 圖標 -->
+                        <div class="card-icon size-14 md:size-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-cyan-400 to-teal-500 flex items-center justify-center md:mb-6 shadow-lg shadow-cyan-500/20 transition-all duration-400 flex-shrink-0">
+                            <span class="material-symbols-outlined text-white text-2xl md:text-3xl">looks_3</span>
+                        </div>
+                        
+                        <div class="flex-1 md:flex-none">
+                            <!-- 標籤 -->
+                            <div class="inline-block px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[9px] md:text-[10px] font-bold uppercase tracking-wider md:tracking-widest mb-2 md:mb-4">
+                                Light Theme
+                            </div>
+                            
+                            <!-- 標題和描述 -->
+                            <h2 class="text-xl md:text-2xl font-bold mb-1 md:mb-3">官網方案三</h2>
+                            <p class="text-slate-400 text-xs md:text-sm leading-relaxed mb-3 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                明亮風格設計方案，採用清新的淺色主題，帶來明快舒適的視覺體驗。
+                            </p>
+                        </div>
                     </div>
                     
-                    <!-- 標籤 -->
-                    <div class="inline-block px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest mb-4">
-                        Light Theme
-                    </div>
-                    
-                    <!-- 標題和描述 -->
-                    <h2 class="text-2xl font-bold mb-3">官網方案三</h2>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">
-                        明亮風格設計方案，採用清新的淺色主題，帶來明快舒適的視覺體驗。
-                    </p>
-                    
-                    <!-- 特性標籤 -->
-                    <div class="flex flex-wrap gap-2 mb-6">
+                    <!-- 特性標籤 - 移动端隐藏部分 -->
+                    <div class="hidden md:flex flex-wrap gap-2 mb-6">
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">明亮主題</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">清新風格</span>
                         <span class="px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 text-[10px] text-white/60 font-medium">玻璃質感</span>
                     </div>
                     
                     <!-- 進入按鈕 -->
-                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
-                        <span>進入方案三</span>
-                        <span class="arrow-icon material-symbols-outlined text-lg opacity-60 transition-all duration-300">arrow_forward</span>
+                    <div class="flex items-center justify-between md:justify-start gap-2 text-cyan-400 font-bold text-sm mt-2 md:mt-0">
+                        <span class="text-xs md:text-sm">進入方案三</span>
+                        <span class="arrow-icon material-symbols-outlined text-base md:text-lg opacity-60 transition-all duration-300">arrow_forward</span>
                     </div>
                 </div>
                 
-                <!-- 裝飾圓環 -->
-                <div class="absolute -bottom-20 -right-20 size-40 border border-cyan-500/10 rounded-full"></div>
-                <div class="absolute -bottom-16 -right-16 size-32 border border-cyan-500/5 rounded-full"></div>
+                <!-- 裝飾圓環 - 移动端缩小 -->
+                <div class="absolute -bottom-16 md:-bottom-20 -right-16 md:-right-20 size-32 md:size-40 border border-cyan-500/10 rounded-full"></div>
+                <div class="absolute -bottom-12 md:-bottom-16 -right-12 md:-right-16 size-24 md:size-32 border border-cyan-500/5 rounded-full"></div>
             </a>
 
         </div>
 
         <!-- 底部提示 -->
-        <div class="text-center mt-16">
-            <p class="text-white/20 text-xs tracking-widest uppercase">
+        <div class="text-center mt-8 md:mt-16">
+            <p class="text-white/20 text-[10px] md:text-xs tracking-widest uppercase">
                 點擊卡片進入對應方案 · Preview Mode
             </p>
         </div>
 
     </main>
 
-    <!-- 頁腳 -->
-    <footer class="relative z-10 w-full py-8 px-6 mt-auto">
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-white/20 tracking-wide">
+    <!-- 頁腳 - 移动端安全区域适配 -->
+    <footer class="relative z-10 w-full py-6 md:py-8 px-4 md:px-6 mt-auto" style="padding-bottom: max(1.5rem, calc(var(--safe-area-bottom) + 0.5rem));">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4 text-[9px] md:text-[10px] text-white/20 tracking-wide">
             <div class="flex items-center gap-2">
-                <div class="size-5 rounded flex items-center justify-center overflow-hidden">
+                <div class="size-4 md:size-5 rounded flex items-center justify-center overflow-hidden">
                     <img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
                 </div>
                 <span>68Messenger</span>
@@ -250,6 +309,50 @@
             <p>© 2024 68Messenger. Development Preview.</p>
         </div>
     </footer>
+
+    <!-- 移动端触摸优化脚本 -->
+    <script>
+        // 检测是否为移动设备
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // 禁用双击缩放
+            document.addEventListener('touchstart', function(e) {
+                if (e.touches.length > 1) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', function(e) {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, { passive: false });
+            
+            // 为移动端卡片添加触摸反馈
+            document.querySelectorAll('.mobile-card').forEach(card => {
+                card.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                }, { passive: true });
+                
+                card.addEventListener('touchend', function() {
+                    this.style.transform = '';
+                }, { passive: true });
+                
+                card.addEventListener('touchcancel', function() {
+                    this.style.transform = '';
+                }, { passive: true });
+            });
+        }
+        
+        // 检测 iOS 状态栏高度并调整
+        if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+            document.documentElement.style.setProperty('--ios-status-bar', '44px');
+        }
+    </script>
 
 </body>
 </html>

@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html class="dark" lang="zh-Hant"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#070708"/>
+<meta name="mobile-web-app-capable" content="yes"/>
 <title>68Messenger | 未來感極簡首頁</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -119,6 +123,109 @@
                 box-shadow: 0 4px 15px rgba(0, 139, 255, 0.3);
             }
         }
+        /* 移动端适配 */
+        :root {
+            --safe-area-top: env(safe-area-inset-top, 0px);
+            --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        /* 移动端 Hero 手机模拟器样式 */
+        .mobile-phone-frame {
+            background: linear-gradient(145deg, rgba(20, 20, 25, 0.95) 0%, rgba(10, 10, 15, 0.98) 100%);
+            border: 2px solid rgba(0, 139, 255, 0.4);
+            border-radius: 40px;
+            box-shadow: 
+                0 0 60px rgba(0, 139, 255, 0.25),
+                0 0 120px rgba(0, 139, 255, 0.15),
+                inset 0 0 30px rgba(0, 139, 255, 0.05),
+                0 25px 80px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        .mobile-phone-frame::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(0, 139, 255, 0.6) 0%, transparent 50%, rgba(0, 139, 255, 0.3) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            animation: border-glow 4s ease-in-out infinite;
+        }
+        @keyframes border-glow {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        .dynamic-island {
+            background: #000;
+            border-radius: 20px;
+            width: 100px;
+            height: 28px;
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .mobile-feature-card {
+            background: rgba(15, 15, 20, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 139, 255, 0.25);
+            border-radius: 16px;
+            box-shadow: 
+                0 0 30px rgba(0, 139, 255, 0.15),
+                0 10px 40px rgba(0, 0, 0, 0.4);
+            animation: mobile-float 5s ease-in-out infinite;
+        }
+        .mobile-feature-card:nth-child(1) { animation-delay: 0s; }
+        .mobile-feature-card:nth-child(2) { animation-delay: -1.5s; }
+        .mobile-feature-card:nth-child(3) { animation-delay: -3s; }
+        @keyframes mobile-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .secure-indicator {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(0, 139, 255, 0.5);
+                opacity: 1;
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(0, 139, 255, 0.8);
+                opacity: 0.8;
+            }
+        }
+        .mobile-chat-bubble-l {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px 16px 16px 16px;
+        }
+        .mobile-chat-bubble-r {
+            background: linear-gradient(135deg, #008BFF 0%, #0066cc 100%);
+            border-radius: 16px 16px 4px 16px;
+            box-shadow: 0 4px 20px rgba(0, 139, 255, 0.4);
+        }
+        @media (max-width: 768px) {
+            body {
+                padding-top: var(--safe-area-top);
+                -webkit-overflow-scrolling: touch;
+            }
+            .hero-3d-container {
+                transform: rotateX(6deg) rotateY(-2deg) !important;
+            }
+            .floating-card {
+                display: none;
+            }
+            .perspective-layout {
+                perspective: 1000px;
+            }
+        }
     </style>
 </head>
 <body class="bg-background-dark font-sans text-slate-100 selection:bg-primary/30 antialiased overflow-x-hidden" onmousemove="updateMousePosition(event)">
@@ -135,16 +242,16 @@
     }
 </script>
 <div class="relative min-h-screen">
-<div class="fixed top-[-10%] left-[-10%] w-[800px] h-[800px] bg-primary/10 rounded-full aurora-orb"></div>
-<div class="fixed bottom-[-10%] right-[-10%] w-[700px] h-[700px] bg-blue-600/5 rounded-full aurora-orb"></div>
-<div class="fixed top-[20%] right-[10%] w-[500px] h-[500px] bg-primary/10 rounded-full aurora-orb"></div>
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-<div class="flex items-center justify-between px-8 py-5 lg:px-20 max-w-[1440px] mx-auto">
-<div class="flex items-center gap-3">
-<div class="size-9 rounded-lg flex items-center justify-center overflow-hidden">
+<div class="fixed top-[-10%] left-[-10%] w-[400px] h-[400px] md:w-[800px] md:h-[800px] bg-primary/10 rounded-full aurora-orb"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] bg-blue-600/5 rounded-full aurora-orb"></div>
+<div class="fixed top-[20%] right-[10%] w-[250px] h-[250px] md:w-[500px] md:h-[500px] bg-primary/10 rounded-full aurora-orb"></div>
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="padding-top: var(--safe-area-top);">
+<div class="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 lg:px-20 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="size-8 md:size-9 rounded-lg flex items-center justify-center overflow-hidden">
 <img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
 </div>
-<span class="text-xl font-bold tracking-tight">68Messenger</span>
+<span class="text-lg md:text-xl font-bold tracking-tight">68Messenger</span>
 </div>
 <nav class="hidden md:flex items-center gap-10 text-[13px] font-medium tracking-wide text-white/60">
 <a class="text-white border-b border-primary pb-1" href="plan1.html">首頁</a>
@@ -152,7 +259,11 @@
 <a class="hover:text-primary transition-colors" href="anquanjishu.html">安全技術</a>
 <a class="hover:text-primary transition-colors" href="xiazai.html">下載</a>
 </nav>
-<div class="relative">
+<!-- 移动端菜单按钮 -->
+<button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-white/5 border border-white/10">
+<span class="material-symbols-outlined text-xl">menu</span>
+</button>
+<div class="relative hidden md:block">
 <button id="lang-toggle" class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-[12px] font-medium hover:bg-white/10 transition-colors">
 <span class="material-symbols-outlined text-sm">language</span>
 <span id="current-lang">中文繁體</span>
@@ -165,6 +276,24 @@
 <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-white/10 transition-colors text-white/80 hover:text-white">English</a>
 </div>
 </div>
+</div>
+<!-- 移动端菜单 -->
+<div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-white/10">
+<nav class="flex flex-col p-4 gap-2">
+<a class="px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium" href="plan1.html">首頁</a>
+<a class="px-4 py-3 rounded-xl hover:bg-white/5 transition-colors" href="gongnengxiangqing.html">功能特性</a>
+<a class="px-4 py-3 rounded-xl hover:bg-white/5 transition-colors" href="anquanjishu.html">安全技術</a>
+<a class="px-4 py-3 rounded-xl hover:bg-white/5 transition-colors" href="xiazai.html">下載</a>
+<div class="border-t border-white/10 mt-2 pt-4">
+<p class="text-xs text-white/40 mb-2 px-4">語言</p>
+<div class="grid grid-cols-2 gap-2">
+<a href="#" class="px-3 py-2 text-xs text-center rounded-lg bg-white/5 hover:bg-white/10">中文繁體</a>
+<a href="#" class="px-3 py-2 text-xs text-center rounded-lg bg-white/5 hover:bg-white/10">Português</a>
+<a href="#" class="px-3 py-2 text-xs text-center rounded-lg bg-white/5 hover:bg-white/10">Tiếng Việt</a>
+<a href="#" class="px-3 py-2 text-xs text-center rounded-lg bg-white/5 hover:bg-white/10">English</a>
+</div>
+</div>
+</nav>
 </div>
 </header>
 <script>
@@ -195,29 +324,139 @@ langDropdown.querySelectorAll('a').forEach(link => {
     });
 });
 </script>
-<main class="relative z-10 pt-28 pb-32 px-6 max-w-[1440px] mx-auto">
-<div class="flex flex-col items-center text-center mb-24">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
+<main class="relative z-10 pt-20 md:pt-28 pb-16 md:pb-32 px-4 md:px-6 max-w-[1440px] mx-auto">
+<div class="flex flex-col items-center text-center mb-8 md:mb-24">
+<div class="inline-flex items-center gap-2 px-3 md:px-4 py-1 md:py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[9px] md:text-[10px] font-bold mb-6 md:mb-8 tracking-[0.15em] md:tracking-[0.2em] uppercase">
 <span class="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
             Next-Gen Secure Protocol
         </div>
-<h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[1.1] bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+<h1 class="text-4xl md:text-8xl font-black tracking-tighter mb-6 md:mb-8 leading-[1.1] bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
             私人通訊的<br/>未來標準
         </h1>
-<p class="text-lg md:text-xl text-slate-400 max-w-2xl font-light leading-relaxed mb-10">
-            基於端對端加密技術，將隱私權完全歸還給使用者。<br/>
+<p class="text-base md:text-xl text-slate-400 max-w-2xl font-light leading-relaxed mb-8 md:mb-10 px-4 md:px-0">
+            基於端對端加密技術，將隱私權完全歸還給使用者。<br class="hidden md:block"/>
             極簡、極速、且不可滲透。
         </p>
-<div class="flex flex-col sm:flex-row gap-5">
-<button class="bg-white text-black text-sm font-bold px-10 py-4 rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+<div class="flex flex-col sm:flex-row gap-3 md:gap-5 w-full sm:w-auto px-4 sm:px-0">
+<button class="bg-white text-black text-sm font-bold px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-primary hover:text-white transition-all duration-300 active:scale-95">
                 下載應用程式
             </button>
-<button class="border-beam-btn px-10 py-4 rounded-full border border-white/10 text-sm font-bold">
+<button class="border-beam-btn px-8 md:px-10 py-3 md:py-4 rounded-full border border-white/10 text-sm font-bold active:scale-95">
                 技術白皮書
             </button>
 </div>
+<!-- 移动端 Hero 展示区域 - iOS17 玻璃质感 -->
+<div class="md:hidden relative w-full max-w-sm mx-auto mt-8 mb-12 px-4">
+<!-- 背景光晕效果 -->
+<div class="absolute -top-20 left-1/2 -translate-x-1/2 w-[300px] h-[300px] bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="absolute -bottom-10 left-1/4 w-[200px] h-[200px] bg-blue-600/15 rounded-full blur-[80px] pointer-events-none"></div>
+
+<!-- 主手机框架 -->
+<div class="mobile-phone-frame w-full aspect-[9/16] max-w-[280px] mx-auto p-3 relative">
+<!-- Dynamic Island -->
+<div class="dynamic-island"></div>
+
+<!-- 聊天界面内容 -->
+<div class="h-full bg-gradient-to-b from-[#0a0a0f] to-[#080810] rounded-[32px] overflow-hidden flex flex-col pt-12">
+<!-- 顶部状态栏 -->
+<div class="px-4 py-3 flex items-center justify-between border-b border-white/5">
+<div class="flex items-center gap-2">
+<div class="size-8 rounded-full bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center">
+<span class="text-[10px] font-bold text-white">A</span>
 </div>
-<div class="perspective-layout relative w-full max-w-6xl mx-auto mt-12 mb-64">
+<div>
+<div class="text-[11px] font-bold text-white">加密核心小組</div>
+<div class="flex items-center gap-1">
+<div class="size-1.5 bg-emerald-500 rounded-full animate-pulse"></div>
+<span class="text-[8px] text-primary font-bold uppercase tracking-wider">E2E Encrypted</span>
+</div>
+</div>
+</div>
+<div class="secure-indicator size-7 rounded-full bg-primary/20 flex items-center justify-center border border-primary/40">
+<span class="material-symbols-outlined text-primary text-sm">lock</span>
+</div>
+</div>
+
+<!-- 聊天消息区域 -->
+<div class="flex-1 p-3 space-y-3 overflow-hidden">
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-slate-700 flex-shrink-0"></div>
+<div class="mobile-chat-bubble-l px-3 py-2 max-w-[80%]">
+<p class="text-[10px] text-white/90 leading-relaxed">傳輸層優化已完成 ✓</p>
+</div>
+</div>
+<div class="flex flex-row-reverse gap-2">
+<div class="size-6 rounded-full bg-primary flex-shrink-0"></div>
+<div class="mobile-chat-bubble-r px-3 py-2 max-w-[80%]">
+<p class="text-[10px] text-white leading-relaxed">閱後即焚功能已加密處理？</p>
+</div>
+</div>
+<div class="flex gap-2">
+<div class="size-6 rounded-full bg-slate-700 flex-shrink-0"></div>
+<div class="mobile-chat-bubble-l px-3 py-2 max-w-[85%] border-l-2 border-primary">
+<div class="flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-primary text-[10px]">auto_delete</span>
+<span class="text-[8px] text-primary font-bold">Ephemeral</span>
+</div>
+<p class="text-[10px] text-white/90 leading-relaxed">是的，快取會立即銷毀。</p>
+</div>
+</div>
+</div>
+
+<!-- 输入框 -->
+<div class="p-3 border-t border-white/5">
+<div class="h-9 rounded-full bg-white/5 border border-white/10 px-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-white/30 text-sm">attach_file</span>
+<span class="text-[10px] text-white/30 flex-1">輸入安全訊息...</span>
+<div class="size-6 rounded-full bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">arrow_upward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- 浮动功能卡片 -->
+<div class="mobile-feature-card absolute -left-2 top-[15%] p-2.5 w-[110px]" style="animation-delay: 0s;">
+<div class="flex items-center gap-2 mb-1.5">
+<div class="size-6 rounded-lg bg-orange-500/20 flex items-center justify-center border border-orange-500/30">
+<span class="material-symbols-outlined text-orange-400 text-sm">local_fire_department</span>
+</div>
+<span class="text-[10px] font-bold text-white">閱後即焚</span>
+</div>
+<p class="text-[8px] text-white/50 leading-relaxed">讀取後立即銷毀</p>
+</div>
+
+<div class="mobile-feature-card absolute -right-2 top-[35%] p-2.5 w-[115px]" style="animation-delay: -1.5s;">
+<div class="flex items-center gap-2 mb-1.5">
+<div class="size-6 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/30">
+<span class="material-symbols-outlined text-primary text-sm">database</span>
+</div>
+<span class="text-[10px] font-bold text-white">本地加密</span>
+</div>
+<div class="h-1 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full w-3/4 bg-primary rounded-full"></div>
+</div>
+<p class="text-[7px] text-white/40 mt-1">AES-256 軍工級</p>
+</div>
+
+<div class="mobile-feature-card absolute -left-1 bottom-[18%] p-2.5 w-[105px]" style="animation-delay: -3s;">
+<div class="flex items-center gap-2 mb-1.5">
+<div class="size-6 rounded-lg bg-cyan-500/20 flex items-center justify-center border border-cyan-500/30">
+<span class="material-symbols-outlined text-cyan-400 text-sm">devices</span>
+</div>
+<span class="text-[10px] font-bold text-white">多端同步</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="text-[11px] font-black text-white">∞</span>
+<span class="text-[7px] px-1 py-0.5 rounded bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 uppercase font-bold">Sync</span>
+</div>
+</div>
+</div>
+
+</div>
+<!-- 桌面端 Hero 展示区域 -->
+<div class="perspective-layout relative w-full max-w-6xl mx-auto mt-8 md:mt-12 mb-32 md:mb-64 hidden md:block">
 <div class="hero-3d-container glass-panel rounded-2xl overflow-hidden border border-primary/30 glow-border w-full aspect-[16/9.5] flex flex-col">
 <div class="h-11 border-b border-white/5 flex items-center px-5 gap-2 bg-white/5">
 <div class="flex gap-1.5">
@@ -348,71 +587,71 @@ langDropdown.querySelectorAll('a').forEach(link => {
 </div>
 </div>
 </div>
-<section class="py-24 mt-32" id="features">
-<div class="text-center mb-20">
-<h2 class="text-4xl md:text-5xl font-black mb-6">全方位的安全防護</h2>
-<p class="text-slate-500 max-w-xl mx-auto text-sm leading-relaxed">除了核心加密技術，我們在每一個通訊環節都加入了最嚴苛的隱私保護措施。</p>
+<section class="py-12 md:py-20 mt-16 md:mt-24" id="features">
+<div class="text-center mb-10 md:mb-16">
+<h2 class="text-3xl md:text-5xl font-black mb-4 md:mb-6">全方位的安全防護</h2>
+<p class="text-slate-500 max-w-xl mx-auto text-sm leading-relaxed px-4">除了核心加密技術，我們在每一個通訊環節都加入了最嚴苛的隱私保護措施。</p>
 </div>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-primary/5 flex items-center justify-center mb-8 border border-primary/10 group-hover:border-primary/40 transition-colors">
-<span class="material-symbols-outlined text-primary text-3xl">person</span>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-primary/5 flex items-center justify-center mb-4 md:mb-8 border border-primary/10 group-hover:border-primary/40 transition-colors">
+<span class="material-symbols-outlined text-primary text-2xl md:text-3xl">person</span>
 </div>
-<h3 class="text-xl font-bold mb-4">單聊</h3>
-<p class="text-slate-400 text-sm leading-relaxed">極致的 1v1 私隱保護，確保您與他人的每一句對話都只有彼此知曉，無法被任何第三方攔截。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">單聊</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">極致的 1v1 私隱保護，確保您與他人的每一句對話都只有彼此知曉，無法被任何第三方攔截。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-blue-500/5 flex items-center justify-center mb-8 border border-blue-500/10 group-hover:border-blue-500/40 transition-colors">
-<span class="material-symbols-outlined text-blue-400 text-3xl">groups</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-blue-500/5 flex items-center justify-center mb-4 md:mb-8 border border-blue-500/10 group-hover:border-blue-500/40 transition-colors">
+<span class="material-symbols-outlined text-blue-400 text-2xl md:text-3xl">groups</span>
 </div>
-<h3 class="text-xl font-bold mb-4">群聊</h3>
-<p class="text-slate-400 text-sm leading-relaxed">安全的團隊協作空間，獨創的多方密鑰交換機制讓群組對話同樣固若金湯。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">群聊</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">安全的團隊協作空間，獨創的多方密鑰交換機制讓群組對話同樣固若金湯。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-indigo-500/5 flex items-center justify-center mb-8 border border-indigo-500/10 group-hover:border-indigo-500/40 transition-colors">
-<span class="material-symbols-outlined text-indigo-400 text-3xl">campaign</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-indigo-500/5 flex items-center justify-center mb-4 md:mb-8 border border-indigo-500/10 group-hover:border-indigo-500/40 transition-colors">
+<span class="material-symbols-outlined text-indigo-400 text-2xl md:text-3xl">campaign</span>
 </div>
-<h3 class="text-xl font-bold mb-4">頻道</h3>
-<p class="text-slate-400 text-sm leading-relaxed">無限制的資訊廣播系統，讓您在保持完全身份隱私的同時，向全球用戶發布權威資訊。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">頻道</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">無限制的資訊廣播系統，讓您在保持完全身份隱私的同時，向全球用戶發布權威資訊。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-cyan-500/5 flex items-center justify-center mb-8 border border-cyan-500/10 group-hover:border-cyan-500/40 transition-colors">
-<span class="material-symbols-outlined text-cyan-400 text-3xl">video_call</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-cyan-500/5 flex items-center justify-center mb-4 md:mb-8 border border-cyan-500/10 group-hover:border-cyan-500/40 transition-colors">
+<span class="material-symbols-outlined text-cyan-400 text-2xl md:text-3xl">video_call</span>
 </div>
-<h3 class="text-xl font-bold mb-4">視頻、語音</h3>
-<p class="text-slate-400 text-sm leading-relaxed">高清且經過完整加密的語音與視訊通話，低延遲且絕無監聽風險，溝通無阻。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">視頻、語音</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">高清且經過完整加密的語音與視訊通話，低延遲且絕無監聽風險，溝通無阻。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-emerald-500/5 flex items-center justify-center mb-8 border border-emerald-500/10 group-hover:border-emerald-500/40 transition-colors">
-<span class="material-symbols-outlined text-emerald-400 text-3xl">lock</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-emerald-500/5 flex items-center justify-center mb-4 md:mb-8 border border-emerald-500/10 group-hover:border-emerald-500/40 transition-colors">
+<span class="material-symbols-outlined text-emerald-400 text-2xl md:text-3xl">lock</span>
 </div>
-<h3 class="text-xl font-bold mb-4">端對端加密</h3>
-<p class="text-slate-400 text-sm leading-relaxed">軍事級別的安全防護，從裝置端到裝置端的全程加密，伺服器管理員也無法讀取。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">端對端加密</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">軍事級別的安全防護，從裝置端到裝置端的全程加密，伺服器管理員也無法讀取。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-amber-500/5 flex items-center justify-center mb-8 border border-amber-500/10 group-hover:border-amber-500/40 transition-colors">
-<span class="material-symbols-outlined text-amber-400 text-3xl">bolt</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-amber-500/5 flex items-center justify-center mb-4 md:mb-8 border border-amber-500/10 group-hover:border-amber-500/40 transition-colors">
+<span class="material-symbols-outlined text-amber-400 text-2xl md:text-3xl">bolt</span>
 </div>
-<h3 class="text-xl font-bold mb-4">極速傳輸</h3>
-<p class="text-slate-400 text-sm leading-relaxed">毫秒級的消息遞送速度，即使在複雜的加密運算下，依然保持極致流暢的通訊體驗。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">極速傳輸</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">毫秒級的消息遞送速度，即使在複雜的加密運算下，依然保持極致流暢的通訊體驗。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-purple-500/5 flex items-center justify-center mb-8 border border-purple-500/10 group-hover:border-purple-500/40 transition-colors">
-<span class="material-symbols-outlined text-purple-400 text-3xl">upload_file</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-purple-500/5 flex items-center justify-center mb-4 md:mb-8 border border-purple-500/10 group-hover:border-purple-500/40 transition-colors">
+<span class="material-symbols-outlined text-purple-400 text-2xl md:text-3xl">upload_file</span>
 </div>
-<h3 class="text-xl font-bold mb-4">大文件傳輸</h3>
-<p class="text-slate-400 text-sm leading-relaxed">安全分享無大小限制的文件，採用分塊加密技術，傳輸穩定、高效且具備自動續傳功能。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">大文件傳輸</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">安全分享無大小限制的文件，採用分塊加密技術，傳輸穩定、高效且具備自動續傳功能。</p>
 </div>
-<div class="flashlight-card glass-panel p-8 rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
-<div class="size-14 rounded-2xl bg-rose-500/5 flex items-center justify-center mb-8 border border-rose-500/10 group-hover:border-rose-500/40 transition-colors">
-<span class="material-symbols-outlined text-rose-400 text-3xl">manage_history</span>
+<div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/10 transition-all hover:-translate-y-2 group">
+<div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-rose-500/5 flex items-center justify-center mb-4 md:mb-8 border border-rose-500/10 group-hover:border-rose-500/40 transition-colors">
+<span class="material-symbols-outlined text-rose-400 text-2xl md:text-3xl">manage_history</span>
 </div>
-<h3 class="text-xl font-bold mb-4">訊息自主管理</h3>
-<p class="text-slate-400 text-sm leading-relaxed">具備雙向刪除、定時銷毀等功能，讓您對自己的每一條數位足跡擁有絕對的控制權。</p>
+<h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4">訊息自主管理</h3>
+<p class="text-slate-400 text-xs md:text-sm leading-relaxed">具備雙向刪除、定時銷毀等功能，讓您對自己的每一條數位足跡擁有絕對的控制權。</p>
 </div>
 </div>
 </section>
-<div class="mt-40 pt-20 border-t border-white/5 flex flex-col items-center gap-12">
+<div class="mt-16 md:mt-32 pt-12 md:pt-20 border-t border-white/5 flex flex-col items-center gap-8 md:gap-12">
 <span class="text-[10px] font-bold uppercase tracking-[0.5em] text-white/30">Trusted security architecture</span>
 <div class="flex flex-wrap justify-center items-center gap-x-20 gap-y-10 grayscale opacity-40 hover:opacity-100 transition-opacity duration-700">
 <img alt="Security logo" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDb7tE3A7mO12-yyRn51UiwmpUthZHu0Vs-3v8zAhPCYZEjeXwMKvVpYeV8ZpxCl3p97RJAZVF7O0GN3eSnDFTBs7KA2fNYLlYQ_jvit6vE2n0xEa6xB5YykMvccp9E-y8AU4yf1gUlnpwhDwMLJHpUghb9NW-LNr08uYMeh4tVbH-aFcbdZgnVhDq4v6JRKGn5oKzeNTQexIm_RtEWYpDJPvJyXiYrVkNUoWFsVgVNJ_IUj-QS8mT5rfjm-qlfE2wBHCjAsMzqVR4"/>
@@ -446,5 +685,16 @@ langDropdown.querySelectorAll('a').forEach(link => {
 </div>
 </footer>
 </div>
-
+<!-- 移动端菜单脚本 -->
+<script>
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+}
+</script>
 </body></html>

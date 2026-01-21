@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-Hant"><head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="theme-color" content="#F8FAFC"/>
 <title>68Messenger | 功能詳情 - 全方位安全通訊 (明亮版)</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
@@ -117,6 +120,14 @@
             @apply text-primary;
         }
     }
+    /* 移动端适配 */
+    :root {
+        --safe-area-top: env(safe-area-inset-top, 0px);
+        --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (max-width: 768px) {
+        body { padding-top: var(--safe-area-top); -webkit-overflow-scrolling: touch; }
+    }
 </style>
 </head>
 <body class="aurora-bg font-sans text-slate-900 selection:bg-primary/20 antialiased overflow-x-hidden min-h-screen" onmousemove="updateMousePosition(event)">
@@ -133,13 +144,13 @@ function updateMousePosition(e) {
 }
 </script>
 <div class="relative">
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent">
-<div class="flex items-center justify-between px-8 py-5 lg:px-20 max-w-[1440px] mx-auto">
-<div class="flex items-center gap-3">
-<div class="size-9 rounded-lg flex items-center justify-center overflow-hidden">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent" style="padding-top: var(--safe-area-top);">
+<div class="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 lg:px-20 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="size-8 md:size-9 rounded-lg flex items-center justify-center overflow-hidden">
 <img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
 </div>
-<span class="text-xl font-bold tracking-tight text-slate-800">68Messenger</span>
+<span class="text-lg md:text-xl font-bold tracking-tight text-slate-800">68Messenger</span>
 </div>
 <nav class="hidden md:flex items-center gap-2">
 <a class="nav-link" href="index3.html">首頁</a>
@@ -147,7 +158,10 @@ function updateMousePosition(e) {
 <a class="nav-link" href="anquanjishu3.html">安全技術</a>
 <a class="nav-link" href="xiazai3.html">下載</a>
 </nav>
-<div class="relative group">
+<button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-slate-100 border border-slate-200">
+<span class="material-symbols-outlined text-xl text-slate-600">menu</span>
+</button>
+<div class="relative group hidden md:block">
 <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-slate-200 text-[12px] font-semibold text-slate-600 hover:bg-white transition-all">
 <span class="material-symbols-outlined text-sm">language</span>
 <span id="current-lang">中文繁體</span>
@@ -161,8 +175,27 @@ function updateMousePosition(e) {
 </div>
 </div>
 </div>
+<!-- 移动端菜单 -->
+<div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200">
+<nav class="flex flex-col p-4 gap-2">
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="index3.html">首頁</a>
+<a class="px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium" href="gongnengtexing3.html">功能特性</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="anquanjishu3.html">安全技術</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="xiazai3.html">下載</a>
+</nav>
+</div>
 </header>
 <script>
+// 移动端菜单切换
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+}
 // 導航欄滾動效果
 const header = document.getElementById('main-header');
 window.addEventListener('scroll', () => {
