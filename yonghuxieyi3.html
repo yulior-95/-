@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="theme-color" content="#F8FAFC"/>
+<title>用戶協議 | 68Messenger - 安全通訊的未來標準 (明亮版)</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#008BFF",
+                    "primary-light": "#00D1FF",
+                    "background-light": "#F8FAFC",
+                },
+                fontFamily: {
+                    "sans": ["Noto Sans TC", "Space Grotesk", "sans-serif"],
+                    "display": ["Noto Sans TC", "Space Grotesk", "sans-serif"]
+                },
+            },
+        },
+    }
+</script>
+<style type="text/tailwindcss">
+    @layer base {
+        body {
+            font-family: 'Noto Sans TC', 'Space Grotesk', sans-serif;
+        }
+    }
+    @layer components {
+        .aurora-bg {
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(0, 139, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 209, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(40px) saturate(180%);
+            border: 1px solid rgba(0, 139, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+        }
+        .border-beam-btn {
+            position: relative;
+            background: rgba(0, 139, 255, 0.05);
+            overflow: hidden;
+            z-index: 1;
+            border: 1px solid rgba(0, 139, 255, 0.2);
+        }
+        .legal-content h2 {
+            @apply text-xl font-bold text-slate-800 mb-6 flex items-center gap-3;
+        }
+        .legal-content p {
+            @apply text-slate-600 leading-relaxed mb-6 text-sm md:text-base;
+        }
+        .legal-content ul {
+            @apply space-y-4 mb-8 text-slate-600 text-sm md:text-base;
+        }
+        .legal-content li {
+            @apply pl-6 relative before:content-[''] before:absolute before:left-0 before:top-2.5 before:w-1.5 before:h-1.5 before:bg-primary/60 before:rounded-full;
+        }
+        .section-header {
+            @apply sticky top-24 z-20 py-4 px-6 mb-8 rounded-xl glass-panel border border-slate-200/50;
+        }
+        .nav-link {
+            @apply px-4 py-2 text-slate-500 font-medium hover:text-primary transition-all duration-300 relative;
+        }
+        .nav-link::after {
+            content: '';
+            @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-primary transition-all duration-300;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            @apply w-1/2;
+        }
+        .nav-link.active {
+            @apply text-primary;
+        }
+    }
+    /* 移动端适配 */
+    :root {
+        --safe-area-top: env(safe-area-inset-top, 0px);
+        --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (max-width: 768px) {
+        body { padding-top: var(--safe-area-top); -webkit-overflow-scrolling: touch; }
+        .section-header { position: relative; top: auto; }
+    }
+</style>
+</head>
+<body class="aurora-bg font-sans text-slate-900 selection:bg-primary/20 antialiased overflow-x-hidden min-h-screen">
+<div class="relative min-h-screen flex flex-col">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent" style="padding-top: var(--safe-area-top);">
+<div class="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 lg:px-20 max-w-[1440px] mx-auto">
+<div class="flex items-center gap-2 md:gap-3">
+<div class="size-8 md:size-9 rounded-lg flex items-center justify-center overflow-hidden">
+<img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
+</div>
+<span class="text-lg md:text-xl font-bold tracking-tight text-slate-800">68Messenger</span>
+</div>
+<nav class="hidden md:flex items-center gap-2">
+<a class="nav-link" href="index3.html">首頁</a>
+<a class="nav-link" href="gongnengtexing3.html">功能特性</a>
+<a class="nav-link" href="anquanjishu3.html">安全技術</a>
+<a class="nav-link" href="xiazai3.html">下載</a>
+</nav>
+<button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-slate-100 border border-slate-200">
+<span class="material-symbols-outlined text-xl text-slate-600">menu</span>
+</button>
+<div class="relative group hidden md:block">
+<button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-slate-200 text-[12px] font-semibold text-slate-600 hover:bg-white transition-all">
+<span class="material-symbols-outlined text-sm">language</span>
+<span id="current-lang">中文繁體</span>
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="absolute top-full right-0 mt-2 py-2 w-40 bg-white border border-slate-100 rounded-2xl shadow-xl opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all z-50">
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors rounded-xl mx-2">中文繁體</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors rounded-xl mx-2">Português</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors rounded-xl mx-2">Tiếng Việt</a>
+<a href="#" class="block px-4 py-2.5 text-[12px] font-medium text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors rounded-xl mx-2">English</a>
+</div>
+</div>
+</div>
+<!-- 移动端菜单 -->
+<div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200">
+<nav class="flex flex-col p-4 gap-2">
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="index3.html">首頁</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="gongnengtexing3.html">功能特性</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="anquanjishu3.html">安全技術</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="xiazai3.html">下載</a>
+</nav>
+</div>
+</header>
+<script>
+// 移动端菜单切换
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+if (mobileMenuBtn && mobileMenu) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+    });
+}
+// 導航欄滾動效果
+const header = document.getElementById('main-header');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.classList.add('bg-white/80', 'backdrop-blur-xl', 'border-slate-200/40');
+        header.classList.remove('border-transparent');
+    } else {
+        header.classList.remove('bg-white/80', 'backdrop-blur-xl', 'border-slate-200/40');
+        header.classList.add('border-transparent');
+    }
+});
+</script>
+<main class="relative z-10 flex-1 pt-28 pb-32 px-6 max-w-4xl mx-auto w-full">
+<div class="mb-20 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+            Legal Documents
+        </div>
+<h1 class="text-4xl md:text-5xl font-black tracking-tight mb-6 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-500 bg-clip-text text-transparent">
+            用戶協議
+        </h1>
+<p class="text-slate-500 font-light">
+            最後更新日期：2024 年 5 月 20 日
+        </p>
+</div>
+<div class="legal-content">
+<section class="mb-16">
+<div class="section-header">
+<h2 class="m-0"><span class="text-primary">01.</span> 服務協議的接受</h2>
+</div>
+<p>歡迎您使用 68Messenger。本用戶協議（以下簡稱「本協議」）是您與 68Messenger 運營團隊（以下簡稱「我們」）之間就您下載、安裝及使用 68Messenger 移動應用程序、桌面客戶端及相關服務所訂立的法律合約。</p>
+<p>在使用本服務前，請您務必仔細閱讀並充分理解本協議各條款內容。如果您不同意本協議的任何內容，請立即停止使用本服務。當您開始使用 68Messenger，即視為您已閱讀、理解並同意受本協議約束。</p>
+</section>
+<section class="mb-16">
+<div class="section-header">
+<h2 class="m-0"><span class="text-primary">02.</span> 隱私與安全核心原則</h2>
+</div>
+<p>68Messenger 的核心價值在於保護用戶隱私。我們承諾：</p>
+<ul>
+<li><strong class="text-slate-800">端對端加密：</strong> 您的所有對話訊息、圖片、語音及文件均在發送端加密，並僅在接收端解密。我們無法獲取任何加密內容。</li>
+<li><strong class="text-slate-800">無日誌政策：</strong> 我們不記錄用戶的通訊元數據，不存儲您的聯繫人關係鏈，不追蹤您的地理位置。</li>
+<li><strong class="text-slate-800">數據主權：</strong> 您的數據屬於您。我們提供的「閱後即焚」及「雙向刪除」功能確保您對自己的數位足跡擁有絕對控制權。</li>
+</ul>
+</section>
+<section class="mb-16">
+<div class="section-header">
+<h2 class="m-0"><span class="text-primary">03.</span> 用戶行為規範</h2>
+</div>
+<p>您在使用 68Messenger 時，應遵守法律法規及本協議。您不得利用本服務進行以下活動：</p>
+<ul>
+<li>發布、傳送、傳播任何危害國家安全、擾亂社會秩序、侵犯他人合法權益的內容。</li>
+<li>進行任何形式的詐騙、垃圾郵件分發或惡意程序攻擊。</li>
+<li>試圖通過逆向工程或任何其他方式獲取本軟件的原始碼或規避安全防護機制。</li>
+</ul>
+<p>若我們發現或收到舉報稱您違反上述規範，我們保留在不另行通知的情況下限制、暫停或終止您的帳戶服務的權利。</p>
+</section>
+<section class="mb-16">
+<div class="section-header">
+<h2 class="m-0"><span class="text-primary">04.</span> 免責聲明</h2>
+</div>
+<p>本服務按「現狀」提供。儘管我們致力於提供最安全的通訊環境，但我們無法保證服務在任何情況下均不受干擾、及時、安全或無錯誤。</p>
+<p>對於因不可抗力、網絡攻擊、設備故障、法律法規變更或其他非我們所能控制的原因導致的服務中斷或數據丟失，我們不承擔法律責任。由於端對端加密技術的特性，若您遺失了本地密鑰或恢復帳號所需的必要信息，我們將無法協助您尋回任何加密數據。</p>
+</section>
+<section class="mb-16">
+<div class="section-header">
+<h2 class="m-0"><span class="text-primary">05.</span> 協議修改與終止</h2>
+</div>
+<p>我們保留根據技術發展、法律變更或運營需求隨時修改本協議的權利。修改後的協議將在官方網站或應用程序內發布。若您在協議修改後繼續使用本服務，即視為您接受修改後的協議。</p>
+<p>您可以隨時通過註銷帳號的方式終止本協議。協議終止後，我們將根據隱私政策及本協議規定處理您的相關數據。</p>
+</section>
+<div class="p-8 rounded-2xl bg-primary/5 border border-primary/20 text-center">
+<p class="text-slate-800 font-medium mb-4">如果您對本協議有任何疑問，請聯繫我們的法務團隊</p>
+<a class="text-primary hover:underline font-bold" href="mailto:legal@68messenger.io">legal@68messenger.io</a>
+</div>
+</div>
+</main>
+<footer class="border-t border-slate-200 py-16 px-8 bg-white mt-auto">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-xl flex items-center justify-center overflow-hidden">
+<img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
+</div>
+<span class="text-2xl font-black tracking-tight text-slate-800">68Messenger</span>
+</div>
+<div class="flex flex-col md:items-end gap-4">
+<div class="flex items-center gap-2 text-sm text-slate-500">
+<span class="material-symbols-outlined text-sm">mail</span>
+<a class="hover:text-primary transition-colors" href="mailto:support@68messenger.com">support@68messenger.com</a>
+</div>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="yonghuxieyi3.html">用戶協議</a>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[11px] text-slate-400 tracking-wide">產品備案號：ICP 備 2024068688-1</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-widest">© 2024 68Messenger. Pure Privacy Infrastructure.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
+
