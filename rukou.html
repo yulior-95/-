@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger - 所有方案預覽</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    "primary": "#008BFF",
+                    "background-dark": "#070708",
+                },
+                fontFamily: {
+                    "sans": ["Noto Sans TC", "Space Grotesk", "sans-serif"],
+                },
+            },
+        },
+    }
+</script>
+<style>
+    body {
+        font-family: 'Noto Sans TC', 'Space Grotesk', sans-serif;
+        background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+        min-height: 100vh;
+    }
+    .page-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .page-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(0, 139, 255, 0.4);
+        box-shadow: 0 20px 60px rgba(0, 139, 255, 0.15);
+    }
+    .page-card iframe {
+        width: 100%;
+        height: 400px;
+        border: none;
+        pointer-events: none;
+        transform: scale(0.5);
+        transform-origin: top left;
+        width: 200%;
+        height: 800px;
+    }
+    .iframe-container {
+        height: 400px;
+        overflow: hidden;
+        background: #0a0a0f;
+    }
+    .scheme-badge {
+        background: linear-gradient(135deg, rgba(0, 139, 255, 0.2) 0%, rgba(0, 139, 255, 0.05) 100%);
+        border: 1px solid rgba(0, 139, 255, 0.3);
+    }
+    .aurora-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        pointer-events: none;
+        z-index: -1;
+    }
+    .aurora-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.3;
+    }
+</style>
+</head>
+<body class="text-white antialiased">
+<!-- 背景光效 -->
+<div class="aurora-bg">
+    <div class="aurora-orb w-[600px] h-[600px] bg-primary/20 top-[-10%] left-[-10%]"></div>
+    <div class="aurora-orb w-[500px] h-[500px] bg-blue-600/15 bottom-[-10%] right-[-10%]"></div>
+    <div class="aurora-orb w-[400px] h-[400px] bg-primary/15 top-[30%] right-[20%]"></div>
+</div>
+
+<!-- 页面内容 -->
+<div class="max-w-[1600px] mx-auto px-6 py-12">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold mb-6 tracking-[0.2em] uppercase">
+            <span class="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+            All Schemes Preview
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4 bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent">
+            68Messenger 方案總覽
+        </h1>
+        <p class="text-slate-400 text-lg max-w-2xl mx-auto">
+            點擊任意卡片進入對應頁面，查看完整的設計方案
+        </p>
+    </div>
+
+    <!-- 方案一：深色模式 -->
+    <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="scheme-badge px-4 py-2 rounded-full text-sm font-bold text-primary">方案一</span>
+            <h2 class="text-2xl font-bold">深色模式 (Dark Mode)</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- plan1.html -->
+            <a href="plan1.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="plan1.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">首頁</h3>
+                    <p class="text-xs text-slate-500">plan1.html</p>
+                </div>
+            </a>
+            <!-- gongnengxiangqing.html -->
+            <a href="gongnengxiangqing.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="gongnengxiangqing.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">功能特性</h3>
+                    <p class="text-xs text-slate-500">gongnengxiangqing.html</p>
+                </div>
+            </a>
+            <!-- anquanjishu.html -->
+            <a href="anquanjishu.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="anquanjishu.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">安全技術</h3>
+                    <p class="text-xs text-slate-500">anquanjishu.html</p>
+                </div>
+            </a>
+            <!-- xiazai.html -->
+            <a href="xiazai.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="xiazai.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">下載中心</h3>
+                    <p class="text-xs text-slate-500">xiazai.html</p>
+                </div>
+            </a>
+            <!-- yonghuxieyi.html -->
+            <a href="yonghuxieyi.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="yonghuxieyi.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">用戶協議</h3>
+                    <p class="text-xs text-slate-500">yonghuxieyi.html</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 方案二：明亮科技版 -->
+    <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="scheme-badge px-4 py-2 rounded-full text-sm font-bold text-primary">方案二</span>
+            <h2 class="text-2xl font-bold">明亮科技版 (Light Tech)</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- index2.html -->
+            <a href="index2.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="index2.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">首頁</h3>
+                    <p class="text-xs text-slate-500">index2.html</p>
+                </div>
+            </a>
+            <!-- gongnengtexing2.html -->
+            <a href="gongnengtexing2.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="gongnengtexing2.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">功能特性</h3>
+                    <p class="text-xs text-slate-500">gongnengtexing2.html</p>
+                </div>
+            </a>
+            <!-- anquanjishu2.html -->
+            <a href="anquanjishu2.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="anquanjishu2.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">安全技術</h3>
+                    <p class="text-xs text-slate-500">anquanjishu2.html</p>
+                </div>
+            </a>
+            <!-- xiazaizhongxin2.html -->
+            <a href="xiazaizhongxin2.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="xiazaizhongxin2.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">下載中心</h3>
+                    <p class="text-xs text-slate-500">xiazaizhongxin2.html</p>
+                </div>
+            </a>
+            <!-- yonghuxieyi2.html -->
+            <a href="yonghuxieyi2.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="yonghuxieyi2.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">用戶協議</h3>
+                    <p class="text-xs text-slate-500">yonghuxieyi2.html</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 方案三：明亮版 -->
+    <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="scheme-badge px-4 py-2 rounded-full text-sm font-bold text-primary">方案三</span>
+            <h2 class="text-2xl font-bold">明亮版 (Light Mode)</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- index3.html -->
+            <a href="index3.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="index3.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">首頁</h3>
+                    <p class="text-xs text-slate-500">index3.html</p>
+                </div>
+            </a>
+            <!-- gongnengtexing3.html -->
+            <a href="gongnengtexing3.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="gongnengtexing3.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">功能特性</h3>
+                    <p class="text-xs text-slate-500">gongnengtexing3.html</p>
+                </div>
+            </a>
+            <!-- anquanjishu3.html -->
+            <a href="anquanjishu3.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="anquanjishu3.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">安全技術</h3>
+                    <p class="text-xs text-slate-500">anquanjishu3.html</p>
+                </div>
+            </a>
+            <!-- xiazai3.html -->
+            <a href="xiazai3.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="xiazai3.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">下載中心</h3>
+                    <p class="text-xs text-slate-500">xiazai3.html</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 導航入口頁 -->
+    <section class="mb-20">
+        <div class="flex items-center gap-4 mb-8">
+            <span class="scheme-badge px-4 py-2 rounded-full text-sm font-bold text-primary">入口</span>
+            <h2 class="text-2xl font-bold">方案選擇入口</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- index.html -->
+            <a href="index.html" class="page-card block">
+                <div class="iframe-container">
+                    <iframe src="index.html" loading="lazy" sandbox="allow-same-origin"></iframe>
+                </div>
+                <div class="p-4 border-t border-white/5">
+                    <h3 class="font-bold mb-1">方案選擇頁</h3>
+                    <p class="text-xs text-slate-500">index.html</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="text-center py-12 border-t border-white/5">
+        <div class="flex items-center justify-center gap-3 mb-4">
+            <img src="js/icon-1024 1.png" alt="68Messenger" class="size-10 rounded-xl">
+            <span class="text-xl font-bold">68Messenger</span>
+        </div>
+        <p class="text-xs text-slate-500">© 2024 68Messenger. All Rights Reserved.</p>
+    </footer>
+</div>
+</body>
+</html>
+
