@@ -1,0 +1,422 @@
+<html lang="zh-TW"><head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>加密通訊官網 - 活力極簡版</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Noto+Sans+TC:wght@400;500;700;900&amp;family=Zhi+Mang+Xing&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+    <script>
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            primary: "#D4FF00", // Lime green from reference
+                            secondary: "#5046E5", // Electric purple/blue reference
+                            "background-light": "#F8F9FA",
+                            "background-dark": "#0B0C15",
+                            "surface-light": "#FFFFFF",
+                            "surface-dark": "#161822",
+                            "text-light": "#1A1A1A",
+                            "text-dark": "#F3F4F6",
+                            "text-muted-light": "#6B7280",
+                            "text-muted-dark": "#9CA3AF",
+                        },
+                        fontFamily: {
+                            sans: ['"Inter"', '"Noto Sans TC"', 'sans-serif'],
+                            display: ['"Noto Sans TC"', 'sans-serif'],
+                            artistic: ['"Zhi Mang Xing"', '"Noto Sans TC"', 'cursive'], // Added for artistic font request
+                        },
+                        borderRadius: {
+                            DEFAULT: "0.5rem",
+                            'xl': '1rem',
+                            '2xl': '1.5rem',
+                            '3xl': '2rem',
+                        },
+                        boxShadow: {
+                            'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                            'glow': '0 0 20px -5px rgba(212, 255, 0, 0.4)',
+                            'glow-secondary': '0 0 20px -5px rgba(80, 70, 229, 0.4)',
+                        }
+                    },
+                },
+            };
+        </script>
+    <style>
+            body {
+                font-family: 'Inter', 'Noto Sans TC', sans-serif;
+                scroll-behavior: smooth;
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.7);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.4);
+            }
+            .dark .glass-card {
+                background: rgba(22, 24, 34, 0.7);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .gradient-text {
+                background-clip: text;
+                -webkit-background-clip: text;
+                color: transparent;
+                background-image: linear-gradient(135deg, #1A1A1A 0%, #4B5563 100%);
+            }
+            .dark .gradient-text {
+                background-image: linear-gradient(135deg, #FFFFFF 0%, #9CA3AF 100%);
+            }
+        </style>
+    </head>
+    <body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-300">
+    <div class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+    <nav class="bg-black dark:bg-white/10 dark:backdrop-blur-md rounded-full px-2 py-2 flex items-center shadow-lg w-full max-w-4xl justify-between border border-transparent dark:border-white/10">
+<div class="flex items-center gap-2 pl-4">
+<img src="js/icon-1024 1.png" alt="68Messenger" class="w-7 h-7 rounded-lg object-cover">
+<span class="text-white font-bold tracking-wide text-lg">68Messenger</span>
+</div>
+    <div class="hidden md:flex items-center gap-8">
+    <a class="text-white text-sm font-medium transition-colors" href="jem-index4.html">首頁</a>
+    <a class="text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white text-sm font-medium transition-colors" href="jem-gongnengtexing.html">功能</a>
+    <a class="text-gray-300 hover:text-white dark:text-gray-300 dark:hover:text-white text-sm font-medium transition-colors" href="jem-guanyu.html">關於</a>
+    </div>
+    <div class="flex items-center gap-3">
+    <button class="bg-primary hover:bg-lime-400 text-black font-bold text-sm px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-glow">
+                    立即下載
+                </button>
+    <div class="relative">
+        <button id="lang-toggle" class="w-9 h-9 rounded-full border border-gray-700 bg-gray-900/50 hover:bg-gray-800 text-white flex items-center justify-center transition-colors">
+            <span class="material-icons-round text-lg">language</span>
+        </button>
+        <div id="lang-dropdown" class="hidden absolute top-full right-0 mt-2 py-2 w-36 rounded-xl bg-gray-900 border border-gray-700 shadow-2xl z-50">
+            <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">中文繁體</a>
+            <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">English</a>
+            <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">Tiếng Việt</a>
+            <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">Português</a>
+        </div>
+    </div>
+    </div>
+    </nav>
+    </div>
+    <section class="pt-32 pb-20 px-4 md:px-8 relative overflow-hidden">
+    <div class="absolute top-0 left-1/4 w-96 h-96 bg-secondary/10 dark:bg-secondary/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+    <div class="absolute top-20 right-1/4 w-72 h-72 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl -z-10"></div>
+    <div class="max-w-7xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-800 rounded-full px-4 py-1.5 mb-8 shadow-sm">
+    <span class="flex h-2 w-2 rounded-full bg-primary"></span>
+    <span class="text-xs font-semibold text-text-muted-light dark:text-text-muted-dark uppercase tracking-wider">安全通訊的新標準</span>
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
+                    端到端加密，<br/>
+    <span class="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">你的聊天只有你掌控</span>
+                </h1>
+    <p class="text-lg md:text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl mx-auto mb-10 leading-relaxed">
+                    採用最先進的加密算法，保障您的每一次對話、每一份文件傳輸都絕對安全。在這個數據透明的時代，我們為您構建隱秘的避風港。
+                </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+    <button class="bg-black dark:bg-white text-white dark:text-black font-bold text-sm md:text-base px-6 py-3 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 min-w-[140px] justify-center">
+    <span class="material-icons-round text-xl">phone_iphone</span>
+                        下載 App
+                    </button>
+    <button class="bg-black dark:bg-white text-white dark:text-black font-bold text-sm md:text-base px-6 py-3 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 min-w-[140px] justify-center">
+    <span class="material-icons-round text-xl">laptop_mac</span>
+                        macOS 版
+                    </button>
+    <button class="bg-black dark:bg-white text-white dark:text-black font-bold text-sm md:text-base px-6 py-3 rounded-full shadow-lg transition-all transform hover:-translate-y-1 hover:shadow-xl flex items-center gap-2 min-w-[140px] justify-center">
+    <span class="material-icons-round text-xl">desktop_windows</span>
+                        Windows 版
+                    </button>
+    </div>
+    <div class="relative max-w-5xl mx-auto">
+    <div class="absolute -left-4 md:-left-12 top-20 z-20 animate-[bounce_3s_infinite]">
+    <div class="glass-card p-4 rounded-2xl shadow-xl flex items-center gap-3 w-48">
+    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+    <span class="material-icons-round">shield</span>
+    </div>
+    <div>
+    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">加密等級</p>
+    <p class="text-xl font-bold text-text-light dark:text-text-dark">100%</p>
+    </div>
+    </div>
+    </div>
+    <div class="absolute -right-4 md:-right-12 top-40 z-20 animate-[bounce_4s_infinite]">
+    <div class="glass-card p-4 rounded-2xl shadow-xl flex items-center gap-3 w-56">
+    <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-secondary">
+    <span class="material-icons-round">lock_clock</span>
+    </div>
+    <div>
+    <p class="text-xs text-text-muted-light dark:text-text-muted-dark">消息自毀倒計時</p>
+    <p class="text-lg font-bold text-text-light dark:text-text-dark">00:05:00</p>
+    </div>
+    </div>
+    </div>
+    <div class="relative z-10 mx-auto w-full max-w-[320px] md:max-w-[400px]">
+    <div class="relative bg-black rounded-[3rem] border-8 border-gray-900 shadow-2xl overflow-hidden aspect-[9/19]">
+    <div class="absolute top-0 w-full h-full bg-white dark:bg-gray-900 overflow-hidden flex flex-col">
+    <div class="h-12 flex justify-between items-center px-6 pt-2 text-black dark:text-white text-xs font-semibold">
+    <span>9:41</span>
+    <div class="flex gap-1">
+    <span class="material-icons-round text-sm">signal_cellular_alt</span>
+    <span class="material-icons-round text-sm">wifi</span>
+    <span class="material-icons-round text-sm">battery_full</span>
+    </div>
+    </div>
+    <div class="px-4 pb-4 flex justify-between items-center">
+    <h3 class="text-2xl font-bold dark:text-white">消息</h3>
+    <div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+    <span class="material-icons-round text-gray-600 dark:text-gray-300">add</span>
+    </div>
+    </div>
+    <div class="px-4 mb-4">
+    <div class="bg-gray-100 dark:bg-gray-800 rounded-xl px-3 py-2 flex items-center gap-2">
+    <span class="material-icons-round text-gray-400">search</span>
+    <span class="text-gray-400 text-sm">搜索加密對話...</span>
+    </div>
+    </div>
+    <div class="flex-1 overflow-y-auto px-4 space-y-4">
+    <div class="flex items-center gap-3 p-3 bg-secondary/5 dark:bg-secondary/10 rounded-2xl border border-secondary/10">
+    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-indigo-600 flex items-center justify-center text-white font-bold">
+                                            T
+                                        </div>
+    <div class="flex-1 text-left">
+    <div class="flex justify-between mb-1">
+    <span class="font-bold text-sm dark:text-white text-left">Team Alpha</span>
+    <span class="text-xs text-secondary font-medium">剛剛</span>
+    </div>
+    <p class="text-xs text-gray-500 truncate text-left">密鑰已更新，請查收最新文檔...</p>
+    </div>
+    <div class="w-2 h-2 rounded-full bg-primary"></div>
+    </div>
+    <div class="flex items-center gap-3 p-2">
+    <img alt="User" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUBMgdlxE5ofs2nUZKbxvwSpGm7obqzROQCCIOmpeYiIfElZG5HvYMeHmVGtBBfKIZkytTwi1tdmMFDILyMhBugBK06G7tf8mdaanO7AmCBhZdJr6GA6p_6Lt1tl_GVvXQj7nXUjFOgNKkt86pWEpmKJ6WRnX1dCX44M87O3DTiYi7BuVyw9Ed1uqQgbuN2dpj-d5HNTIKp4Q5mSOIHF2GifGnNHotUACjnzyJ2fpSgyGTEjD-e4vrgIClmZEHzya7IYhsaz2TZM8"/>
+    <div class="flex-1 text-left">
+    <div class="flex justify-between mb-1">
+    <span class="font-bold text-sm dark:text-white text-left">產品經理</span>
+    <span class="text-xs text-gray-400">10:23</span>
+    </div>
+    <p class="text-xs text-gray-500 truncate text-left">這個功能看起來很棒！🚀</p>
+    </div>
+    </div>
+    <div class="flex items-center gap-3 p-2">
+    <img alt="User" class="w-12 h-12 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbrp24ZaQ80_GiuGnDTBUbmwJVdDa2P6HSq6sIFp3o0Y_jkvH9eHEmlkxbpMp7uBVtIewm_B8NMdz20LLx4i_BNyvMVUQe1hCNgY_iqWxqlqxdD4tFEj3G-jTh18AUfmMAYQq3MPkBVISoHS405J8JpkCASMukpZKUyO8GWp7npYZJ4O4IRDAz3hv1I00bEFuuXVYaapo1JCy_7zyo5xyNpPv4ydww7cglLDtR52yhTG83tAEbHF6YCoGv5O3O34DzH8gnFKhQAQE"/>
+    <div class="flex-1 text-left">
+    <div class="flex justify-between mb-1">
+    <span class="font-bold text-sm dark:text-white text-left">Alice Wang</span>
+    <span class="text-xs text-gray-400">昨天</span>
+    </div>
+    <div class="flex items-center gap-1 text-xs text-gray-500 text-left">
+    <span class="material-icons-round text-[10px]">lock</span>
+    <span class="truncate">圖片已加密發送</span>
+    </div>
+    </div>
+    </div>
+    <div class="absolute bottom-6 right-6 w-12 h-12 bg-secondary rounded-full flex items-center justify-center shadow-lg shadow-secondary/40 text-white">
+    <span class="material-icons-round">edit</span>
+    </div>
+    </div>
+    </div>
+    <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-7 bg-black rounded-full z-50"></div>
+    </div>
+    </div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-gray-200 dark:border-gray-800 rounded-full -z-10"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-gray-100 dark:border-gray-800/50 rounded-full -z-10"></div>
+    </div>
+    </div>
+    </section>
+    <section class="py-24 px-4 md:px-8 bg-surface-light dark:bg-surface-dark relative" id="features">
+    <div class="max-w-7xl mx-auto">
+    <div class="flex flex-col items-center justify-center mb-16 gap-4 text-center">
+    <div>
+    <h2 class="text-3xl md:text-5xl font-display font-bold text-text-light dark:text-text-dark mb-4">
+                        安全無憂，溝通無限
+                    </h2>
+    <p class="text-text-muted-light dark:text-text-muted-dark max-w-2xl mx-auto">
+                        我們將複雜的加密技術封裝在簡潔友好的界面之下，為您打造零負擔的安全社交體驗。
+                    </p>
+    </div>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+    <div class="group bg-background-light dark:bg-background-dark p-8 rounded-3xl hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-800 relative overflow-hidden h-full">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all"></div>
+    <div class="w-14 h-14 bg-primary rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform duration-300">
+    <span class="material-icons-round text-black text-3xl">verified_user</span>
+    </div>
+    <h3 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">安全加密</h3>
+    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-8">
+                            採用端到端加密技術(E2EE)，無論是文字、語音還是圖片，只有您和接收方能解讀內容。
+                        </p>
+    <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+    <div class="flex items-center justify-between mb-2">
+    <span class="text-sm font-medium dark:text-gray-300">安全指數</span>
+    <span class="text-green-500 text-sm font-bold">99.9%</span>
+    </div>
+    <div class="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2">
+    <div class="bg-green-500 h-2 rounded-full" style="width: 99.9%"></div>
+    </div>
+    </div>
+    </div>
+    <div class="group bg-background-light dark:bg-background-dark p-8 rounded-3xl hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-800 relative overflow-hidden h-full">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-secondary/20 transition-all"></div>
+    <div class="w-14 h-14 bg-secondary rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-secondary/30 group-hover:scale-110 transition-transform duration-300">
+    <span class="material-icons-round text-white text-3xl">bolt</span>
+    </div>
+    <h3 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">高效溝通</h3>
+    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-8">
+                            全新構建的極速消息引擎，優化全球鏈路傳輸，無論身在何處，重要信息毫秒級送達。
+                        </p>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 flex items-center gap-4">
+    <div class="flex-1">
+    <p class="text-xs text-gray-500 mb-1">傳輸速度</p>
+    <p class="text-xl font-bold dark:text-white">125 MB/s</p>
+    </div>
+    <div class="h-10 w-[1px] bg-gray-200 dark:bg-gray-600"></div>
+    <div class="flex-1">
+    <p class="text-xs text-gray-500 mb-1">延遲</p>
+    <p class="text-xl font-bold text-secondary">12 ms</p>
+    </div>
+    </div>
+    </div>
+    <div class="group bg-background-light dark:bg-background-dark p-8 rounded-3xl hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-gray-800 relative overflow-hidden h-full">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-purple-500/20 transition-all"></div>
+    <div class="w-14 h-14 bg-purple-500 rounded-2xl flex items-center justify-center mb-8 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform duration-300">
+    <span class="material-icons-round text-white text-3xl">visibility_off</span>
+    </div>
+    <h3 class="text-2xl font-bold text-text-light dark:text-text-dark mb-4">隱私自由</h3>
+    <p class="text-text-muted-light dark:text-text-muted-dark leading-relaxed mb-8">
+                            支持閱後即焚、防截屏與無痕瀏覽模式，讓您的數字足跡完全自由已掌控，不留任何痕跡。
+                        </p>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700">
+    <div class="flex items-center gap-4 mb-3">
+    <div class="flex-1 bg-gray-100 dark:bg-gray-700 h-2 rounded-full overflow-hidden">
+    <div class="bg-purple-500 h-full rounded-full animate-[width_2s_ease-in-out_infinite]" style="width: 0%"></div>
+    </div>
+    <span class="text-xs font-mono text-purple-500">清除中...</span>
+    </div>
+    <div class="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+    <span>歷史記錄</span>
+    <span class="font-bold text-text-light dark:text-text-dark">0 KB</span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    <section class="py-24 px-4 relative overflow-hidden">
+    <div class="max-w-5xl mx-auto bg-black dark:bg-surface-dark rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden shadow-2xl">
+    <div class="absolute top-0 left-0 w-full h-full overflow-hidden rounded-[3rem]">
+    <div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 -right-24 w-64 h-64 bg-secondary/40 rounded-full blur-3xl"></div>
+    </div>
+    <div class="relative z-10">
+    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+                        準備好開始發送<br/>
+                        您的第一條加密消息了嗎？
+                    </h2>
+    <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+                        加入全球數百萬注重隱私的用戶行列。立即註冊，體驗下一代安全通訊。
+                    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+    <button class="bg-primary hover:bg-lime-400 text-black font-bold text-base px-6 py-3 rounded-full transition-all transform hover:scale-105 shadow-lg w-full sm:w-auto flex items-center justify-center gap-2">
+    <span class="material-icons-round text-xl">phone_iphone</span>
+                            手機下載
+                        </button>
+    <button class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-base px-6 py-3 rounded-full transition-all w-full sm:w-auto flex items-center justify-center gap-2">
+    <span class="material-icons-round text-xl">laptop_mac</span>
+                            macOS 下載
+                        </button>
+    <button class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 font-bold text-base px-6 py-3 rounded-full transition-all w-full sm:w-auto flex items-center justify-center gap-2">
+    <span class="material-icons-round text-xl">desktop_windows</span>
+                            Windows 下載
+                        </button>
+    </div>
+    </div>
+    </div>
+    </section>
+    <footer class="bg-background-light dark:bg-background-dark pt-16 pb-8 border-t border-gray-200 dark:border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 md:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<img src="js/icon-1024 1.png" alt="68Messenger" class="w-9 h-9 rounded-xl object-cover">
+<span class="font-bold text-xl dark:text-white">68Messenger</span>
+</div>
+    <p class="text-text-muted-light dark:text-text-muted-dark text-sm leading-relaxed mb-6">
+                            致力於為個人和企業提供最安全的即時通訊解決方案。您的隱私，是我們的使命。
+                        </p>
+    <div class="flex gap-4">
+    <a class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-black transition-colors" href="#">
+    <span class="text-sm font-bold">X</span>
+    </a>
+    <a class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-black transition-colors" href="#">
+    <span class="text-sm font-bold">In</span>
+    </a>
+    <a class="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary hover:text-black transition-colors" href="#">
+    <span class="text-sm font-bold">W</span>
+    </a>
+    </div>
+    </div>
+    <div>
+    <h4 class="font-bold text-lg mb-6 dark:text-white">產品</h4>
+    <ul class="space-y-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+    <li><a class="hover:text-secondary transition-colors" href="#">功能特性</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">安全性</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">企業版</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">下載</a></li>
+    </ul>
+    </div>
+    <div>
+    <h4 class="font-bold text-lg mb-6 dark:text-white">資源</h4>
+    <ul class="space-y-4 text-sm text-text-muted-light dark:text-text-muted-dark">
+    <li><a class="hover:text-secondary transition-colors" href="#">幫助中心</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">隱私白皮書</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">透明度報告</a></li>
+    <li><a class="hover:text-secondary transition-colors" href="#">博客</a></li>
+    </ul>
+    </div>
+    <div class="flex flex-col items-start md:items-end">
+    <h4 class="font-bold text-lg mb-6 dark:text-white">掃碼下載</h4>
+    <div class="bg-white p-2 rounded-xl shadow-md border border-gray-100">
+    <div class="w-32 h-32 bg-gray-900 rounded-lg flex items-center justify-center">
+    <span class="material-icons-round text-white text-4xl">qr_code_2</span>
+    </div>
+    </div>
+    <p class="text-xs text-text-muted-light dark:text-text-muted-dark mt-2">支持 iOS &amp; Android</p>
+    </div>
+    </div>
+    <div class="border-t border-gray-200 dark:border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">
+                        © 2023 SecureChat Inc. All rights reserved.
+                    </p>
+    <div class="flex gap-6 text-sm text-text-muted-light dark:text-text-muted-dark">
+    <a class="hover:text-primary transition-colors" href="#">隱私政策</a>
+    <a class="hover:text-primary transition-colors" href="#">服務條款</a>
+    </div>
+    </div>
+    </div>
+    </footer>
+    <div class="fixed bottom-0 left-0 p-4 z-50">
+<div class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2 text-xs flex items-center gap-2">
+<img src="js/icon-1024 1.png" alt="68Messenger" class="w-5 h-5 rounded object-cover">
+<span class="font-bold">68Messenger</span>
+</div>
+    </div>
+    <script>
+        // 语言切换下拉菜单
+        const langToggle = document.getElementById('lang-toggle');
+        const langDropdown = document.getElementById('lang-dropdown');
+        if (langToggle && langDropdown) {
+            langToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('hidden');
+            });
+            document.addEventListener('click', () => {
+                langDropdown.classList.add('hidden');
+            });
+            langDropdown.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    langDropdown.classList.add('hidden');
+                });
+            });
+        }
+    </script>
+    </body></html>
