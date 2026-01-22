@@ -107,6 +107,12 @@
         .nav-link:hover::after {
             @apply w-1/2;
         }
+        .nav-link-active {
+            @apply text-brand-blue;
+        }
+        .nav-link-active::after {
+            @apply w-1/2;
+        }
         /* 移动端适配 */
         :root {
             --safe-area-top: env(safe-area-inset-top, 0px);
@@ -133,7 +139,7 @@
 <a class="nav-link" href="index2.html">首頁</a>
 <a class="nav-link" href="gongnengtexing2.html">功能特性</a>
 <a class="nav-link" href="anquanjishu2.html">安全技術</a>
-<a class="nav-link text-brand-blue" href="xiazaizhongxin2.html">下載</a>
+<a class="nav-link nav-link-active" href="xiazaizhongxin2.html">下載</a>
 <div class="ml-4 relative group">
 <button class="flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 bg-white/50 text-sm font-semibold text-slate-600 hover:bg-white transition-all">
 <span class="material-symbols-outlined text-lg">language</span>
