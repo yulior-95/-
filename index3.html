@@ -263,20 +263,17 @@ function updateMousePosition(e) {
 <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent" style="padding-top: var(--safe-area-top);">
 <div class="flex items-center justify-between px-4 md:px-8 py-4 md:py-5 lg:px-20 max-w-[1440px] mx-auto">
 <div class="flex items-center gap-2 md:gap-3">
-<div class="size-8 md:size-9 rounded-lg flex items-center justify-center overflow-hidden">
-<img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
-</div>
+<img src="js/image 500.png" alt="68Messenger Logo" style="width: 28.95px; height: 31.64px;" class="object-contain">
 <span class="text-lg md:text-xl font-bold tracking-tight text-slate-800">68Messenger</span>
 </div>
-<nav class="hidden md:flex items-center gap-2">
-<a class="nav-link active" href="index3.html">首頁</a>
-<a class="nav-link" href="gongnengtexing3.html">功能特性</a>
-<a class="nav-link" href="anquanjishu3.html">安全技術</a>
-<a class="nav-link" href="xiazai3.html">下載</a>
-</nav>
+<div class="flex items-center gap-2">
+<button id="mobile-lang-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-slate-100 border border-slate-200">
+<span class="material-symbols-outlined text-xl text-slate-600">language</span>
+</button>
 <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center size-10 rounded-xl bg-slate-100 border border-slate-200">
 <span class="material-symbols-outlined text-xl text-slate-600">menu</span>
 </button>
+</div>
 <div class="relative group hidden md:block">
 <button class="flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-slate-200 text-[12px] font-semibold text-slate-600 hover:bg-white transition-all">
 <span class="material-symbols-outlined text-sm">language</span>
@@ -294,10 +291,15 @@ function updateMousePosition(e) {
 <!-- 移动端菜单 -->
 <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200">
 <nav class="flex flex-col p-4 gap-2">
-<a class="px-4 py-3 rounded-xl bg-primary/10 text-primary font-medium" href="index3.html">首頁</a>
-<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="gongnengtexing3.html">功能特性</a>
-<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="anquanjishu3.html">安全技術</a>
-<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="xiazai3.html">下載</a>
+</nav>
+</div>
+<!-- 移动端语言切换菜单 -->
+<div id="mobile-lang-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-slate-200">
+<nav class="flex flex-col p-4 gap-2">
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="#">中文繁體</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="#">Português</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="#">Tiếng Việt</a>
+<a class="px-4 py-3 rounded-xl hover:bg-slate-50 text-slate-700 transition-colors" href="#">English</a>
 </nav>
 </div>
 </header>
@@ -310,6 +312,30 @@ if (mobileMenuBtn && mobileMenu) {
         mobileMenu.classList.toggle('hidden');
         const icon = mobileMenuBtn.querySelector('.material-symbols-outlined');
         icon.textContent = mobileMenu.classList.contains('hidden') ? 'menu' : 'close';
+        // 关闭语言菜单
+        const mobileLangMenu = document.getElementById('mobile-lang-menu');
+        if (mobileLangMenu && !mobileLangMenu.classList.contains('hidden')) {
+            mobileLangMenu.classList.add('hidden');
+            const langIcon = document.getElementById('mobile-lang-btn').querySelector('.material-symbols-outlined');
+            langIcon.textContent = 'language';
+        }
+    });
+}
+
+// 移动端语言切换
+const mobileLangBtn = document.getElementById('mobile-lang-btn');
+const mobileLangMenu = document.getElementById('mobile-lang-menu');
+if (mobileLangBtn && mobileLangMenu) {
+    mobileLangBtn.addEventListener('click', () => {
+        mobileLangMenu.classList.toggle('hidden');
+        const icon = mobileLangBtn.querySelector('.material-symbols-outlined');
+        icon.textContent = mobileLangMenu.classList.contains('hidden') ? 'language' : 'close';
+        // 关闭菜单
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            const menuIcon = mobileMenuBtn.querySelector('.material-symbols-outlined');
+            menuIcon.textContent = 'menu';
+        }
     });
 }
 // 導航欄滾動效果
@@ -326,23 +352,22 @@ window.addEventListener('scroll', () => {
 </script>
 <main class="relative z-10 pt-32 pb-32 px-6 max-w-[1440px] mx-auto">
 <div class="flex flex-col items-center text-center mb-24">
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/20 text-primary text-[10px] font-bold mb-8 tracking-[0.2em] uppercase">
-<span class="flex h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
-    Next-Gen Secure Protocol
-</div>
 <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 leading-[1.1] bg-gradient-to-b from-slate-900 via-slate-800 to-slate-500 bg-clip-text text-transparent">
     私人通訊的<br/>未來標準
 </h1>
-<p class="text-lg md:text-xl text-slate-500 max-w-2xl font-light leading-relaxed mb-10">
-    基於端對端加密技術，將隱私權完全歸還給使用者。<br/>
-    極簡、極速、且不可滲透。
+<p class="text-base md:text-xl text-slate-500 max-w-2xl font-light leading-relaxed mb-10">
+    基於端對端加密技術，將隱私權完全歸還給使用者<br/>
+    極簡、極速、且不可滲透
 </p>
 <div class="flex flex-col sm:flex-row gap-4 md:gap-5 w-full sm:w-auto px-4 sm:px-0">
-<button class="bg-primary text-white text-sm font-bold px-8 md:px-10 py-3 md:py-4 rounded-full hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 active:scale-95">
-        下載應用程式
+<button class="border-beam-btn px-8 md:px-10 py-3 md:py-4 rounded-full text-sm font-bold text-primary active:scale-95">
+        APP下载
     </button>
 <button class="border-beam-btn px-8 md:px-10 py-3 md:py-4 rounded-full text-sm font-bold text-primary active:scale-95">
-        技術白皮書
+        Windows下载
+    </button>
+<button class="border-beam-btn px-8 md:px-10 py-3 md:py-4 rounded-full text-sm font-bold text-primary active:scale-95">
+        Mac下载
     </button>
 </div>
 <!-- 移动端 Hero 展示区域 - iOS17 玻璃质感 明亮版 -->
@@ -398,7 +423,7 @@ window.addEventListener('scroll', () => {
 <span class="material-symbols-outlined text-primary text-[10px]">auto_delete</span>
 <span class="text-[8px] text-primary font-bold">Ephemeral</span>
 </div>
-<p class="text-[10px] text-slate-700 leading-relaxed">是的，快取會立即銷毀。</p>
+<p class="text-[10px] text-slate-700 leading-relaxed">是的，快取會立即銷毀</p>
 </div>
 </div>
 </div>
@@ -456,7 +481,7 @@ window.addEventListener('scroll', () => {
 </div>
 </div>
 <!-- 桌面端 Hero 展示区域 -->
-<div class="perspective-layout relative w-full max-w-6xl mx-auto mt-8 md:mt-12 mb-32 md:mb-64 hidden md:block">
+<div class="perspective-layout relative w-full max-w-6xl mx-auto mt-8 md:mt-12 mb-16 md:mb-24 hidden md:block">
 <div class="hero-3d-container glass-panel rounded-2xl overflow-hidden glow-border w-full aspect-[16/9.5] flex flex-col">
 <div class="h-11 border-b border-slate-100 flex items-center px-5 gap-2 bg-slate-50/50">
 <div class="flex gap-1.5">
@@ -466,7 +491,7 @@ window.addEventListener('scroll', () => {
 </div>
 <div class="flex-1 flex justify-center">
 <div class="px-3 py-1 rounded-md bg-slate-100 border border-slate-200 text-[9px] font-bold text-slate-400 tracking-[0.3em] uppercase">
-                Secure Session : AES-256-GCM
+                68Messenger
             </div>
 </div>
 </div>
@@ -508,7 +533,7 @@ window.addEventListener('scroll', () => {
 </div>
 <div>
 <div class="text-xs font-bold text-slate-800">加密核心小組</div>
-<div class="text-[9px] text-primary font-bold uppercase tracking-wider">Active Secure Channel</div>
+<div class="text-[9px] text-primary font-bold uppercase tracking-wider">在线</div>
 </div>
 </div>
 <div class="flex gap-4 text-slate-400">
@@ -520,7 +545,7 @@ window.addEventListener('scroll', () => {
 <div class="flex gap-3 max-w-[85%]">
 <div class="size-8 rounded-full bg-slate-200 flex-shrink-0"></div>
 <div>
-<div class="chat-bubble-l p-4 text-sm leading-relaxed text-slate-700">我們已經完成了最新的傳輸層優化。</div>
+<div class="chat-bubble-l p-4 text-sm leading-relaxed text-slate-700">我們已經完成了最新的傳輸層優化</div>
 <div class="mt-2 flex gap-2">
 <span class="px-2 py-0.5 rounded bg-primary/10 border border-primary/20 text-[9px] text-primary font-bold uppercase">Technical</span>
 </div>
@@ -528,7 +553,7 @@ window.addEventListener('scroll', () => {
 </div>
 <div class="flex flex-row-reverse gap-3 max-w-[85%] self-end">
 <div class="size-8 rounded-full bg-primary flex-shrink-0"></div>
-<div class="chat-bubble-r p-4 text-sm leading-relaxed text-white">非常好。閱後即焚功能在本地端是否已經過加密處理？</div>
+<div class="chat-bubble-r p-4 text-sm leading-relaxed text-white">非常好 閱後即焚功能在本地端是否已經過加密處理</div>
 </div>
 <div class="flex gap-3 max-w-[85%]">
 <div class="size-8 rounded-full bg-slate-200 flex-shrink-0"></div>
@@ -537,7 +562,7 @@ window.addEventListener('scroll', () => {
 <span class="material-symbols-outlined text-[14px]">auto_delete</span>
 <span class="text-[10px] font-bold">Secure ephemeral data</span>
 </div>
-                    是的，所有快取文件均會在對話結束後立即銷毀。
+                    是的，所有快取文件均會在對話結束後立即銷毀
                 </div>
 </div>
 </div>
@@ -560,7 +585,7 @@ window.addEventListener('scroll', () => {
 </div>
 <span class="text-sm font-bold text-slate-800">閱後即焚</span>
 </div>
-<p class="text-[11px] leading-relaxed text-slate-500">讀取後立即從所有裝置中徹底抹除，不留任何痕跡。</p>
+<p class="text-[11px] leading-relaxed text-slate-500">讀取後立即從所有裝置中徹底抹除，不留任何痕跡</p>
 </div>
 <div class="absolute top-1/2 -right-20 w-60 glass-panel rounded-2xl p-5 floating-card flashlight-card shadow-2xl z-30">
 <div class="flex items-center gap-3 mb-3">
@@ -572,7 +597,7 @@ window.addEventListener('scroll', () => {
 <div class="mb-2 h-1 w-full bg-slate-100 rounded-full overflow-hidden">
 <div class="h-full w-3/4 bg-primary rounded-full"></div>
 </div>
-<p class="text-[10px] text-slate-500">AES-256 位元軍事級本地儲存加密技術。</p>
+<p class="text-[10px] text-slate-500">AES-256 位元軍事級本地儲存加密技術</p>
 </div>
 <div class="absolute -bottom-10 left-10 w-52 glass-panel rounded-2xl p-5 floating-card flashlight-card shadow-2xl z-30">
 <div class="flex items-center gap-3 mb-3">
@@ -587,10 +612,10 @@ window.addEventListener('scroll', () => {
 </div>
 </div>
 </div>
-<section class="py-10 md:py-20 mt-8 md:mt-24" id="features">
+<section class="py-10 md:py-20 mt-4 md:mt-12" id="features">
 <div class="text-center mb-10 md:mb-16">
 <h2 class="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-slate-900">全方位的安全防護</h2>
-<p class="text-slate-500 max-w-xl mx-auto text-sm leading-relaxed px-4">除了核心加密技術，我們在每一個通訊環節都加入了最嚴苛的隱私保護措施。</p>
+<p class="text-slate-500 max-w-xl mx-auto text-sm leading-relaxed px-4">除了核心加密技術，我們在每一個通訊環節都加入了最嚴苛的隱私保護措施</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
@@ -598,56 +623,56 @@ window.addEventListener('scroll', () => {
 <span class="material-symbols-outlined text-primary text-2xl md:text-3xl">person</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">單聊</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">極致的 1v1 私隱保護，確保您與他人的每一句對話都只有彼此知曉，無法被任何第三方攔截。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">極致的 1v1 私隱保護，確保您與他人的每一句對話都只有彼此知曉，無法被任何第三方攔截</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-blue-500/10 flex items-center justify-center mb-4 md:mb-8 border border-blue-500/20 group-hover:border-blue-500/40 transition-colors">
 <span class="material-symbols-outlined text-blue-500 text-2xl md:text-3xl">groups</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">群聊</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">安全的團隊協作空間，獨創的多方密鑰交換機制讓群組對話同樣固若金湯。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">安全的團隊協作空間，獨創的多方密鑰交換機制讓群組對話同樣固若金湯</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-indigo-500/10 flex items-center justify-center mb-4 md:mb-8 border border-indigo-500/20 group-hover:border-indigo-500/40 transition-colors">
 <span class="material-symbols-outlined text-indigo-500 text-2xl md:text-3xl">campaign</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">頻道</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">無限制的資訊廣播系統，讓您在保持完全身份隱私的同時，向全球用戶發布權威資訊。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">無限制的資訊廣播系統，讓您在保持完全身份隱私的同時，向全球用戶發布權威資訊</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-4 md:mb-8 border border-cyan-500/20 group-hover:border-cyan-500/40 transition-colors">
 <span class="material-symbols-outlined text-cyan-500 text-2xl md:text-3xl">video_call</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">視頻、語音</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">高清且經過完整加密的語音與視訊通話，低延遲且絕無監聯風險，溝通無阻。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">高清且經過完整加密的語音與視訊通話，低延遲且絕無監聯風險，溝通無阻</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-4 md:mb-8 border border-emerald-500/20 group-hover:border-emerald-500/40 transition-colors">
 <span class="material-symbols-outlined text-emerald-500 text-2xl md:text-3xl">lock</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">端對端加密</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">軍事級別的安全防護，從裝置端到裝置端的全程加密，伺服器管理員也無法讀取。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">軍事級別的安全防護，從裝置端到裝置端的全程加密，伺服器管理員也無法讀取</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-amber-500/10 flex items-center justify-center mb-4 md:mb-8 border border-amber-500/20 group-hover:border-amber-500/40 transition-colors">
 <span class="material-symbols-outlined text-amber-500 text-2xl md:text-3xl">bolt</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">極速傳輸</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">毫秒級的消息遞送速度，即使在複雜的加密運算下，依然保持極致流暢的通訊體驗。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">毫秒級的消息遞送速度，即使在複雜的加密運算下，依然保持極致流暢的通訊體驗</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-purple-500/10 flex items-center justify-center mb-4 md:mb-8 border border-purple-500/20 group-hover:border-purple-500/40 transition-colors">
 <span class="material-symbols-outlined text-purple-500 text-2xl md:text-3xl">upload_file</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">大文件傳輸</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">安全分享無大小限制的文件，採用分塊加密技術，傳輸穩定、高效且具備自動續傳功能。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">安全分享無大小限制的文件，採用分塊加密技術，傳輸穩定、高效且具備自動續傳功能</p>
 </div>
 <div class="flashlight-card glass-panel p-5 md:p-8 rounded-2xl md:rounded-3xl border border-white/80 group">
 <div class="size-11 md:size-14 rounded-xl md:rounded-2xl bg-rose-500/10 flex items-center justify-center mb-4 md:mb-8 border border-rose-500/20 group-hover:border-rose-500/40 transition-colors">
 <span class="material-symbols-outlined text-rose-500 text-2xl md:text-3xl">manage_history</span>
 </div>
 <h3 class="text-lg md:text-xl font-bold mb-2 md:mb-4 text-slate-800">訊息自主管理</h3>
-<p class="text-slate-500 text-xs md:text-sm leading-relaxed">具備雙向刪除、定時銷毀等功能，讓您對自己的每一條數位足跡擁有絕對的控制權。</p>
+<p class="text-slate-500 text-xs md:text-sm leading-relaxed">具備雙向刪除、定時銷毀等功能，讓您對自己的每一條數位足跡擁有絕對的控制權</p>
 </div>
 </div>
 </section>
@@ -656,10 +681,16 @@ window.addEventListener('scroll', () => {
 <div class="max-w-[1440px] mx-auto">
 <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
 <div class="flex items-center gap-3">
-<div class="size-10 rounded-xl flex items-center justify-center overflow-hidden">
-<img src="js/icon-1024 1.png" alt="68Messenger" class="w-full h-full object-cover">
-</div>
+<img src="js/image 500.png" alt="68Messenger Logo" style="width: 28.95px; height: 31.64px;" class="object-contain">
 <span class="text-2xl font-black tracking-tight text-slate-800">68Messenger</span>
+</div>
+<div class="flex flex-col md:items-center gap-6">
+<div class="flex flex-col sm:flex-row gap-6">
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="index3.html">首页</a>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="gongnengtexing3.html">功能特性</a>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="anquanjishu3.html">安全技术</a>
+<a class="text-sm text-slate-500 hover:text-primary transition-colors" href="xiazai3.html">下载</a>
+</div>
 </div>
 <div class="flex flex-col md:items-end gap-4">
 <div class="flex items-center gap-2 text-sm text-slate-500">
@@ -677,6 +708,135 @@ window.addEventListener('scroll', () => {
 </footer>
 </div>
 
+<!-- 右侧悬浮按钮 -->
+<div class="fixed right-4 bottom-12 flex flex-col gap-4 z-50">
+    <!-- 客服按钮 -->
+    <button id="customer-service-btn" class="size-12 rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-all flex items-center justify-center">
+        <span class="material-symbols-outlined text-lg">chat</span>
+    </button>
+    
+    <!-- 置顶按钮 -->
+    <button id="back-to-top-btn" class="size-12 rounded-full bg-white text-primary border border-primary/30 shadow-lg hover:shadow-xl transition-all flex items-center justify-center hidden">
+        <span class="material-symbols-outlined text-lg">arrow_upward</span>
+    </button>
+</div>
+
+<!-- 客服卡片 -->
+<div id="customer-service-card" class="fixed right-4 bottom-28 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 hidden z-50 overflow-hidden">
+    <!-- 顶部标签栏 -->
+    <div class="bg-primary text-white p-2">
+        <div class="flex flex-wrap gap-2">
+            <button class="px-3 py-1 bg-primary/90 rounded text-sm font-medium">常见问题</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">交易步骤</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">App简介</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">安全保密</button>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-2">
+            <button class="px-3 py-1 bg-primary/90 rounded text-sm font-medium">KYC实名</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">密码问题</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">绑定信息</button>
+            <button class="px-3 py-1 rounded text-sm font-medium hover:bg-primary/80 transition-colors">好友群频道</button>
+        </div>
+    </div>
+    
+    <!-- 中间问题列表 -->
+    <div class="max-h-64 overflow-y-auto p-3 bg-gray-50">
+        <div class="space-y-2">
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">官网连接</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">无法安装App</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">App报毒无法安装</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">交易区购买</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">交易区出售</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">初级认证</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+            <div class="flex items-center justify-between p-2 bg-white rounded hover:bg-gray-100 transition-colors cursor-pointer">
+                <div class="flex items-center">
+                    <span class="material-symbols-outlined text-primary text-sm mr-2">chevron_right</span>
+                    <span class="text-sm text-primary">高级认证</span>
+                </div>
+                <span class="material-symbols-outlined text-gray-400 text-sm">keyboard_arrow_right</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部输入区域 -->
+    <div class="p-3 border-t border-gray-200">
+        <div class="flex items-center gap-2">
+            <input type="text" placeholder="请输入您的问题，将会转接人工在线客服" class="flex-1 px-3 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary text-sm">
+            <button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center">
+                <span class="material-symbols-outlined text-sm">send</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// 客服按钮功能
+const customerServiceBtn = document.getElementById('customer-service-btn');
+const customerServiceCard = document.getElementById('customer-service-card');
+
+if (customerServiceBtn && customerServiceCard) {
+    customerServiceBtn.addEventListener('click', () => {
+        customerServiceCard.classList.toggle('hidden');
+    });
+}
+
+// 置顶按钮功能
+const backToTopBtn = document.getElementById('back-to-top-btn');
+
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // 监听滚动事件，控制置顶按钮显示/隐藏
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.remove('hidden');
+        } else {
+            backToTopBtn.classList.add('hidden');
+        }
+    });
+}
+</script>
 </body></html>
 
 

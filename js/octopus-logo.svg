@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <defs>
+    <linearGradient id="octopusGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5DADE2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2E86C1;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- 头部 -->
+  <ellipse cx="120" cy="90" rx="85" ry="80" fill="url(#octopusGradient)"/>
+  
+  <!-- 左眼 -->
+  <ellipse cx="90" cy="85" rx="18" ry="25" fill="white"/>
+  
+  <!-- 右眼 -->
+  <ellipse cx="150" cy="85" rx="18" ry="25" fill="white"/>
+  
+  <!-- 触手组 -->
+  <!-- 左侧触手1 -->
+  <path d="M 40 140 Q 20 160 15 185 Q 10 200 20 210 Q 30 215 35 200 Q 40 185 45 170" fill="#3498DB" stroke="#2E86C1" stroke-width="2"/>
+  
+  <!-- 左侧触手2 -->
+  <path d="M 60 150 Q 45 170 40 195 Q 38 210 48 218 Q 58 220 60 205 Q 62 190 70 175" fill="#3498DB" stroke="#2E86C1" stroke-width="2"/>
+  
+  <!-- 左中触手 -->
+  <path d="M 80 155 Q 70 180 68 205 Q 68 220 78 225 Q 88 225 90 210 Q 92 195 95 180" fill="#5DADE2" stroke="#3498DB" stroke-width="2"/>
+  
+  <!-- 中左触手 -->
+  <path d="M 100 158 Q 95 185 95 210 Q 95 225 105 228 Q 115 228 115 213 Q 115 198 118 183" fill="#5DADE2" stroke="#3498DB" stroke-width="2"/>
+  
+  <!-- 中右触手 -->
+  <path d="M 140 158 Q 145 185 145 210 Q 145 225 135 228 Q 125 228 125 213 Q 125 198 122 183" fill="#5DADE2" stroke="#3498DB" stroke-width="2"/>
+  
+  <!-- 右中触手 -->
+  <path d="M 160 155 Q 170 180 172 205 Q 172 220 162 225 Q 152 225 150 210 Q 148 195 145 180" fill="#5DADE2" stroke="#3498DB" stroke-width="2"/>
+  
+  <!-- 右侧触手2 -->
+  <path d="M 180 150 Q 195 170 200 195 Q 202 210 192 218 Q 182 220 180 205 Q 178 190 170 175" fill="#3498DB" stroke="#2E86C1" stroke-width="2"/>
+  
+  <!-- 右侧触手1 -->
+  <path d="M 200 140 Q 220 160 225 185 Q 230 200 220 210 Q 210 215 205 200 Q 200 185 195 170" fill="#3498DB" stroke="#2E86C1" stroke-width="2"/>
+  
+  <!-- 头部高光 -->
+  <ellipse cx="100" cy="60" rx="30" ry="20" fill="white" opacity="0.3"/>
+</svg>
+
+

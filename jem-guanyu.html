@@ -5,7 +5,6 @@
 <title>About Us - 68 messenger</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 <script src="https://unpkg.com/@phosphor-icons/web"></script>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
 <script>
         tailwind.config = {
             darkMode: "class",
@@ -61,29 +60,20 @@
 <nav class="fixed top-6 left-0 right-0 mx-auto max-w-4xl z-50 px-4">
 <div class="bg-black/90 dark:bg-black/80 backdrop-blur-lg text-white rounded-pill px-6 py-3 flex justify-between items-center shadow-2xl border border-white/10">
 <div class="flex items-center gap-2 font-bold text-lg tracking-tight">
-<img src="js/icon-1024 1.png" alt="68Messenger" class="w-8 h-8 rounded-lg object-cover">
-<span>68Messenger</span>
+<i class="ph-fill ph-shield-check text-primary text-2xl"></i>
 </div>
-<div class="hidden md:flex items-center gap-8">
-<a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="jem-index4.html">首頁</a>
-<a class="text-gray-300 hover:text-white text-sm font-medium transition-colors" href="jem-gongnengtexing.html">功能</a>
-<a class="text-white text-sm font-medium transition-colors" href="jem-guanyu.html">關於</a>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+<a class="hover:text-white transition-colors" href="#">首頁</a>
+<a class="hover:text-white transition-colors" href="#">功能</a>
+<a class="text-white" href="#">關於</a>
 </div>
 <div class="flex items-center gap-4">
-<a class="bg-primary hover:bg-lime-400 text-black font-bold text-sm px-6 py-2.5 rounded-full transition-all transform hover:scale-105 shadow-glow" href="#">
-                立即下載
+<button class="text-gray-300 hover:text-white transition-colors">
+<i class="ph-bold ph-globe text-xl"></i>
+</button>
+<a class="bg-primary hover:bg-white text-black font-semibold text-sm px-5 py-2 rounded-pill transition-all duration-300 transform hover:scale-105" href="#">
+                下載應用
             </a>
-<div class="relative">
-    <button id="lang-toggle" class="w-9 h-9 rounded-full border border-gray-700 bg-gray-900/50 hover:bg-gray-800 text-white flex items-center justify-center transition-colors">
-        <span class="material-icons-round text-lg">language</span>
-    </button>
-    <div id="lang-dropdown" class="hidden absolute top-full right-0 mt-2 py-2 w-36 rounded-xl bg-gray-900 border border-gray-700 shadow-2xl z-50">
-        <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">中文繁體</a>
-        <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">English</a>
-        <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">Tiếng Việt</a>
-        <a href="#" class="block px-4 py-2.5 text-[12px] font-medium hover:bg-gray-800 transition-colors text-gray-300 hover:text-white">Português</a>
-    </div>
-</div>
 </div>
 </div>
 </nav>
@@ -93,7 +83,7 @@
 <i class="ph-fill ph-lock-key text-secondary dark:text-primary"></i>
 <span class="text-xs font-semibold text-gray-600 dark:text-gray-300 tracking-wide uppercase">安全至上，連接著未來</span>
 </div>
-<h1 class="text-5xl md:text-7xl font-black leading-tight mb-6 tracking-tight">
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-[1.15]">
                 關於我們：<br class="hidden md:block"/>
 <span class="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400">
                     專注隱私安全的IM服務商
@@ -232,8 +222,8 @@
 <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-12">
 <div class="col-span-2 lg:col-span-2">
 <div class="flex items-center gap-2 font-bold text-2xl tracking-tight mb-4">
-<img src="js/icon-1024 1.png" alt="68Messenger" class="w-10 h-10 rounded-xl object-cover">
-<span>68Messenger</span>
+<i class="ph-fill ph-shield-check text-primary"></i>
+<span>68 messenger</span>
 </div>
 <p class="text-gray-500 dark:text-gray-400 max-w-xs mb-6">
                         下一代隱私安全通訊工具。為注重數據主權的個人與企業而生。
@@ -288,24 +278,6 @@
             document.documentElement.classList.add('dark')
         } else {
             document.documentElement.classList.remove('dark')
-        }
-        // 语言切换下拉菜单
-        const langToggle = document.getElementById('lang-toggle');
-        const langDropdown = document.getElementById('lang-dropdown');
-        if (langToggle && langDropdown) {
-            langToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                langDropdown.classList.toggle('hidden');
-            });
-            document.addEventListener('click', () => {
-                langDropdown.classList.add('hidden');
-            });
-            langDropdown.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    langDropdown.classList.add('hidden');
-                });
-            });
         }
     </script>
 

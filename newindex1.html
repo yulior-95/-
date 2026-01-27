@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>68Messenger | 安全連接 簡單更好</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=Noto+Sans+TC:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+            --primary: #178AFF;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.8);
+        }
+        body {
+            font-family: "Noto Sans TC", "Inter", sans-serif;
+            overflow-x: hidden;
+            background-color: #FFFFFF;
+        }
+        @media (max-width: 768px) {
+            body {
+                overflow: hidden;
+                height: 100vh;
+            }
+            main {
+                height: calc(100vh - 60px);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                overflow: hidden;
+            }
+        }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+        .white-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(23, 138, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+        .flashlight-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(23, 138, 255, 0.08) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .feature-card:hover .flashlight-bg {
+            opacity: 1;
+        }
+        .capsule-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .capsule-glow::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(23, 138, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        .capsule-glow:hover::before {
+            left: 100%;
+        }
+        .capsule-border-glow {
+            position: relative;
+        }
+        .capsule-border-glow::after {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #178AFF, transparent, #178AFF);
+            background-size: 200% auto;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .capsule-border-glow:hover::after {
+            opacity: 1;
+            animation: borderRotate 2s linear infinite;
+        }
+        @keyframes borderRotate {
+            to { background-position: 200% center; }
+        }
+        .bg-dots {
+            background-image: radial-gradient(#178AFF10 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .features-scroll-container {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-behavior: smooth;
+        }
+        .features-scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .features-row {
+            display: flex;
+            gap: 2rem;
+            padding: 0.5rem 0;
+        }
+        .feature-item {
+            flex: 0 0 45%;
+            min-width: 45%;
+        }
+        @media (max-width: 768px) {
+            .feature-item {
+                flex: 0 0 75%;
+                min-width: 75%;
+            }
+            .feature-card {
+                flex-direction: column;
+                padding: 1rem !important;
+                gap: 1rem !important;
+            }
+            .feature-card > div {
+                width: 100% !important;
+            }
+            .feature-card h3 {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.5rem !important;
+            }
+            .feature-card p {
+                font-size: 0.8rem !important;
+            }
+            .feature-card .inline-flex {
+                font-size: 0.6rem !important;
+                padding: 0.25rem 0.5rem !important;
+            }
+            .features-scroll-container {
+                touch-action: pan-x;
+                -webkit-overflow-scrolling: touch;
+            }
+            .features-row {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col justify-between p-0 bg-dots">
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none z-[-1] overflow-hidden">
+<div class="absolute top-[-10%] right-[-5%] w-[50%] h-[50%] bg-blue-50 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[40%] h-[40%] bg-blue-50/50 rounded-full blur-[120px]"></div>
+</div>
+<header class="fixed top-4 left-0 right-0 z-50 px-6">
+<nav class="max-w-6xl mx-auto glass-nav rounded-full px-6 py-3 flex items-center justify-between border border-white/40">
+<div class="flex items-center gap-2">
+<img src="js/image 500.png" alt="68Messenger Logo" style="width: 28.95px; height: 31.64px;" class="rounded-lg shadow-lg shadow-blue-200"/>
+<span class="text-lg font-bold tracking-tight text-slate-900">68Messenger</span>
+</div>
+<div class="flex items-center">
+            <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-white/40 transition-all border border-slate-200">
+<span class="material-symbols-outlined text-lg">language</span>
+<span class="text-xs font-bold uppercase">繁中</span>
+</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center pt-14 md:pt-20 pb-2 md:pb-12 max-w-7xl mx-auto w-full px-4 md:px-6">
+<div class="text-center mb-4 md:mb-12 max-w-3xl">
+<h1 class="text-3xl md:text-6xl lg:text-7xl font-black tracking-tight mb-2 md:mb-6 text-slate-900 leading-tight">
+            安全連接<br/>
+<span class="text-[var(--primary)]">簡單更好</span>
+</h1>
+<p class="text-sm md:text-xl text-slate-500 leading-relaxed max-w-2xl mx-auto mb-3 md:mb-10 font-medium px-4">
+            體驗下一代加密通訊，快速、簡潔且完全隱私
+        </p>
+<div class="flex flex-row md:flex-row flex-wrap items-center justify-center gap-2 md:gap-5 px-4">
+<button class="flex-1 md:flex-none md:w-auto bg-[var(--primary)] hover:bg-blue-600 text-white px-4 md:px-10 py-2.5 md:py-4 rounded-full text-sm md:text-base font-bold flex items-center justify-center gap-1.5 md:gap-2.5 transition-all shadow-xl shadow-blue-200 capsule-glow">
+<span class="material-symbols-outlined text-lg md:text-xl">desktop_windows</span>
+<span class="whitespace-nowrap">下載 PC 版</span>
+            </button>
+<button class="flex-1 md:flex-none md:w-auto bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 px-4 md:px-10 py-2.5 md:py-4 rounded-full text-sm md:text-base font-bold flex items-center justify-center gap-1.5 md:gap-2.5 transition-all capsule-border-glow">
+<span class="material-symbols-outlined text-lg md:text-xl">smartphone</span>
+<span class="whitespace-nowrap">下載 APP 版</span>
+            </button>
+</div>
+</div>
+<div class="features-scroll-container w-full max-w-6xl">
+<div class="features-row">
+<div class="feature-item">
+<div class="feature-card white-glass p-8 rounded-[2.5rem] flex items-center gap-8 group cursor-default" onmousemove="handleFlashlight(event, this)">
+<div class="flashlight-bg"></div>
+<div class="w-1/2 relative z-10 bg-white/50 rounded-2xl p-3 border border-white/60 shadow-sm overflow-hidden flex items-center justify-center">
+<img alt="私聊界面" class="rounded-xl shadow-md" style="width: 100px; height: 216.417px;" src="js/气泡类型-引用.png"/>
+</div>
+<div class="w-1/2 relative z-10">
+<div class="inline-flex items-center px-3 py-1 bg-blue-50 text-[var(--primary)] text-[11px] font-bold uppercase tracking-widest rounded-full mb-4 border border-blue-100">
+                        私聊
+                    </div>
+<h3 class="text-2xl font-bold mb-3 text-slate-900">安全私密對話</h3>
+<p class="text-sm text-slate-500 leading-relaxed">端到端加密技術保護每一條消息，只有您和對方能看到聊天內容，享受真正的隱私通訊</p>
+</div>
+</div>
+</div>
+<div class="feature-item">
+<div class="feature-card white-glass p-8 rounded-[2.5rem] flex items-center gap-8 group cursor-default" onmousemove="handleFlashlight(event, this)">
+<div class="flashlight-bg"></div>
+<div class="w-1/2 relative z-10 bg-white/50 rounded-2xl p-3 border border-white/60 shadow-sm overflow-hidden flex items-center justify-center">
+<img alt="群聊界面" class="rounded-xl shadow-md" style="width: 100px; height: 216.417px;" src="js/气泡类型-引用1.png"/>
+</div>
+<div class="w-1/2 relative z-10">
+<div class="inline-flex items-center px-3 py-1 bg-blue-50 text-[var(--primary)] text-[11px] font-bold uppercase tracking-widest rounded-full mb-4 border border-blue-100">
+                        群聊
+                    </div>
+<h3 class="text-2xl font-bold mb-3 text-slate-900">超大群組協作</h3>
+<p class="text-sm text-slate-500 leading-relaxed">支持最多5000成員的超級群組，提供完善的管理員權限體系，讓團隊溝通更高效</p>
+</div>
+</div>
+</div>
+<div class="feature-item">
+<div class="feature-card white-glass p-8 rounded-[2.5rem] flex items-center gap-8 group cursor-default" onmousemove="handleFlashlight(event, this)">
+<div class="flashlight-bg"></div>
+<div class="w-1/2 relative z-10 bg-white/50 rounded-2xl p-3 border border-white/60 shadow-sm overflow-hidden flex items-center justify-center">
+<img alt="頻道界面" class="rounded-xl shadow-md" style="width: 100px; height: 216.417px;" src="js/气泡类型-引用1.png"/>
+</div>
+<div class="w-1/2 relative z-10">
+<div class="inline-flex items-center px-3 py-1 bg-blue-50 text-[var(--primary)] text-[11px] font-bold uppercase tracking-widest rounded-full mb-4 border border-blue-100">
+                        頻道
+                    </div>
+<h3 class="text-2xl font-bold mb-3 text-slate-900">10万超大容量廣播頻道</h3>
+<p class="text-sm text-slate-500 leading-relaxed">創建公開或私密頻道，向訂閱者單向發布內容，打造您的專屬影響力平台</p>
+</div>
+</div>
+</div>
+<div class="feature-item">
+<div class="feature-card white-glass p-8 rounded-[2.5rem] flex items-center gap-8 group cursor-default" onmousemove="handleFlashlight(event, this)">
+<div class="flashlight-bg"></div>
+<div class="w-1/2 relative z-10 bg-white/50 rounded-2xl p-3 border border-white/60 shadow-sm overflow-hidden">
+<img alt="文件傳輸界面" class="rounded-xl shadow-md w-full" src="https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=800&q=80"/>
+</div>
+<div class="w-1/2 relative z-10">
+<div class="inline-flex items-center px-3 py-1 bg-blue-50 text-[var(--primary)] text-[11px] font-bold uppercase tracking-widest rounded-full mb-4 border border-blue-100">
+                        文件傳輸
+                    </div>
+<h3 class="text-2xl font-bold mb-3 text-slate-900">2GB極速傳輸</h3>
+<p class="text-sm text-slate-500 leading-relaxed">單個文件最大支持2GB容量，無論是高清視頻、大型文檔還是設計素材都能快速傳輸</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full md:fixed relative bottom-0 left-0 bg-white/40 backdrop-blur-md border-t border-slate-100/50 flex-shrink-0">
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-2 md:py-4 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
+<div class="flex items-center gap-2 md:gap-3">
+<img src="js/image 500.png" alt="68Messenger Logo" style="width: 28.95px; height: 31.64px;" class="rounded-md"/>
+<span class="text-xs md:text-sm font-bold text-slate-900">68Messenger</span>
+<span class="mx-1 md:mx-2 text-slate-300">|</span>
+<span class="text-[10px] md:text-xs text-slate-400 font-medium">© 2024 Global Connect</span>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-2 md:gap-8 text-[10px] md:text-xs font-semibold text-slate-500">
+<a class="flex items-center gap-1 md:gap-1.5 hover:text-[var(--primary)] transition-colors" href="mailto:support@68messenger.com">
+<span class="material-symbols-outlined text-sm md:text-base">mail</span>
+<span class="hidden md:inline">support@68messenger.com</span>
+<span class="md:hidden">聯繫我們</span>
+            </a>
+<div class="flex items-center gap-4 md:gap-6">
+<a class="hover:text-[var(--primary)] transition-colors" href="newyonghuxieyi.html">用戶協議</a>
+<a class="hover:text-[var(--primary)] transition-colors" href="newyinsizhengce.html">隱私政策</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
+    function handleFlashlight(e, card) {
+        const rect = card.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--x', x + '%');
+        card.style.setProperty('--y', y + '%');
+    }
+
+    // 功能模块鼠标滚动横向滑动（仅PC端）
+    const featuresContainer = document.querySelector('.features-scroll-container');
+    const isMobile = window.innerWidth <= 768;
+    
+    if (featuresContainer && !isMobile) {
+        featuresContainer.addEventListener('wheel', (e) => {
+            // 检查是否在功能模块区域内
+            const rect = featuresContainer.getBoundingClientRect();
+            const isInside = e.clientY >= rect.top && e.clientY <= rect.bottom;
+            
+            if (isInside) {
+                e.preventDefault();
+                // 将垂直滚动转换为水平滚动
+                featuresContainer.scrollLeft += e.deltaY;
+            }
+        }, { passive: false });
+    }
+    
+    // 移动端触摸滑动已通过CSS的touch-action和-webkit-overflow-scrolling支持
+</script>
+
+</body></html>
